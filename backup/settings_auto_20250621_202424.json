@@ -1,0 +1,21 @@
+{
+    "settings": {
+        "email_reminders": true,
+        "sms_reminders": false,
+        "data_retention": "6M",
+        "auto_backup": true,
+        "backup_path": "./backup",
+        "theme": "default",
+        "window_size": {
+            "width": 1707,
+            "height": 976
+        }
+    },
+    "graph_settings": {
+        "show_ideal_range": true,
+        "show_grid": true
+    },
+    "email_config": {},
+    "sms_config": {},
+    "alert_settings": {}
+}

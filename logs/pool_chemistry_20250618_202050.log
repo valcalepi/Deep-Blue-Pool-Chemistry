@@ -1,0 +1,35 @@
+2025-06-18 20:20:50,042 - INFO - Starting Deep Blue Chemistry Pool Management System
+2025-06-18 20:20:50,118 - INFO - Initializing WaterTester
+2025-06-18 20:20:50,137 - INFO - WaterTester initialized successfully
+2025-06-18 20:20:50,152 - INFO - Initializing PoolApp
+2025-06-18 20:20:51,467 - INFO - Colors configured successfully
+2025-06-18 20:20:51,527 - INFO - Variables initialized successfully
+2025-06-18 20:20:51,530 - INFO - Styles configured successfully
+2025-06-18 20:20:51,567 - INFO - Customer information section created successfully
+2025-06-18 20:20:51,587 - INFO - Weather section created successfully
+2025-06-18 20:20:51,617 - INFO - Header created successfully
+2025-06-18 20:20:51,665 - INFO - Input tab created successfully
+2025-06-18 20:20:51,687 - INFO - Scrollable graphs frame created successfully
+2025-06-18 20:20:51,695 - INFO - Visual analysis section created successfully
+2025-06-18 20:20:51,697 - INFO - Recommendation tab created successfully
+2025-06-18 20:20:51,702 - INFO - Main content created successfully
+2025-06-18 20:20:51,707 - INFO - Saved data populated successfully
+2025-06-18 20:20:51,714 - INFO - Successfully loaded saved data
+2025-06-18 20:20:51,719 - INFO - PoolApp initialization completed successfully
+2025-06-18 20:20:51,724 - INFO - Application initialized successfully
+2025-06-18 20:21:06,538 - INFO - Weather data retrieved successfully for ZIP: 34773
+2025-06-18 20:21:06,561 - INFO - Forecast display updated successfully
+2025-06-18 20:21:06,567 - INFO - Weather display updated successfully
+2025-06-18 20:21:37,854 - INFO - Pool volume set to 11419.0 gallons
+2025-06-18 20:21:37,890 - INFO - Generating chemical recommendations
+2025-06-18 20:21:37,903 - INFO - Recommendations updated successfully
+2025-06-18 20:22:16,453 - INFO - Customer information saved for: Michael Hayes
+2025-06-18 20:22:18,866 - INFO - Combined graph updated successfully
+2025-06-18 20:22:21,609 - INFO - Combined graph updated successfully
+2025-06-18 20:23:45,135 - INFO - Combined graph updated successfully
+2025-06-18 20:23:46,557 - INFO - Combined graph updated successfully
+2025-06-18 20:24:22,442 - INFO - Combined graph updated successfully
+2025-06-18 20:24:22,638 - INFO - Combined graph updated successfully
+2025-06-18 20:24:48,148 - INFO - Combined graph updated successfully
+2025-06-18 20:26:32,037 - INFO - Combined graph updated successfully
+2025-06-18 20:26:43,228 - INFO - Combined graph updated successfully
