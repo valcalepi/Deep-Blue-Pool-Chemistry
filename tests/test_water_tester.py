@@ -1,24 +1,36 @@
 # tests/test_water_tester.py
-import pytest
-from models.water_tester import WaterTester
+import unittest
+from models.water_tester import WaterTester  # Try this import path
+# If the above doesn't work, try these alternatives:
+# from pool_controller.models.water_tester import WaterTester
+# import sys; sys.path.append('..'); from pool_controller.models.water_tester import WaterTester
 
-def test_calculate_ph_dosage():
-    """Test pH dosage calculation."""
-    tester = WaterTester()
-    tester.set_pool_volume(10000)
+class TestWaterTester(unittest.TestCase):
+    """Tests for the WaterTester class."""
     
-    # Test normal case
-    result = tester._calculate_ph_dosage(0.5)
-    assert "2.50 lbs" in result
+    def setUp(self):
+        """Set up test fixtures."""
+        self.tester = WaterTester()
+        self.tester.set_pool_volume(10000)
     
-    # Test small dosage (under 1 lb)
-    result = tester._calculate_ph_dosage(0.1)
-    assert "oz" in result
-    
-    # Test zero dosage
-    result = tester._calculate_ph_dosage(0)
-    assert "No adjustment needed" in result
-    
-    # Test negative value (should be handled gracefully)
-    result = tester._calculate_ph_dosage(-0.1)
-    assert "No adjustment needed" in result
+    def test_calculate_ph_dosage(self):
+        """Test pH dosage calculation."""
+        # Test normal case
+        result = self.tester._calculate_ph_dosage(0.5)
+        self.assertIn("2.50 lbs", result)
+        
+        # Test small dosage (under 1 lb)
+        result = self.tester._calculate_ph_dosage(0.1)
+        self.assertIn("oz", result)
+        
+        # Test zero dosage
+        result = self.tester._calculate_ph_dosage(0)
+        self.assertIn("No adjustment needed", result)
+        
+        # Test negative value (should be handled gracefully)
+        result = self.tester._calculate_ph_dosage(-0.1)
+        self.assertIn("No adjustment needed", result)
+
+if __name__ == "__main__":
+    unittest.main()
+

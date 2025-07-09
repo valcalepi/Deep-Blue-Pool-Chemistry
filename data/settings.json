@@ -1,28 +1,4 @@
 {
-    "general": {
-        "email_reminders": true,
-        "sms_reminders": false,
-        "data_retention": "6M",
-        "auto_backup": true,
-        "backup_path": "./backup",
-        "theme": "default",
-        "window_size": {
-            "width": 1707,
-            "height": 976
-        }
-    },
-    "graph": {
-        "show_ideal_range": true,
-        "show_grid": true
-    },
-    "email": {
-        "sender_email": null,
-        "app_password": ""
-    },
-    "sms": {
-        "account_sid": null,
-        "auth_token": "",
-        "twilio_number": null
-    },
-    "alerts": {}
+    "theme": "clam",
+    "auto_backup": true
 }
