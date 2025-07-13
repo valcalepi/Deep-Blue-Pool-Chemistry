@@ -1,0 +1,36 @@
+
+{
+  "location": "Florida",
+  "weather_update_interval": 3600,
+  "schedules": [
+    {
+      "name": "Daily Filtration",
+      "type": "recurring",
+      "days": ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"],
+      "start_time": "08:00",
+      "end_time": "16:00",
+      "actions": ["pump_on"]
+    },
+    {
+      "name": "Weekly Cleaning",
+      "type": "recurring",
+      "days": ["saturday"],
+      "start_time": "10:00",
+      "end_time": "12:00",
+      "actions": ["cleaning_mode_on"]
+    }
+  ],
+  "thresholds": {
+    "temperature_min": 75.0,
+    "temperature_max": 85.0,
+    "ph_min": 7.0,
+    "ph_max": 7.6,
+    "chlorine_min": 1.0,
+    "chlorine_max": 3.0
+  },
+  "database_path": "pool_data.db",
+  "web_interface_enabled": true,
+  "web_interface_host": "0.0.0.0",
+  "web_interface_port": 8080,
+  "gui_enabled": true
+}
