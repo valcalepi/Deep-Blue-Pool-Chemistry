@@ -1,0 +1,17 @@
+{
+    "database": {
+        "path": "data/pool_data.db"
+    },
+    "chemical_safety": {
+        "data_file": "data/chemical_safety_data.json"
+    },
+    "test_strip": {
+        "brand": "default",
+        "calibration_file": "data/calibration.json"
+    },
+    "weather": {
+        "location": "Florida",
+        "update_interval": 3600,
+        "cache_file": "data/weather_cache.json"
+    }
+}
