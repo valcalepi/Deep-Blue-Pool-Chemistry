@@ -1,0 +1,7 @@
+2025-07-17 08:17:56,930 - root - INFO - Logging initialized at level INFO
+2025-07-17 08:17:56,934 - root - INFO - Deep Blue Pool Chemistry Application starting
+2025-07-17 08:17:56,936 - root - INFO - Python version: 3.10.0 (tags/v3.10.0:b494f59, Oct  4 2021, 19:00:18) [MSC v.1929 64 bit (AMD64)]
+2025-07-17 08:17:56,938 - root - INFO - Loaded configuration from config.json
+2025-07-17 08:17:56,941 - root - INFO - Running in GUI mode
+2025-07-17 08:18:00,062 - color_calibration - INFO - Loaded calibration data from data/strip_calibration.json
+2025-07-17 08:18:00,079 - color_calibration - INFO - Loaded calibration data from data/strip_calibration.json

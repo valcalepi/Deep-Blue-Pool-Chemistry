@@ -1,4 +1,4 @@
-Core dependencies
+#Core dependencies
 
 Flask==3.1.1
 pyserial==3.5
@@ -8,9 +8,9 @@ numpy==1.26.3
 pandas==2.2.0
 
 
-GUI dependencies
+#GUI dependencies
 
-Note: tkinter is included with Python standard library
+#Note: tkinter is included with Python standard library
 
 Testing dependencies
 
@@ -18,7 +18,7 @@ pytest==7.4.3
 pytest-cov==4.1.0
 
 
-Development dependencies
+#Development dependencies
 
 black==23.11.0
 flake8==6.1.0

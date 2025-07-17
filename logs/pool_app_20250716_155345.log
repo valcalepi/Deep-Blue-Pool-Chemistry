@@ -1,0 +1,29 @@
+2025-07-16 15:53:45,024 - root - INFO - Logging initialized at level INFO
+2025-07-16 15:53:45,037 - root - INFO - Deep Blue Pool Chemistry Application starting
+2025-07-16 15:53:45,051 - root - INFO - Python version: 3.10.0 (tags/v3.10.0:b494f59, Oct  4 2021, 19:00:18) [MSC v.1929 64 bit (AMD64)]
+2025-07-16 15:53:45,056 - root - INFO - Loaded configuration from config.json
+2025-07-16 15:53:45,069 - root - INFO - Running in GUI mode
+2025-07-16 15:53:48,181 - app.controllers.main_controller - INFO - Loaded configuration from config.json
+2025-07-16 15:53:48,198 - app.controllers.main_controller - INFO - Main Controller initialized
+2025-07-16 15:53:48,218 - weather_service - INFO - Weather Service initialized for Florida with update interval 3600s
+2025-07-16 15:53:48,224 - weather_service - INFO - Loaded weather data from cache, last updated: 2025-07-16 15:35:04.472070
+2025-07-16 15:53:48,237 - weather_service - INFO - Updating weather data for Florida
+2025-07-16 15:53:48,246 - weather_service - INFO - Saved weather data to cache file: weather_cache.json
+2025-07-16 15:53:48,256 - weather_service - INFO - Weather data updated successfully for Florida
+2025-07-16 15:53:48,261 - app.controllers.main_controller - INFO - Weather service initialized
+2025-07-16 15:53:48,271 - weather_impact_analyzer - INFO - Weather Impact Analyzer initialized
+2025-07-16 15:53:48,275 - app.controllers.main_controller - INFO - Weather impact analyzer initialized
+2025-07-16 15:53:49,635 - test_strip_analyzer - INFO - Camera initialized successfully
+2025-07-16 15:53:49,639 - app.controllers.main_controller - INFO - Test strip analyzer initialized
+2025-07-16 15:53:49,653 - services.chemical_safety.chemical_safety_database - INFO - Initializing Chemical Safety Database
+2025-07-16 15:53:49,657 - services.chemical_safety.chemical_safety_database - INFO - Loaded chemical safety data for 5 chemicals
+2025-07-16 15:53:49,670 - app.controllers.main_controller - INFO - Chemical safety database initialized
+2025-07-16 15:53:49,675 - services.chemical_safety.compatibility_matrix - INFO - Compatibility Matrix initialized
+2025-07-16 15:53:49,687 - app.controllers.main_controller - INFO - Chemical compatibility matrix initialized
+2025-07-16 15:53:49,692 - database_service - INFO - Connected to SQLite database at: data/pool_chemistry.db
+2025-07-16 15:53:49,705 - database_service - INFO - Database schema initialized
+2025-07-16 15:53:49,709 - app.controllers.main_controller - INFO - Database service initialized
+2025-07-16 15:53:49,944 - app.controllers.main_controller - INFO - Dashboard view initialized
+2025-07-16 15:53:49,948 - app.controllers.main_controller - INFO - GUI initialized
+2025-07-16 15:54:11,821 - test_strip_analyzer - INFO - Captured image saved to test_strip.jpg
+2025-07-16 15:54:13,067 - test_strip_analyzer - INFO - Test strip analysis completed
