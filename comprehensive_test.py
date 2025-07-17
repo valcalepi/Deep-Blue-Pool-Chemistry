@@ -275,7 +275,7 @@ class DeepBluePoolChemistryTests(unittest.TestCase):
     
     def test_pool_chemistry_app(self):
         """Test PoolChemistryApp initialization."""
-        from app import PoolChemistryApp
+        from pool_app import PoolChemistryApp
         
         # Initialize application
         app = PoolChemistryApp("test_config.json")

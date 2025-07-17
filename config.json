@@ -1,3 +1,4 @@
+
 {
     "database": {
         "path": "data/pool_data.db"
@@ -12,6 +13,22 @@
     "weather": {
         "location": "Florida",
         "update_interval": 3600,
-        "cache_file": "data/weather_cache.json"
+        "cache_file": "data/weather_cache.json",
+        "zip_code": "33101"
+    },
+    "general": {
+        "user_name": "Pool Owner",
+        "data_directory": "data",
+        "auto_backup": false
+    },
+    "pool": {
+        "size": "10000",
+        "type": "chlorine",
+        "test_strip_brand": "default"
+    },
+    "display": {
+        "theme": "light",
+        "font_size": "normal",
+        "chart_dpi": "100"
     }
 }

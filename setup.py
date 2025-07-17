@@ -23,7 +23,7 @@ def install_dependencies():
     """Install required dependencies."""
     print("Installing dependencies...")
     try:
-        subprocess.check_call([sys.executable, "-m", "pip", "install", "-r", "requirements.txt"])
+        subprocess.check_call([sys.executable, "-m", "pip", "install", "-r", "clean_requirements.txt"])
         print("Dependencies installed successfully.")
     except subprocess.CalledProcessError:
         print("Error: Failed to install dependencies.")

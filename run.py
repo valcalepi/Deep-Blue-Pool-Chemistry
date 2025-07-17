@@ -1,3 +1,4 @@
+
 #!/usr/bin/env python3
 """
 Run script for Deep Blue Pool Chemistry application.
@@ -56,8 +57,8 @@ def run_setup():
         subprocess.check_call([sys.executable, "setup.py"])
         logger.info("Setup completed successfully.")
         return True
-    except subprocess.CalledProcessError:
-        logger.error("Setup failed. Please check the output above for details.")
+    except subprocess.CalledProcessError as e:
+        logger.error(f"Setup failed: {e}")
         return False
 
 def run_gui():
@@ -66,8 +67,8 @@ def run_gui():
     try:
         subprocess.check_call([sys.executable, "main.py"])
         return True
-    except subprocess.CalledProcessError:
-        logger.error("Application failed to start in GUI mode.")
+    except subprocess.CalledProcessError as e:
+        logger.error(f"Application failed to start in GUI mode: {e}")
         return False
 
 def run_cli():
@@ -76,18 +77,18 @@ def run_cli():
     try:
         subprocess.check_call([sys.executable, "main.py", "--cli"])
         return True
-    except subprocess.CalledProcessError:
-        logger.error("Application failed to start in CLI mode.")
+    except subprocess.CalledProcessError as e:
+        logger.error(f"Application failed to start in CLI mode: {e}")
         return False
 
 def run_minimal_cli():
     """Run the application in minimal CLI mode."""
     logger.info("Starting application in minimal CLI mode...")
     try:
-        subprocess.check_call([sys.executable, "minimal_cli.py"])
+        subprocess.check_call([sys.executable, "auto_cli.py"])
         return True
-    except subprocess.CalledProcessError:
-        logger.error("Application failed to start in minimal CLI mode.")
+    except subprocess.CalledProcessError as e:
+        logger.error(f"Application failed to start in minimal CLI mode: {e}")
         return False
 
 def run_tests():
@@ -96,8 +97,8 @@ def run_tests():
     try:
         subprocess.check_call([sys.executable, "comprehensive_test.py"])
         return True
-    except subprocess.CalledProcessError:
-        logger.error("Tests failed. Please check the output above for details.")
+    except subprocess.CalledProcessError as e:
+        logger.error(f"Tests failed: {e}")
         return False
 
 def main():
