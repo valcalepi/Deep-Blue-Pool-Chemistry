@@ -1,0 +1,94 @@
+{
+    "chemicals": {
+        "chlorine": {
+            "name": "Chlorine",
+            "chemical_formula": "Cl\u2082",
+            "hazard_rating": 3,
+            "safety_precautions": [
+                "Wear protective gloves and eye protection",
+                "Use in well-ventilated areas",
+                "Keep away from acids to prevent chlorine gas formation"
+            ],
+            "storage_guidelines": "Store in cool, dry place away from direct sunlight and incompatible materials",
+            "emergency_procedures": "In case of exposure, move to fresh air and seek medical attention"
+        },
+        "muriatic_acid": {
+            "name": "Muriatic Acid (Hydrochloric Acid)",
+            "chemical_formula": "HCl",
+            "hazard_rating": 3,
+            "safety_precautions": [
+                "Always add acid to water, never water to acid",
+                "Wear chemical-resistant gloves, goggles, and protective clothing",
+                "Use in well-ventilated areas"
+            ],
+            "storage_guidelines": "Store in original container in cool, well-ventilated area away from bases",
+            "emergency_procedures": "For skin contact, flush with water for 15 minutes and seek medical attention"
+        },
+        "sodium_bicarbonate": {
+            "name": "Sodium Bicarbonate (Baking Soda)",
+            "chemical_formula": "NaHCO\u2083",
+            "hazard_rating": 1,
+            "safety_precautions": [
+                "Minimal safety equipment required",
+                "Avoid generating dust"
+            ],
+            "storage_guidelines": "Store in dry area in sealed container",
+            "emergency_procedures": "If in eyes, rinse with water"
+        },
+        "calcium_hypochlorite": {
+            "name": "Calcium Hypochlorite",
+            "chemical_formula": "Ca(ClO)\u2082",
+            "hazard_rating": 3,
+            "safety_precautions": [
+                "Wear protective gloves, clothing, and eye protection",
+                "Keep away from heat and combustible materials",
+                "Never mix with acids or ammonia"
+            ],
+            "storage_guidelines": "Store in cool, dry place away from acids and organic materials",
+            "emergency_procedures": "In case of fire, use water spray. For exposure, seek medical attention"
+        },
+        "cyanuric_acid": {
+            "name": "Cyanuric Acid",
+            "chemical_formula": "C\u2083H\u2083N\u2083O\u2083",
+            "hazard_rating": 1,
+            "safety_precautions": [
+                "Avoid dust formation",
+                "Use with adequate ventilation"
+            ],
+            "storage_guidelines": "Store in dry, cool place in closed containers",
+            "emergency_procedures": "If inhaled, move to fresh air"
+        }
+    },
+    "compatibility": {
+        "chlorine": {
+            "muriatic_acid": 0,
+            "sodium_bicarbonate": 1,
+            "calcium_hypochlorite": 1,
+            "cyanuric_acid": 1
+        },
+        "muriatic_acid": {
+            "chlorine": 0,
+            "sodium_bicarbonate": 0,
+            "calcium_hypochlorite": 0,
+            "cyanuric_acid": 1
+        },
+        "sodium_bicarbonate": {
+            "chlorine": 1,
+            "muriatic_acid": 0,
+            "calcium_hypochlorite": 1,
+            "cyanuric_acid": 1
+        },
+        "calcium_hypochlorite": {
+            "chlorine": 1,
+            "muriatic_acid": 0,
+            "sodium_bicarbonate": 1,
+            "cyanuric_acid": 1
+        },
+        "cyanuric_acid": {
+            "chlorine": 1,
+            "muriatic_acid": 1,
+            "sodium_bicarbonate": 1,
+            "calcium_hypochlorite": 1
+        }
+    }
+}
