@@ -1,0 +1,10 @@
+2025-07-11 20:59:06,433 - __main__ - CRITICAL - Failed to start application: local variable 'tk' referenced before assignment
+Traceback (most recent call last):
+  File "C:\Scripts\Deep Blue scripts and files\pool_controller\new_structure\integrated_app.py", line 195, in start
+    self.root = tk.Tk()
+UnboundLocalError: local variable 'tk' referenced before assignment
+2025-07-11 20:59:15,193 - __main__ - CRITICAL - Failed to start application: local variable 'tk' referenced before assignment
+Traceback (most recent call last):
+  File "C:\Scripts\Deep Blue scripts and files\pool_controller\new_structure\integrated_app.py", line 195, in start
+    self.root = tk.Tk()
+UnboundLocalError: local variable 'tk' referenced before assignment

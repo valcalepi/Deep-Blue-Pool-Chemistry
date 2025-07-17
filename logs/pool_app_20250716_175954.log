@@ -1,0 +1,25 @@
+2025-07-16 17:59:54,134 - root - INFO - Logging initialized at level INFO
+2025-07-16 17:59:54,152 - root - INFO - Deep Blue Pool Chemistry Application starting
+2025-07-16 17:59:54,153 - root - INFO - Python version: 3.10.0 (tags/v3.10.0:b494f59, Oct  4 2021, 19:00:18) [MSC v.1929 64 bit (AMD64)]
+2025-07-16 17:59:54,156 - root - INFO - Loaded configuration from config.json
+2025-07-16 17:59:54,158 - root - INFO - Running in GUI mode
+2025-07-16 17:59:57,273 - app.controllers.main_controller - INFO - Loaded configuration from config.json
+2025-07-16 17:59:57,289 - app.controllers.main_controller - INFO - Main Controller initialized
+2025-07-16 17:59:57,295 - weather_service - INFO - Weather Service initialized for Florida with update interval 3600s
+2025-07-16 17:59:57,297 - weather_service - INFO - Loaded weather data from cache, last updated: 2025-07-16 17:20:13.629609
+2025-07-16 17:59:57,304 - weather_service - INFO - Updating weather data for Florida
+2025-07-16 17:59:57,310 - weather_service - INFO - Saved weather data to cache file: weather_cache.json
+2025-07-16 17:59:57,312 - weather_service - INFO - Weather data updated successfully for Florida
+2025-07-16 17:59:57,315 - app.controllers.main_controller - INFO - Weather service initialized
+2025-07-16 17:59:57,320 - weather_impact_analyzer - INFO - Weather Impact Analyzer initialized
+2025-07-16 17:59:57,325 - app.controllers.main_controller - INFO - Weather impact analyzer initialized
+2025-07-16 17:59:58,775 - test_strip_analyzer - INFO - Camera initialized successfully
+2025-07-16 17:59:58,778 - app.controllers.main_controller - INFO - Test strip analyzer initialized
+2025-07-16 17:59:58,782 - services.chemical_safety.chemical_safety_database - INFO - Initializing Chemical Safety Database
+2025-07-16 17:59:58,784 - services.chemical_safety.chemical_safety_database - INFO - Loaded chemical safety data for 5 chemicals
+2025-07-16 17:59:58,787 - app.controllers.main_controller - INFO - Chemical safety database initialized
+2025-07-16 17:59:58,790 - compatibility_matrix - INFO - Compatibility Matrix initialized
+2025-07-16 17:59:58,792 - app.controllers.main_controller - INFO - Chemical compatibility matrix initialized
+2025-07-16 17:59:58,794 - app.controllers.main_controller - INFO - Database service initialized
+2025-07-16 17:59:59,011 - app.controllers.main_controller - INFO - Dashboard view initialized
+2025-07-16 17:59:59,014 - app.controllers.main_controller - INFO - GUI initialized

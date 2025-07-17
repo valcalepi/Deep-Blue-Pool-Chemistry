@@ -1,0 +1,20 @@
+2025-07-16 11:52:07,317 - root - INFO - Logging initialized at level INFO
+2025-07-16 11:52:07,337 - root - INFO - Deep Blue Pool Chemistry Application starting
+2025-07-16 11:52:07,357 - root - INFO - Python version: 3.10.0 (tags/v3.10.0:b494f59, Oct  4 2021, 19:00:18) [MSC v.1929 64 bit (AMD64)]
+2025-07-16 11:52:07,376 - root - INFO - Loaded configuration from config.json
+2025-07-16 11:52:07,397 - root - INFO - Running in GUI mode
+2025-07-16 11:52:07,533 - app.controllers.main_controller - INFO - Loaded configuration from config.json
+2025-07-16 11:52:07,552 - app.controllers.main_controller - INFO - Main Controller initialized
+2025-07-16 11:52:07,574 - app.controllers.main_controller - WARNING - Failed to initialize weather service: WeatherService.__init__() got an unexpected keyword argument 'location'
+2025-07-16 11:52:07,592 - app.controllers.main_controller - WARNING - Failed to initialize test strip analyzer: TestStripAnalyzer.__init__() got an unexpected keyword argument 'enable_camera'
+2025-07-16 11:52:07,614 - services.chemical_safety.chemical_safety_database - INFO - Initializing Chemical Safety Database
+2025-07-16 11:52:07,635 - services.chemical_safety.chemical_safety_database - INFO - Loaded chemical safety data for 5 chemicals
+2025-07-16 11:52:07,658 - app.controllers.main_controller - INFO - Chemical safety database initialized
+2025-07-16 11:52:07,678 - services.chemical_safety.compatibility_matrix - INFO - Compatibility Matrix initialized
+2025-07-16 11:52:07,701 - app.controllers.main_controller - INFO - Chemical compatibility matrix initialized
+2025-07-16 11:52:07,729 - database_service - INFO - Connected to SQLite database at: data/pool_chemistry.db
+2025-07-16 11:52:07,762 - database_service - INFO - Database schema initialized
+2025-07-16 11:52:07,783 - app.controllers.main_controller - INFO - Database service initialized
+2025-07-16 11:52:07,799 - root - INFO - Using enhanced GUI
+2025-07-16 11:52:07,899 - app.controllers.main_controller - INFO - Dashboard view initialized
+2025-07-16 11:52:07,929 - app.controllers.main_controller - INFO - GUI initialized
