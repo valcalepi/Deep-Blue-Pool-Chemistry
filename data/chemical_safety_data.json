@@ -1,0 +1,98 @@
+
+{
+  "chemicals": {
+    "chlorine": {
+      "name": "Chlorine",
+      "chemical_formula": "Cl2",
+      "hazard_rating": "3 - High",
+      "safety_precautions": [
+        "Wear protective gloves and eye protection",
+        "Use in well-ventilated areas",
+        "Keep away from children",
+        "Do not mix with other chemicals"
+      ],
+      "storage_guidelines": "Store in a cool, dry place away from direct sunlight and other chemicals.",
+      "emergency_procedures": "In case of skin contact, rinse with plenty of water. If inhaled, move to fresh air. Seek medical attention if irritation persists."
+    },
+    "muriatic_acid": {
+      "name": "Muriatic Acid",
+      "chemical_formula": "HCl",
+      "hazard_rating": "3 - High",
+      "safety_precautions": [
+        "Wear chemical-resistant gloves, eye protection, and protective clothing",
+        "Always add acid to water, never water to acid",
+        "Use in well-ventilated areas",
+        "Keep away from children"
+      ],
+      "storage_guidelines": "Store in original container in a cool, dry place away from metals and other chemicals.",
+      "emergency_procedures": "In case of skin contact, rinse with plenty of water for at least 15 minutes. If inhaled, move to fresh air. Seek immediate medical attention."
+    },
+    "sodium_bicarbonate": {
+      "name": "Sodium Bicarbonate",
+      "chemical_formula": "NaHCO3",
+      "hazard_rating": "1 - Low",
+      "safety_precautions": [
+        "Avoid breathing dust",
+        "Avoid contact with eyes"
+      ],
+      "storage_guidelines": "Store in a cool, dry place in a sealed container.",
+      "emergency_procedures": "In case of eye contact, rinse with water. If inhaled, move to fresh air."
+    },
+    "calcium_chloride": {
+      "name": "Calcium Chloride",
+      "chemical_formula": "CaCl2",
+      "hazard_rating": "2 - Moderate",
+      "safety_precautions": [
+        "Wear gloves and eye protection",
+        "Avoid breathing dust",
+        "Keep away from children"
+      ],
+      "storage_guidelines": "Store in a cool, dry place in a sealed container.",
+      "emergency_procedures": "In case of skin contact, rinse with plenty of water. If inhaled, move to fresh air. Seek medical attention if irritation persists."
+    },
+    "cyanuric_acid": {
+      "name": "Cyanuric Acid",
+      "chemical_formula": "C3H3N3O3",
+      "hazard_rating": "1 - Low",
+      "safety_precautions": [
+        "Avoid breathing dust",
+        "Avoid contact with eyes",
+        "Keep away from children"
+      ],
+      "storage_guidelines": "Store in a cool, dry place in a sealed container.",
+      "emergency_procedures": "In case of eye contact, rinse with water. If inhaled, move to fresh air."
+    }
+  },
+  "compatibility": {
+    "chlorine": {
+      "muriatic_acid": false,
+      "sodium_bicarbonate": true,
+      "calcium_chloride": true,
+      "cyanuric_acid": true
+    },
+    "muriatic_acid": {
+      "chlorine": false,
+      "sodium_bicarbonate": false,
+      "calcium_chloride": true,
+      "cyanuric_acid": true
+    },
+    "sodium_bicarbonate": {
+      "chlorine": true,
+      "muriatic_acid": false,
+      "calcium_chloride": true,
+      "cyanuric_acid": true
+    },
+    "calcium_chloride": {
+      "chlorine": true,
+      "muriatic_acid": true,
+      "sodium_bicarbonate": true,
+      "cyanuric_acid": true
+    },
+    "cyanuric_acid": {
+      "chlorine": true,
+      "muriatic_acid": true,
+      "sodium_bicarbonate": true,
+      "calcium_chloride": true
+    }
+  }
+}

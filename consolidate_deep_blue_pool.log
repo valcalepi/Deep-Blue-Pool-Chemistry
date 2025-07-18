@@ -1,0 +1,219 @@
+2025-07-18 11:30:52,160 - consolidate_deep_blue_pool - INFO - Source directory: C:\Scripts\deepbluepool3
+2025-07-18 11:30:52,172 - consolidate_deep_blue_pool - INFO - Destination directory: C:\Scripts\deepbluepool3
+2025-07-18 11:30:52,177 - consolidate_deep_blue_pool - INFO - Creating directory structure in C:\Scripts\deepbluepool3
+2025-07-18 11:30:52,185 - consolidate_deep_blue_pool - INFO - Created directory: C:\Scripts\deepbluepool3\app
+2025-07-18 11:30:52,189 - consolidate_deep_blue_pool - INFO - Created directory: C:\Scripts\deepbluepool3\app/controllers
+2025-07-18 11:30:52,194 - consolidate_deep_blue_pool - INFO - Created directory: C:\Scripts\deepbluepool3\app/models
+2025-07-18 11:30:52,202 - consolidate_deep_blue_pool - INFO - Created directory: C:\Scripts\deepbluepool3\app/services
+2025-07-18 11:30:52,205 - consolidate_deep_blue_pool - INFO - Created directory: C:\Scripts\deepbluepool3\app/ui
+2025-07-18 11:30:52,209 - consolidate_deep_blue_pool - INFO - Created directory: C:\Scripts\deepbluepool3\app/ui/components
+2025-07-18 11:30:52,216 - consolidate_deep_blue_pool - INFO - Created directory: C:\Scripts\deepbluepool3\app/utils
+2025-07-18 11:30:52,220 - consolidate_deep_blue_pool - INFO - Created directory: C:\Scripts\deepbluepool3\data
+2025-07-18 11:30:52,223 - consolidate_deep_blue_pool - INFO - Created directory: C:\Scripts\deepbluepool3\data/exports
+2025-07-18 11:30:52,227 - consolidate_deep_blue_pool - INFO - Created directory: C:\Scripts\deepbluepool3\data/strip_profiles
+2025-07-18 11:30:52,231 - consolidate_deep_blue_pool - INFO - Created directory: C:\Scripts\deepbluepool3\logs
+2025-07-18 11:30:52,242 - consolidate_deep_blue_pool - INFO - Created directory: C:\Scripts\deepbluepool3\tests
+2025-07-18 11:30:52,246 - consolidate_deep_blue_pool - INFO - Creating __init__.py files
+2025-07-18 11:30:52,251 - consolidate_deep_blue_pool - INFO - Created __init__.py: C:\Scripts\deepbluepool3\app/__init__.py
+2025-07-18 11:30:52,255 - consolidate_deep_blue_pool - INFO - Created __init__.py: C:\Scripts\deepbluepool3\app/controllers/__init__.py
+2025-07-18 11:30:52,258 - consolidate_deep_blue_pool - INFO - Created __init__.py: C:\Scripts\deepbluepool3\app/models/__init__.py
+2025-07-18 11:30:52,263 - consolidate_deep_blue_pool - INFO - Created __init__.py: C:\Scripts\deepbluepool3\app/services/__init__.py
+2025-07-18 11:30:52,266 - consolidate_deep_blue_pool - INFO - Created __init__.py: C:\Scripts\deepbluepool3\app/ui/__init__.py
+2025-07-18 11:30:52,270 - consolidate_deep_blue_pool - INFO - Created __init__.py: C:\Scripts\deepbluepool3\app/ui/components/__init__.py
+2025-07-18 11:30:52,276 - consolidate_deep_blue_pool - INFO - Created __init__.py: C:\Scripts\deepbluepool3\app/utils/__init__.py
+2025-07-18 11:30:52,279 - consolidate_deep_blue_pool - INFO - Created __init__.py: C:\Scripts\deepbluepool3\data/__init__.py
+2025-07-18 11:30:52,283 - consolidate_deep_blue_pool - INFO - Created __init__.py: C:\Scripts\deepbluepool3\data/exports/__init__.py
+2025-07-18 11:30:52,287 - consolidate_deep_blue_pool - INFO - Created __init__.py: C:\Scripts\deepbluepool3\data/strip_profiles/__init__.py
+2025-07-18 11:30:52,290 - consolidate_deep_blue_pool - INFO - Created __init__.py: C:\Scripts\deepbluepool3\tests/__init__.py
+2025-07-18 11:30:52,295 - consolidate_deep_blue_pool - INFO - Copying files
+2025-07-18 11:30:52,299 - consolidate_deep_blue_pool - WARNING - Source file not found: C:\Scripts\deepbluepool3\config.json
+2025-07-18 11:30:52,302 - consolidate_deep_blue_pool - WARNING - Source file not found: C:\Scripts\deepbluepool3\requirements.txt
+2025-07-18 11:30:52,305 - consolidate_deep_blue_pool - WARNING - Source file not found: C:\Scripts\deepbluepool3\data/chemical_safety_data.json
+2025-07-18 11:30:52,308 - consolidate_deep_blue_pool - WARNING - Source file not found: C:\Scripts\deepbluepool3\data/calibration.json
+2025-07-18 11:30:52,311 - consolidate_deep_blue_pool - WARNING - Source file not found: C:\Scripts\deepbluepool3\data/strip_profiles/default.json
+2025-07-18 11:30:52,315 - consolidate_deep_blue_pool - WARNING - Source file not found: C:\Scripts\deepbluepool3\data/test_strip_calibration.json
+2025-07-18 11:30:52,318 - consolidate_deep_blue_pool - WARNING - Source file not found: C:\Scripts\deepbluepool3\data/pad_zones.json
+2025-07-18 11:30:52,321 - consolidate_deep_blue_pool - WARNING - Source file not found: C:\Scripts\deepbluepool3\assests/chemistry.png
+2025-07-18 11:30:52,325 - consolidate_deep_blue_pool - INFO - Consolidating files
+2025-07-18 11:30:52,328 - consolidate_deep_blue_pool - WARNING - Source file not found: C:\Scripts\deepbluepool3\main.py
+2025-07-18 11:30:52,332 - consolidate_deep_blue_pool - WARNING - Source file not found: C:\Scripts\deepbluepool3\pool_app.py
+2025-07-18 11:30:52,335 - consolidate_deep_blue_pool - WARNING - Source files not found: C:\Scripts\deepbluepool3\gui_controller.py or C:\Scripts\deepbluepool3\enhanced_gui_controller_part2.py
+2025-07-18 11:30:52,340 - consolidate_deep_blue_pool - WARNING - Source file not found: C:\Scripts\deepbluepool3\database_service.py
+2025-07-18 11:30:52,343 - consolidate_deep_blue_pool - WARNING - Source file not found: C:\Scripts\deepbluepool3\chemical_safety_database.py
+2025-07-18 11:30:52,346 - consolidate_deep_blue_pool - WARNING - Source file not found: C:\Scripts\deepbluepool3\test_strip_analyzer.py
+2025-07-18 11:30:52,351 - consolidate_deep_blue_pool - WARNING - Source file not found: C:\Scripts\deepbluepool3\weather_service.py
+2025-07-18 11:30:52,355 - consolidate_deep_blue_pool - WARNING - Source file not found: C:\Scripts\deepbluepool3\arduino_sensor_manager.py
+2025-07-18 11:30:52,358 - consolidate_deep_blue_pool - WARNING - Source files not found: C:\Scripts\deepbluepool3\chemical_calculator.py or C:\Scripts\deepbluepool3\enhanced_chemical_calculator.py
+2025-07-18 11:30:52,360 - consolidate_deep_blue_pool - WARNING - Source files not found: C:\Scripts\deepbluepool3\data_visualization.py or C:\Scripts\deepbluepool3\enhanced_data_visualization.py
+2025-07-18 11:30:52,363 - consolidate_deep_blue_pool - WARNING - Source files not found: C:\Scripts\deepbluepool3\tab_based_ui.py or C:\Scripts\deepbluepool3\responsive_tab_ui.py
+2025-07-18 11:30:52,367 - consolidate_deep_blue_pool - ERROR - Error consolidating ['utils/config.py'] to app/utils/config.py: join() argument must be str, bytes, or os.PathLike object, not 'list'
+2025-07-18 11:30:52,373 - consolidate_deep_blue_pool - ERROR - Traceback (most recent call last):
+  File "C:\Scripts\deepbluepool3\consolidate_deep_blue_pool.py", line 165, in consolidate_files
+    func(source_dir, dest_dir, source_files, dest_path)
+  File "C:\Scripts\deepbluepool3\consolidate_deep_blue_pool.py", line 138, in copy_file
+    source_file = os.path.join(source_dir, source_path)
+  File "C:\Users\valca\AppData\Local\Programs\Python\Python310\lib\ntpath.py", line 117, in join
+    genericpath._check_arg_types('join', path, *paths)
+  File "C:\Users\valca\AppData\Local\Programs\Python\Python310\lib\genericpath.py", line 152, in _check_arg_types
+    raise TypeError(f'{funcname}() argument must be str, bytes, or '
+TypeError: join() argument must be str, bytes, or os.PathLike object, not 'list'
+
+2025-07-18 11:30:52,380 - consolidate_deep_blue_pool - ERROR - Error consolidating ['utils/validators.py'] to app/utils/validators.py: join() argument must be str, bytes, or os.PathLike object, not 'list'
+2025-07-18 11:30:52,385 - consolidate_deep_blue_pool - ERROR - Traceback (most recent call last):
+  File "C:\Scripts\deepbluepool3\consolidate_deep_blue_pool.py", line 165, in consolidate_files
+    func(source_dir, dest_dir, source_files, dest_path)
+  File "C:\Scripts\deepbluepool3\consolidate_deep_blue_pool.py", line 138, in copy_file
+    source_file = os.path.join(source_dir, source_path)
+  File "C:\Users\valca\AppData\Local\Programs\Python\Python310\lib\ntpath.py", line 117, in join
+    genericpath._check_arg_types('join', path, *paths)
+  File "C:\Users\valca\AppData\Local\Programs\Python\Python310\lib\genericpath.py", line 152, in _check_arg_types
+    raise TypeError(f'{funcname}() argument must be str, bytes, or '
+TypeError: join() argument must be str, bytes, or os.PathLike object, not 'list'
+
+2025-07-18 11:30:52,392 - consolidate_deep_blue_pool - WARNING - Source file not found: C:\Scripts\deepbluepool3\utils/error_handler.py
+2025-07-18 11:31:00,188 - consolidate_deep_blue_pool - INFO - Source directory: C:\Scripts\deepbluepool3
+2025-07-18 11:31:00,193 - consolidate_deep_blue_pool - INFO - Destination directory: C:\Scripts\deepbluepool3
+2025-07-18 11:31:00,199 - consolidate_deep_blue_pool - INFO - Creating directory structure in C:\Scripts\deepbluepool3
+2025-07-18 11:31:00,205 - consolidate_deep_blue_pool - INFO - Created directory: C:\Scripts\deepbluepool3\app
+2025-07-18 11:31:00,207 - consolidate_deep_blue_pool - INFO - Created directory: C:\Scripts\deepbluepool3\app/controllers
+2025-07-18 11:31:00,214 - consolidate_deep_blue_pool - INFO - Created directory: C:\Scripts\deepbluepool3\app/models
+2025-07-18 11:31:00,217 - consolidate_deep_blue_pool - INFO - Created directory: C:\Scripts\deepbluepool3\app/services
+2025-07-18 11:31:00,220 - consolidate_deep_blue_pool - INFO - Created directory: C:\Scripts\deepbluepool3\app/ui
+2025-07-18 11:31:00,223 - consolidate_deep_blue_pool - INFO - Created directory: C:\Scripts\deepbluepool3\app/ui/components
+2025-07-18 11:31:00,228 - consolidate_deep_blue_pool - INFO - Created directory: C:\Scripts\deepbluepool3\app/utils
+2025-07-18 11:31:00,232 - consolidate_deep_blue_pool - INFO - Created directory: C:\Scripts\deepbluepool3\data
+2025-07-18 11:31:00,234 - consolidate_deep_blue_pool - INFO - Created directory: C:\Scripts\deepbluepool3\data/exports
+2025-07-18 11:31:00,238 - consolidate_deep_blue_pool - INFO - Created directory: C:\Scripts\deepbluepool3\data/strip_profiles
+2025-07-18 11:31:00,240 - consolidate_deep_blue_pool - INFO - Created directory: C:\Scripts\deepbluepool3\logs
+2025-07-18 11:31:00,242 - consolidate_deep_blue_pool - INFO - Created directory: C:\Scripts\deepbluepool3\tests
+2025-07-18 11:31:00,247 - consolidate_deep_blue_pool - INFO - Creating __init__.py files
+2025-07-18 11:31:00,250 - consolidate_deep_blue_pool - INFO - Created __init__.py: C:\Scripts\deepbluepool3\app/__init__.py
+2025-07-18 11:31:00,253 - consolidate_deep_blue_pool - INFO - Created __init__.py: C:\Scripts\deepbluepool3\app/controllers/__init__.py
+2025-07-18 11:31:00,257 - consolidate_deep_blue_pool - INFO - Created __init__.py: C:\Scripts\deepbluepool3\app/models/__init__.py
+2025-07-18 11:31:00,262 - consolidate_deep_blue_pool - INFO - Created __init__.py: C:\Scripts\deepbluepool3\app/services/__init__.py
+2025-07-18 11:31:00,264 - consolidate_deep_blue_pool - INFO - Created __init__.py: C:\Scripts\deepbluepool3\app/ui/__init__.py
+2025-07-18 11:31:00,268 - consolidate_deep_blue_pool - INFO - Created __init__.py: C:\Scripts\deepbluepool3\app/ui/components/__init__.py
+2025-07-18 11:31:00,271 - consolidate_deep_blue_pool - INFO - Created __init__.py: C:\Scripts\deepbluepool3\app/utils/__init__.py
+2025-07-18 11:31:00,275 - consolidate_deep_blue_pool - INFO - Created __init__.py: C:\Scripts\deepbluepool3\data/__init__.py
+2025-07-18 11:31:00,279 - consolidate_deep_blue_pool - INFO - Created __init__.py: C:\Scripts\deepbluepool3\data/exports/__init__.py
+2025-07-18 11:31:00,282 - consolidate_deep_blue_pool - INFO - Created __init__.py: C:\Scripts\deepbluepool3\data/strip_profiles/__init__.py
+2025-07-18 11:31:00,286 - consolidate_deep_blue_pool - INFO - Created __init__.py: C:\Scripts\deepbluepool3\tests/__init__.py
+2025-07-18 11:31:00,289 - consolidate_deep_blue_pool - INFO - Copying files
+2025-07-18 11:31:00,293 - consolidate_deep_blue_pool - WARNING - Source file not found: C:\Scripts\deepbluepool3\config.json
+2025-07-18 11:31:00,296 - consolidate_deep_blue_pool - WARNING - Source file not found: C:\Scripts\deepbluepool3\requirements.txt
+2025-07-18 11:31:00,299 - consolidate_deep_blue_pool - WARNING - Source file not found: C:\Scripts\deepbluepool3\data/chemical_safety_data.json
+2025-07-18 11:31:00,302 - consolidate_deep_blue_pool - WARNING - Source file not found: C:\Scripts\deepbluepool3\data/calibration.json
+2025-07-18 11:31:00,306 - consolidate_deep_blue_pool - WARNING - Source file not found: C:\Scripts\deepbluepool3\data/strip_profiles/default.json
+2025-07-18 11:31:00,309 - consolidate_deep_blue_pool - WARNING - Source file not found: C:\Scripts\deepbluepool3\data/test_strip_calibration.json
+2025-07-18 11:31:00,312 - consolidate_deep_blue_pool - WARNING - Source file not found: C:\Scripts\deepbluepool3\data/pad_zones.json
+2025-07-18 11:31:00,314 - consolidate_deep_blue_pool - WARNING - Source file not found: C:\Scripts\deepbluepool3\assests/chemistry.png
+2025-07-18 11:31:00,317 - consolidate_deep_blue_pool - INFO - Consolidating files
+2025-07-18 11:31:00,320 - consolidate_deep_blue_pool - WARNING - Source file not found: C:\Scripts\deepbluepool3\main.py
+2025-07-18 11:31:00,323 - consolidate_deep_blue_pool - WARNING - Source file not found: C:\Scripts\deepbluepool3\pool_app.py
+2025-07-18 11:31:00,326 - consolidate_deep_blue_pool - WARNING - Source files not found: C:\Scripts\deepbluepool3\gui_controller.py or C:\Scripts\deepbluepool3\enhanced_gui_controller_part2.py
+2025-07-18 11:31:00,328 - consolidate_deep_blue_pool - WARNING - Source file not found: C:\Scripts\deepbluepool3\database_service.py
+2025-07-18 11:31:00,331 - consolidate_deep_blue_pool - WARNING - Source file not found: C:\Scripts\deepbluepool3\chemical_safety_database.py
+2025-07-18 11:31:00,333 - consolidate_deep_blue_pool - WARNING - Source file not found: C:\Scripts\deepbluepool3\test_strip_analyzer.py
+2025-07-18 11:31:00,335 - consolidate_deep_blue_pool - WARNING - Source file not found: C:\Scripts\deepbluepool3\weather_service.py
+2025-07-18 11:31:00,339 - consolidate_deep_blue_pool - WARNING - Source file not found: C:\Scripts\deepbluepool3\arduino_sensor_manager.py
+2025-07-18 11:31:00,341 - consolidate_deep_blue_pool - WARNING - Source files not found: C:\Scripts\deepbluepool3\chemical_calculator.py or C:\Scripts\deepbluepool3\enhanced_chemical_calculator.py
+2025-07-18 11:31:00,344 - consolidate_deep_blue_pool - WARNING - Source files not found: C:\Scripts\deepbluepool3\data_visualization.py or C:\Scripts\deepbluepool3\enhanced_data_visualization.py
+2025-07-18 11:31:00,347 - consolidate_deep_blue_pool - WARNING - Source files not found: C:\Scripts\deepbluepool3\tab_based_ui.py or C:\Scripts\deepbluepool3\responsive_tab_ui.py
+2025-07-18 11:31:00,349 - consolidate_deep_blue_pool - ERROR - Error consolidating ['utils/config.py'] to app/utils/config.py: join() argument must be str, bytes, or os.PathLike object, not 'list'
+2025-07-18 11:31:00,353 - consolidate_deep_blue_pool - ERROR - Traceback (most recent call last):
+  File "C:\Scripts\deepbluepool3\consolidate_deep_blue_pool.py", line 165, in consolidate_files
+    func(source_dir, dest_dir, source_files, dest_path)
+  File "C:\Scripts\deepbluepool3\consolidate_deep_blue_pool.py", line 138, in copy_file
+    source_file = os.path.join(source_dir, source_path)
+  File "C:\Users\valca\AppData\Local\Programs\Python\Python310\lib\ntpath.py", line 117, in join
+    genericpath._check_arg_types('join', path, *paths)
+  File "C:\Users\valca\AppData\Local\Programs\Python\Python310\lib\genericpath.py", line 152, in _check_arg_types
+    raise TypeError(f'{funcname}() argument must be str, bytes, or '
+TypeError: join() argument must be str, bytes, or os.PathLike object, not 'list'
+
+2025-07-18 11:31:00,359 - consolidate_deep_blue_pool - ERROR - Error consolidating ['utils/validators.py'] to app/utils/validators.py: join() argument must be str, bytes, or os.PathLike object, not 'list'
+2025-07-18 11:31:00,362 - consolidate_deep_blue_pool - ERROR - Traceback (most recent call last):
+  File "C:\Scripts\deepbluepool3\consolidate_deep_blue_pool.py", line 165, in consolidate_files
+    func(source_dir, dest_dir, source_files, dest_path)
+  File "C:\Scripts\deepbluepool3\consolidate_deep_blue_pool.py", line 138, in copy_file
+    source_file = os.path.join(source_dir, source_path)
+  File "C:\Users\valca\AppData\Local\Programs\Python\Python310\lib\ntpath.py", line 117, in join
+    genericpath._check_arg_types('join', path, *paths)
+  File "C:\Users\valca\AppData\Local\Programs\Python\Python310\lib\genericpath.py", line 152, in _check_arg_types
+    raise TypeError(f'{funcname}() argument must be str, bytes, or '
+TypeError: join() argument must be str, bytes, or os.PathLike object, not 'list'
+
+2025-07-18 11:31:00,367 - consolidate_deep_blue_pool - WARNING - Source file not found: C:\Scripts\deepbluepool3\utils/error_handler.py
+2025-07-18 11:33:17,405 - consolidate_deep_blue_pool - INFO - Source directory: C:\Scripts\deepbluepool3
+2025-07-18 11:33:17,412 - consolidate_deep_blue_pool - INFO - Destination directory: C:\Scripts\deepbluepool3
+2025-07-18 11:33:17,416 - consolidate_deep_blue_pool - INFO - Creating directory structure in C:\Scripts\deepbluepool3
+2025-07-18 11:33:17,418 - consolidate_deep_blue_pool - INFO - Created directory: C:\Scripts\deepbluepool3\app
+2025-07-18 11:33:17,420 - consolidate_deep_blue_pool - INFO - Created directory: C:\Scripts\deepbluepool3\app/controllers
+2025-07-18 11:33:17,423 - consolidate_deep_blue_pool - INFO - Created directory: C:\Scripts\deepbluepool3\app/models
+2025-07-18 11:33:17,425 - consolidate_deep_blue_pool - INFO - Created directory: C:\Scripts\deepbluepool3\app/services
+2025-07-18 11:33:17,427 - consolidate_deep_blue_pool - INFO - Created directory: C:\Scripts\deepbluepool3\app/ui
+2025-07-18 11:33:17,429 - consolidate_deep_blue_pool - INFO - Created directory: C:\Scripts\deepbluepool3\app/ui/components
+2025-07-18 11:33:17,434 - consolidate_deep_blue_pool - INFO - Created directory: C:\Scripts\deepbluepool3\app/utils
+2025-07-18 11:33:17,435 - consolidate_deep_blue_pool - INFO - Created directory: C:\Scripts\deepbluepool3\data
+2025-07-18 11:33:17,438 - consolidate_deep_blue_pool - INFO - Created directory: C:\Scripts\deepbluepool3\data/exports
+2025-07-18 11:33:17,440 - consolidate_deep_blue_pool - INFO - Created directory: C:\Scripts\deepbluepool3\data/strip_profiles
+2025-07-18 11:33:17,443 - consolidate_deep_blue_pool - INFO - Created directory: C:\Scripts\deepbluepool3\logs
+2025-07-18 11:33:17,446 - consolidate_deep_blue_pool - INFO - Created directory: C:\Scripts\deepbluepool3\tests
+2025-07-18 11:33:17,449 - consolidate_deep_blue_pool - INFO - Creating __init__.py files
+2025-07-18 11:33:17,451 - consolidate_deep_blue_pool - INFO - Created __init__.py: C:\Scripts\deepbluepool3\app/__init__.py
+2025-07-18 11:33:17,454 - consolidate_deep_blue_pool - INFO - Created __init__.py: C:\Scripts\deepbluepool3\app/controllers/__init__.py
+2025-07-18 11:33:17,458 - consolidate_deep_blue_pool - INFO - Created __init__.py: C:\Scripts\deepbluepool3\app/models/__init__.py
+2025-07-18 11:33:17,461 - consolidate_deep_blue_pool - INFO - Created __init__.py: C:\Scripts\deepbluepool3\app/services/__init__.py
+2025-07-18 11:33:17,464 - consolidate_deep_blue_pool - INFO - Created __init__.py: C:\Scripts\deepbluepool3\app/ui/__init__.py
+2025-07-18 11:33:17,467 - consolidate_deep_blue_pool - INFO - Created __init__.py: C:\Scripts\deepbluepool3\app/ui/components/__init__.py
+2025-07-18 11:33:17,470 - consolidate_deep_blue_pool - INFO - Created __init__.py: C:\Scripts\deepbluepool3\app/utils/__init__.py
+2025-07-18 11:33:17,473 - consolidate_deep_blue_pool - INFO - Created __init__.py: C:\Scripts\deepbluepool3\data/__init__.py
+2025-07-18 11:33:17,477 - consolidate_deep_blue_pool - INFO - Created __init__.py: C:\Scripts\deepbluepool3\data/exports/__init__.py
+2025-07-18 11:33:17,480 - consolidate_deep_blue_pool - INFO - Created __init__.py: C:\Scripts\deepbluepool3\data/strip_profiles/__init__.py
+2025-07-18 11:33:17,483 - consolidate_deep_blue_pool - INFO - Created __init__.py: C:\Scripts\deepbluepool3\tests/__init__.py
+2025-07-18 11:33:17,486 - consolidate_deep_blue_pool - INFO - Copying files
+2025-07-18 11:33:17,488 - consolidate_deep_blue_pool - WARNING - Source file not found: C:\Scripts\deepbluepool3\config.json
+2025-07-18 11:33:17,491 - consolidate_deep_blue_pool - WARNING - Source file not found: C:\Scripts\deepbluepool3\requirements.txt
+2025-07-18 11:33:17,494 - consolidate_deep_blue_pool - WARNING - Source file not found: C:\Scripts\deepbluepool3\data/chemical_safety_data.json
+2025-07-18 11:33:17,496 - consolidate_deep_blue_pool - WARNING - Source file not found: C:\Scripts\deepbluepool3\data/calibration.json
+2025-07-18 11:33:17,499 - consolidate_deep_blue_pool - WARNING - Source file not found: C:\Scripts\deepbluepool3\data/strip_profiles/default.json
+2025-07-18 11:33:17,502 - consolidate_deep_blue_pool - WARNING - Source file not found: C:\Scripts\deepbluepool3\data/test_strip_calibration.json
+2025-07-18 11:33:17,504 - consolidate_deep_blue_pool - WARNING - Source file not found: C:\Scripts\deepbluepool3\data/pad_zones.json
+2025-07-18 11:33:17,507 - consolidate_deep_blue_pool - WARNING - Source file not found: C:\Scripts\deepbluepool3\assests/chemistry.png
+2025-07-18 11:33:17,509 - consolidate_deep_blue_pool - INFO - Consolidating files
+2025-07-18 11:33:17,511 - consolidate_deep_blue_pool - WARNING - Source file not found: C:\Scripts\deepbluepool3\main.py
+2025-07-18 11:33:17,514 - consolidate_deep_blue_pool - WARNING - Source file not found: C:\Scripts\deepbluepool3\pool_app.py
+2025-07-18 11:33:17,517 - consolidate_deep_blue_pool - WARNING - Source files not found: C:\Scripts\deepbluepool3\gui_controller.py or C:\Scripts\deepbluepool3\enhanced_gui_controller_part2.py
+2025-07-18 11:33:17,520 - consolidate_deep_blue_pool - WARNING - Source file not found: C:\Scripts\deepbluepool3\database_service.py
+2025-07-18 11:33:17,523 - consolidate_deep_blue_pool - WARNING - Source file not found: C:\Scripts\deepbluepool3\chemical_safety_database.py
+2025-07-18 11:33:17,525 - consolidate_deep_blue_pool - WARNING - Source file not found: C:\Scripts\deepbluepool3\test_strip_analyzer.py
+2025-07-18 11:33:17,527 - consolidate_deep_blue_pool - WARNING - Source file not found: C:\Scripts\deepbluepool3\weather_service.py
+2025-07-18 11:33:17,530 - consolidate_deep_blue_pool - WARNING - Source file not found: C:\Scripts\deepbluepool3\arduino_sensor_manager.py
+2025-07-18 11:33:17,533 - consolidate_deep_blue_pool - WARNING - Source files not found: C:\Scripts\deepbluepool3\chemical_calculator.py or C:\Scripts\deepbluepool3\enhanced_chemical_calculator.py
+2025-07-18 11:33:17,536 - consolidate_deep_blue_pool - WARNING - Source files not found: C:\Scripts\deepbluepool3\data_visualization.py or C:\Scripts\deepbluepool3\enhanced_data_visualization.py
+2025-07-18 11:33:17,538 - consolidate_deep_blue_pool - WARNING - Source files not found: C:\Scripts\deepbluepool3\tab_based_ui.py or C:\Scripts\deepbluepool3\responsive_tab_ui.py
+2025-07-18 11:33:17,541 - consolidate_deep_blue_pool - ERROR - Error consolidating ['utils/config.py'] to app/utils/config.py: join() argument must be str, bytes, or os.PathLike object, not 'list'
+2025-07-18 11:33:17,545 - consolidate_deep_blue_pool - ERROR - Traceback (most recent call last):
+  File "C:\Scripts\deepbluepool3\consolidate_deep_blue_pool.py", line 165, in consolidate_files
+    func(source_dir, dest_dir, source_files, dest_path)
+  File "C:\Scripts\deepbluepool3\consolidate_deep_blue_pool.py", line 138, in copy_file
+    source_file = os.path.join(source_dir, source_path)
+  File "C:\Users\valca\AppData\Local\Programs\Python\Python310\lib\ntpath.py", line 117, in join
+    genericpath._check_arg_types('join', path, *paths)
+  File "C:\Users\valca\AppData\Local\Programs\Python\Python310\lib\genericpath.py", line 152, in _check_arg_types
+    raise TypeError(f'{funcname}() argument must be str, bytes, or '
+TypeError: join() argument must be str, bytes, or os.PathLike object, not 'list'
+
+2025-07-18 11:33:17,551 - consolidate_deep_blue_pool - ERROR - Error consolidating ['utils/validators.py'] to app/utils/validators.py: join() argument must be str, bytes, or os.PathLike object, not 'list'
+2025-07-18 11:33:17,555 - consolidate_deep_blue_pool - ERROR - Traceback (most recent call last):
+  File "C:\Scripts\deepbluepool3\consolidate_deep_blue_pool.py", line 165, in consolidate_files
+    func(source_dir, dest_dir, source_files, dest_path)
+  File "C:\Scripts\deepbluepool3\consolidate_deep_blue_pool.py", line 138, in copy_file
+    source_file = os.path.join(source_dir, source_path)
+  File "C:\Users\valca\AppData\Local\Programs\Python\Python310\lib\ntpath.py", line 117, in join
+    genericpath._check_arg_types('join', path, *paths)
+  File "C:\Users\valca\AppData\Local\Programs\Python\Python310\lib\genericpath.py", line 152, in _check_arg_types
+    raise TypeError(f'{funcname}() argument must be str, bytes, or '
+TypeError: join() argument must be str, bytes, or os.PathLike object, not 'list'
+
+2025-07-18 11:33:17,560 - consolidate_deep_blue_pool - WARNING - Source file not found: C:\Scripts\deepbluepool3\utils/error_handler.py
