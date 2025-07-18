@@ -1,1 +1,0 @@
-# Chemical Safety module initialization
