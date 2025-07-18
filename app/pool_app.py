@@ -25,11 +25,11 @@ import time
 import numpy as np
 
 # Import updated modules
-from app.services.database import DatabaseService
-from app.services.chemical_safety import ChemicalSafetyDatabase
-from app.services.test_strip import TestStripAnalyzer
-from app.services.weather import WeatherService
-from app.controllers.pool_controller import PoolChemistryController
+from database_service import DatabaseService
+from chemical_safety_database import ChemicalSafetyDatabase
+from test_strip_analyzer import TestStripAnalyzer
+from weather_service import WeatherService
+from gui_controller import PoolChemistryController
 
 # Configure logging
 logging.basicConfig(
