@@ -30,6 +30,7 @@ from chemical_safety_database import ChemicalSafetyDatabase
 from test_strip_analyzer import TestStripAnalyzer
 from weather_service import WeatherService
 from gui_controller import PoolChemistryController
+from customer_management_integration import integrate_customer_management
 
 # Configure logging
 logging.basicConfig(
