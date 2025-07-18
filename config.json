@@ -13,13 +13,7 @@
     "weather": {
         "location": "Florida",
         "update_interval": 3600,
-        "cache_file": "data/weather_cache.json",
-        "zip_code": "33101"
-    },
-    "general": {
-        "user_name": "Pool Owner",
-        "data_directory": "data",
-        "auto_backup": false
+        "cache_file": "data/weather_cache.json"
     },
     "pool": {
         "size": "10000",

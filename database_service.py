@@ -1,3 +1,4 @@
+
 """
 Database service module for the Deep Blue Pool Chemistry application.
 
@@ -40,6 +41,9 @@ class DatabaseService:
         self.connection_pool = {}
         logger.info(f"Database Service initialized with SQLite3 at {db_path}")
         
+        # Ensure data directory exists
+        os.makedirs(os.path.dirname(db_path), exist_ok=True)
+        
         # Create database if it doesn't exist
         self._init_db()
     
@@ -76,6 +80,19 @@ class DatabaseService:
             conn = self.get_connection()
             cursor = conn.cursor()
             
+            # Create customers table
+            cursor.execute('''
+            CREATE TABLE IF NOT EXISTS customers (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                name TEXT NOT NULL,
+                email TEXT,
+                phone TEXT,
+                address TEXT,
+                created_at TEXT NOT NULL,
+                updated_at TEXT NOT NULL
+            )
+            ''')
+            
             # Create sensor data table
             cursor.execute('''
             CREATE TABLE IF NOT EXISTS sensor_data (
@@ -110,10 +127,11 @@ class DatabaseService:
             )
             ''')
             
-            # Create chemical readings table
+            # Create chemical readings table with customer_id foreign key
             cursor.execute('''
             CREATE TABLE IF NOT EXISTS chemical_readings (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
+                customer_id INTEGER,
                 timestamp TEXT,
                 pH TEXT,
                 free_chlorine TEXT,
@@ -125,7 +143,23 @@ class DatabaseService:
                 salt TEXT,
                 temperature TEXT,
                 water_volume TEXT,
-                source TEXT
+                source TEXT,
+                FOREIGN KEY (customer_id) REFERENCES customers(id)
+            )
+            ''')
+            
+            # Create pool_info table with customer_id foreign key
+            cursor.execute('''
+            CREATE TABLE IF NOT EXISTS pool_info (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                customer_id INTEGER NOT NULL,
+                pool_type TEXT,
+                pool_size TEXT,
+                pool_shape TEXT,
+                pool_material TEXT,
+                created_at TEXT NOT NULL,
+                updated_at TEXT NOT NULL,
+                FOREIGN KEY (customer_id) REFERENCES customers(id)
             )
             ''')
             
@@ -134,6 +168,407 @@ class DatabaseService:
         except sqlite3.Error as e:
             logger.error(f"Failed to initialize database: {e}")
             raise
+    
+    # Customer Management Methods
+    
+    def add_customer(self, name: str, email: str = "", phone: str = "", address: str = "") -> int:
+        """
+        Add a new customer to the database.
+        
+        Args:
+            name: Customer name
+            email: Customer email
+            phone: Customer phone number
+            address: Customer address
+            
+        Returns:
+            The ID of the newly created customer
+            
+        Raises:
+            sqlite3.Error: If there's an error inserting data
+        """
+        try:
+            conn = self.get_connection()
+            cursor = conn.cursor()
+            
+            timestamp = datetime.now().isoformat()
+            
+            cursor.execute(
+                "INSERT INTO customers (name, email, phone, address, created_at, updated_at) "
+                "VALUES (?, ?, ?, ?, ?, ?)",
+                (name, email, phone, address, timestamp, timestamp)
+            )
+            
+            conn.commit()
+            customer_id = cursor.lastrowid
+            logger.info(f"Added new customer with ID {customer_id}: {name}")
+            return customer_id
+        except sqlite3.Error as e:
+            logger.error(f"Failed to add customer: {e}")
+            raise
+    
+    def update_customer(self, customer_id: int, name: str = None, email: str = None, 
+                       phone: str = None, address: str = None) -> bool:
+        """
+        Update customer information.
+        
+        Args:
+            customer_id: ID of the customer to update
+            name: New customer name (or None to keep current)
+            email: New customer email (or None to keep current)
+            phone: New customer phone number (or None to keep current)
+            address: New customer address (or None to keep current)
+            
+        Returns:
+            True if successful, False otherwise
+            
+        Raises:
+            sqlite3.Error: If there's an error updating data
+        """
+        try:
+            conn = self.get_connection()
+            cursor = conn.cursor()
+            
+            # Get current customer data
+            cursor.execute("SELECT name, email, phone, address FROM customers WHERE id = ?", (customer_id,))
+            row = cursor.fetchone()
+            
+            if not row:
+                logger.error(f"Customer with ID {customer_id} not found")
+                return False
+            
+            current_name, current_email, current_phone, current_address = row
+            
+            # Update with new values or keep current ones
+            new_name = name if name is not None else current_name
+            new_email = email if email is not None else current_email
+            new_phone = phone if phone is not None else current_phone
+            new_address = address if address is not None else current_address
+            
+            timestamp = datetime.now().isoformat()
+            
+            cursor.execute(
+                "UPDATE customers SET name = ?, email = ?, phone = ?, address = ?, updated_at = ? "
+                "WHERE id = ?",
+                (new_name, new_email, new_phone, new_address, timestamp, customer_id)
+            )
+            
+            conn.commit()
+            logger.info(f"Updated customer with ID {customer_id}")
+            return True
+        except sqlite3.Error as e:
+            logger.error(f"Failed to update customer: {e}")
+            return False
+    
+    def delete_customer(self, customer_id: int) -> bool:
+        """
+        Delete a customer from the database.
+        
+        Args:
+            customer_id: ID of the customer to delete
+            
+        Returns:
+            True if successful, False otherwise
+            
+        Raises:
+            sqlite3.Error: If there's an error deleting data
+        """
+        try:
+            conn = self.get_connection()
+            cursor = conn.cursor()
+            
+            cursor.execute("DELETE FROM customers WHERE id = ?", (customer_id,))
+            
+            if cursor.rowcount == 0:
+                logger.error(f"Customer with ID {customer_id} not found")
+                return False
+            
+            conn.commit()
+            logger.info(f"Deleted customer with ID {customer_id}")
+            return True
+        except sqlite3.Error as e:
+            logger.error(f"Failed to delete customer: {e}")
+            return False
+    
+    def get_customer(self, customer_id: int) -> Optional[Dict[str, Any]]:
+        """
+        Get customer information by ID.
+        
+        Args:
+            customer_id: ID of the customer to retrieve
+            
+        Returns:
+            Dictionary containing customer information, or None if not found
+            
+        Raises:
+            sqlite3.Error: If there's an error retrieving data
+        """
+        try:
+            conn = self.get_connection()
+            cursor = conn.cursor()
+            
+            cursor.execute(
+                "SELECT id, name, email, phone, address, created_at, updated_at "
+                "FROM customers WHERE id = ?",
+                (customer_id,)
+            )
+            
+            row = cursor.fetchone()
+            
+            if not row:
+                return None
+            
+            return {
+                "id": row[0],
+                "name": row[1],
+                "email": row[2],
+                "phone": row[3],
+                "address": row[4],
+                "created_at": row[5],
+                "updated_at": row[6]
+            }
+        except sqlite3.Error as e:
+            logger.error(f"Failed to get customer: {e}")
+            return None
+    
+    def get_all_customers(self) -> List[Dict[str, Any]]:
+        """
+        Get all customers from the database.
+        
+        Returns:
+            List of dictionaries containing customer information
+            
+        Raises:
+            sqlite3.Error: If there's an error retrieving data
+        """
+        try:
+            conn = self.get_connection()
+            cursor = conn.cursor()
+            
+            cursor.execute(
+                "SELECT id, name, email, phone, address, created_at, updated_at "
+                "FROM customers ORDER BY name"
+            )
+            
+            rows = cursor.fetchall()
+            
+            return [
+                {
+                    "id": row[0],
+                    "name": row[1],
+                    "email": row[2],
+                    "phone": row[3],
+                    "address": row[4],
+                    "created_at": row[5],
+                    "updated_at": row[6]
+                }
+                for row in rows
+            ]
+        except sqlite3.Error as e:
+            logger.error(f"Failed to get customers: {e}")
+            return []
+    
+    def search_customers(self, search_term: str) -> List[Dict[str, Any]]:
+        """
+        Search for customers by name, email, or phone.
+        
+        Args:
+            search_term: Term to search for
+            
+        Returns:
+            List of dictionaries containing customer information
+            
+        Raises:
+            sqlite3.Error: If there's an error retrieving data
+        """
+        try:
+            conn = self.get_connection()
+            cursor = conn.cursor()
+            
+            search_pattern = f"%{search_term}%"
+            
+            cursor.execute(
+                "SELECT id, name, email, phone, address, created_at, updated_at "
+                "FROM customers "
+                "WHERE name LIKE ? OR email LIKE ? OR phone LIKE ? "
+                "ORDER BY name",
+                (search_pattern, search_pattern, search_pattern)
+            )
+            
+            rows = cursor.fetchall()
+            
+            return [
+                {
+                    "id": row[0],
+                    "name": row[1],
+                    "email": row[2],
+                    "phone": row[3],
+                    "address": row[4],
+                    "created_at": row[5],
+                    "updated_at": row[6]
+                }
+                for row in rows
+            ]
+        except sqlite3.Error as e:
+            logger.error(f"Failed to search customers: {e}")
+            return []
+    
+    # Pool Info Methods
+    
+    def add_pool_info(self, customer_id: int, pool_type: str, pool_size: str, 
+                     pool_shape: str = "", pool_material: str = "") -> int:
+        """
+        Add pool information for a customer.
+        
+        Args:
+            customer_id: ID of the customer
+            pool_type: Type of pool (e.g., "Inground", "Above Ground")
+            pool_size: Size of pool in gallons
+            pool_shape: Shape of pool (e.g., "Rectangle", "Oval")
+            pool_material: Material of pool (e.g., "Concrete", "Vinyl")
+            
+        Returns:
+            The ID of the newly created pool info record
+            
+        Raises:
+            sqlite3.Error: If there's an error inserting data
+        """
+        try:
+            conn = self.get_connection()
+            cursor = conn.cursor()
+            
+            timestamp = datetime.now().isoformat()
+            
+            cursor.execute(
+                "INSERT INTO pool_info (customer_id, pool_type, pool_size, pool_shape, pool_material, created_at, updated_at) "
+                "VALUES (?, ?, ?, ?, ?, ?, ?)",
+                (customer_id, pool_type, pool_size, pool_shape, pool_material, timestamp, timestamp)
+            )
+            
+            conn.commit()
+            pool_info_id = cursor.lastrowid
+            logger.info(f"Added pool info with ID {pool_info_id} for customer {customer_id}")
+            return pool_info_id
+        except sqlite3.Error as e:
+            logger.error(f"Failed to add pool info: {e}")
+            raise
+    
+    def get_customer_pool_info(self, customer_id: int) -> Optional[Dict[str, Any]]:
+        """
+        Get pool information for a customer.
+        
+        Args:
+            customer_id: ID of the customer
+            
+        Returns:
+            Dictionary containing pool information, or None if not found
+            
+        Raises:
+            sqlite3.Error: If there's an error retrieving data
+        """
+        try:
+            conn = self.get_connection()
+            cursor = conn.cursor()
+            
+            cursor.execute(
+                "SELECT id, pool_type, pool_size, pool_shape, pool_material, created_at, updated_at "
+                "FROM pool_info WHERE customer_id = ?",
+                (customer_id,)
+            )
+            
+            row = cursor.fetchone()
+            
+            if not row:
+                return None
+            
+            return {
+                "id": row[0],
+                "pool_type": row[1],
+                "pool_size": row[2],
+                "pool_shape": row[3],
+                "pool_material": row[4],
+                "created_at": row[5],
+                "updated_at": row[6]
+            }
+        except sqlite3.Error as e:
+            logger.error(f"Failed to get pool info: {e}")
+            return None
+    
+    # Enhanced Chemical Readings Methods
+    
+    def insert_reading(self, data: Dict[str, Any], customer_id: Optional[int] = None) -> bool:
+        """
+        Insert chemical reading into the database.
+        
+        Args:
+            data: Dictionary containing chemical reading data
+            customer_id: Optional ID of the customer associated with this reading
+            
+        Returns:
+            True if successful, False otherwise
+            
+        Raises:
+            sqlite3.Error: If there's an error inserting data
+        """
+        try:
+            conn = self.get_connection()
+            cursor = conn.cursor()
+            
+            values = (
+                customer_id,
+                datetime.now().isoformat(),
+                data.get("pH"), data.get("free_chlorine"), data.get("total_chlorine"),
+                data.get("alkalinity"), data.get("calcium"), data.get("cyanuric_acid"),
+                data.get("bromine"), data.get("salt"), data.get("temperature"),
+                data.get("water_volume"), data.get("source")
+            )
+            
+            cursor.execute("""
+                INSERT INTO chemical_readings (
+                    customer_id, timestamp, pH, free_chlorine, total_chlorine, alkalinity,
+                    calcium, cyanuric_acid, bromine, salt, temperature,
+                    water_volume, source
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            """, values)
+            
+            conn.commit()
+            return True
+        except sqlite3.Error as e:
+            logger.error(f"Failed to insert reading: {e}")
+            return False
+    
+    def get_customer_readings(self, customer_id: int, limit: int = 10) -> List[Dict[str, Any]]:
+        """
+        Get chemical readings for a specific customer.
+        
+        Args:
+            customer_id: ID of the customer
+            limit: Maximum number of readings to retrieve
+            
+        Returns:
+            List of dictionaries containing reading data
+            
+        Raises:
+            sqlite3.Error: If there's an error retrieving data
+        """
+        try:
+            conn = self.get_connection()
+            cursor = conn.cursor()
+            
+            cursor.execute(
+                "SELECT * FROM chemical_readings WHERE customer_id = ? ORDER BY timestamp DESC LIMIT ?",
+                (customer_id, limit)
+            )
+            
+            rows = cursor.fetchall()
+            columns = [desc[0] for desc in cursor.description]
+            
+            return [dict(zip(columns, row)) for row in rows]
+        except sqlite3.Error as e:
+            logger.error(f"Failed to get customer readings: {e}")
+            return []
+    
+    # Original Methods
     
     def log_sensor_data(self, data: Dict[str, Any]) -> bool:
         """
@@ -278,46 +713,7 @@ class DatabaseService:
             logger.error(f"Failed to get sensor history: {e}")
             return []
     
-    def insert_reading(self, data: Dict[str, Any]) -> bool:
-        """
-        Insert chemical reading into the database.
-        
-        Args:
-            data: Dictionary containing chemical reading data
-            
-        Returns:
-            True if successful, False otherwise
-            
-        Raises:
-            sqlite3.Error: If there's an error inserting data
-        """
-        try:
-            conn = self.get_connection()
-            cursor = conn.cursor()
-            
-            values = (
-                datetime.now().isoformat(),
-                data.get("pH"), data.get("free_chlorine"), data.get("total_chlorine"),
-                data.get("alkalinity"), data.get("calcium"), data.get("cyanuric_acid"),
-                data.get("bromine"), data.get("salt"), data.get("temperature"),
-                data.get("water_volume"), data.get("source")
-            )
-            
-            cursor.execute("""
-                INSERT INTO chemical_readings (
-                    timestamp, pH, free_chlorine, total_chlorine, alkalinity,
-                    calcium, cyanuric_acid, bromine, salt, temperature,
-                    water_volume, source
-                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-            """, values)
-            
-            conn.commit()
-            return True
-        except sqlite3.Error as e:
-            logger.error(f"Failed to insert reading: {e}")
-            return False
-    
-    def get_recent_readings(self, limit: int = 5) -> List[tuple]:
+    def get_recent_readings(self, limit: int = 5) -> List[Dict[str, Any]]:
         """
         Get recent chemical readings from the database.
         
@@ -325,7 +721,7 @@ class DatabaseService:
             limit: Maximum number of readings to retrieve
             
         Returns:
-            List of tuples containing reading data
+            List of dictionaries containing reading data
             
         Raises:
             sqlite3.Error: If there's an error retrieving data
@@ -339,7 +735,10 @@ class DatabaseService:
                 (limit,)
             )
             
-            return cursor.fetchall()
+            rows = cursor.fetchall()
+            columns = [desc[0] for desc in cursor.description]
+            
+            return [dict(zip(columns, row)) for row in rows]
         except sqlite3.Error as e:
             logger.error(f"Failed to fetch readings: {e}")
             return []

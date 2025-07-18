@@ -1,499 +1,330 @@
+#!/usr/bin/env python3
 """
-Chemical safety database module for the Deep Blue Pool Chemistry application.
+Chemical Safety Database for Deep Blue Pool Chemistry
 
-This module provides a database for pool chemical safety information, handling storage
-and retrieval of safety data sheets, compatibility information, and handling guidelines.
+This module provides a database of chemical safety information for pool chemicals.
 """
 
-import logging
-import json
 import os
-from typing import Dict, List, Optional, Any, Tuple
+import json
+import logging
+from typing import Dict, Any, List, Optional
 
-# Configure logger
+# Configure logging
 logger = logging.getLogger(__name__)
-
 
 class ChemicalSafetyDatabase:
     """
-    Database for pool chemical safety information.
+    Database of chemical safety information for pool chemicals.
     
-    This class handles storage and retrieval of safety data sheets, compatibility
-    information, and handling guidelines for pool chemicals.
+    This class provides access to safety information for various pool chemicals,
+    including hazard ratings, safety precautions, storage guidelines, and
+    emergency procedures.
     
     Attributes:
-        data_file_path: Path to the JSON file containing chemical safety data
-        chemicals_data: Dictionary of chemical safety information
-        compatibility_matrix: Matrix of chemical compatibility information
+        data_file: Path to the chemical safety data file
+        chemicals: Dictionary of chemical safety information
     """
     
-    def __init__(self, data_file_path: str = "data/chemical_safety_data.json"):
+    def __init__(self, data_file: str = "data/chemical_safety_data.json"):
         """
         Initialize the chemical safety database.
         
         Args:
-            data_file_path: Path to the JSON file containing chemical safety data
+            data_file: Path to the chemical safety data file
         """
-        self.logger = logging.getLogger(__name__)
+        self.data_file = data_file
+        self.chemicals = {}
+        self.logger = logging.getLogger("chemical_safety_database")
         self.logger.info("Initializing Chemical Safety Database")
-        self.data_file_path = data_file_path
-        self.chemicals_data = {}
-        self.compatibility_matrix = {}
+        
+        # Load chemical safety data
         self._load_data()
     
     def _load_data(self) -> None:
-        """
-        Load chemical safety data from the data file.
-        
-        If the data file doesn't exist, creates default data.
-        
-        Raises:
-            IOError: If there's an error reading the data file
-            json.JSONDecodeError: If the data file contains invalid JSON
-        """
+        """Load chemical safety data from file."""
         try:
-            if os.path.exists(self.data_file_path):
-                with open(self.data_file_path, 'r') as file:
-                    data = json.load(file)
-                    self.chemicals_data = data.get('chemicals', {})
-                    self.compatibility_matrix = data.get('compatibility', {})
-                self.logger.info(f"Loaded chemical safety data for {len(self.chemicals_data)} chemicals")
-            else:
-                self.logger.warning(f"Chemical safety data file not found at {self.data_file_path}")
+            # Check if data file exists
+            if not os.path.exists(self.data_file):
+                self.logger.warning(f"Chemical safety data file not found at {self.data_file}")
                 self._create_default_data()
-        except (IOError, json.JSONDecodeError) as e:
-            self.logger.error(f"Error loading chemical safety data: {str(e)}")
+                return
+            
+            # Load data from file
+            with open(self.data_file, "r") as f:
+                self.chemicals = json.load(f)
+            
+            self.logger.info(f"Loaded chemical safety data for {len(self.chemicals)} chemicals")
+        except Exception as e:
+            self.logger.error(f"Error loading chemical safety data: {e}")
             self._create_default_data()
     
     def _create_default_data(self) -> None:
-        """
-        Create default chemical safety data for common pool chemicals.
-        
-        This is used when the data file doesn't exist or can't be loaded.
-        """
+        """Create default chemical safety data."""
         self.logger.info("Creating default chemical safety data")
         
-        # Common pool chemicals with safety information
-        self.chemicals_data = {
+        # Create default data
+        self.chemicals = {
             "chlorine": {
                 "name": "Chlorine",
-                "chemical_formula": "Cl₂",
-                "hazard_rating": 3,
+                "chemical_formula": "Cl2",
+                "hazard_rating": "High",
                 "safety_precautions": [
-                    "Wear protective gloves and eye protection",
-                    "Use in well-ventilated areas",
-                    "Keep away from acids to prevent chlorine gas formation"
+                    "Wear gloves and eye protection",
+                    "Use in well-ventilated area",
+                    "Keep away from children",
+                    "Do not mix with other chemicals"
                 ],
-                "storage_guidelines": "Store in cool, dry place away from direct sunlight and incompatible materials",
-                "emergency_procedures": "In case of exposure, move to fresh air and seek medical attention"
+                "storage_guidelines": "Store in a cool, dry place away from direct sunlight and other chemicals.",
+                "emergency_procedures": "In case of contact with eyes, rinse immediately with plenty of water and seek medical advice."
             },
             "muriatic_acid": {
-                "name": "Muriatic Acid (Hydrochloric Acid)",
+                "name": "Muriatic Acid",
                 "chemical_formula": "HCl",
-                "hazard_rating": 3,
+                "hazard_rating": "High",
                 "safety_precautions": [
+                    "Wear chemical-resistant gloves and eye protection",
+                    "Use in well-ventilated area",
                     "Always add acid to water, never water to acid",
-                    "Wear chemical-resistant gloves, goggles, and protective clothing",
-                    "Use in well-ventilated areas"
+                    "Keep away from children",
+                    "Do not mix with chlorine or other chemicals"
                 ],
-                "storage_guidelines": "Store in original container in cool, well-ventilated area away from bases",
-                "emergency_procedures": "For skin contact, flush with water for 15 minutes and seek medical attention"
+                "storage_guidelines": "Store in original container in a cool, dry place away from direct sunlight and other chemicals.",
+                "emergency_procedures": "In case of contact with skin or eyes, rinse immediately with plenty of water for at least 15 minutes and seek medical advice."
             },
             "sodium_bicarbonate": {
-                "name": "Sodium Bicarbonate (Baking Soda)",
-                "chemical_formula": "NaHCO₃",
-                "hazard_rating": 1,
+                "name": "Sodium Bicarbonate",
+                "chemical_formula": "NaHCO3",
+                "hazard_rating": "Low",
                 "safety_precautions": [
-                    "Minimal safety equipment required",
-                    "Avoid generating dust"
+                    "Avoid contact with eyes",
+                    "Keep away from children"
                 ],
-                "storage_guidelines": "Store in dry area in sealed container",
-                "emergency_procedures": "If in eyes, rinse with water"
+                "storage_guidelines": "Store in a cool, dry place.",
+                "emergency_procedures": "In case of contact with eyes, rinse with water."
             },
-            "calcium_hypochlorite": {
-                "name": "Calcium Hypochlorite",
-                "chemical_formula": "Ca(ClO)₂",
-                "hazard_rating": 3,
+            "calcium_chloride": {
+                "name": "Calcium Chloride",
+                "chemical_formula": "CaCl2",
+                "hazard_rating": "Medium",
                 "safety_precautions": [
-                    "Wear protective gloves, clothing, and eye protection",
-                    "Keep away from heat and combustible materials",
-                    "Never mix with acids or ammonia"
+                    "Wear gloves and eye protection",
+                    "Avoid contact with skin and eyes",
+                    "Keep away from children"
                 ],
-                "storage_guidelines": "Store in cool, dry place away from acids and organic materials",
-                "emergency_procedures": "In case of fire, use water spray. For exposure, seek medical attention"
+                "storage_guidelines": "Store in a cool, dry place away from direct sunlight.",
+                "emergency_procedures": "In case of contact with skin or eyes, rinse with plenty of water."
             },
             "cyanuric_acid": {
                 "name": "Cyanuric Acid",
-                "chemical_formula": "C₃H₃N₃O₃",
-                "hazard_rating": 1,
+                "chemical_formula": "C3H3N3O3",
+                "hazard_rating": "Medium",
                 "safety_precautions": [
-                    "Avoid dust formation",
-                    "Use with adequate ventilation"
+                    "Wear gloves and eye protection",
+                    "Avoid breathing dust",
+                    "Keep away from children"
                 ],
-                "storage_guidelines": "Store in dry, cool place in closed containers",
-                "emergency_procedures": "If inhaled, move to fresh air"
+                "storage_guidelines": "Store in a cool, dry place away from direct sunlight.",
+                "emergency_procedures": "In case of contact with skin or eyes, rinse with plenty of water."
             }
         }
         
-        # Chemical compatibility matrix (1 = compatible, 0 = incompatible)
-        self.compatibility_matrix = {
-            "chlorine": {
-                "muriatic_acid": 0,
-                "sodium_bicarbonate": 1,
-                "calcium_hypochlorite": 1,
-                "cyanuric_acid": 1
-            },
-            "muriatic_acid": {
-                "chlorine": 0,
-                "sodium_bicarbonate": 0,
-                "calcium_hypochlorite": 0,
-                "cyanuric_acid": 1
-            },
-            "sodium_bicarbonate": {
-                "chlorine": 1,
-                "muriatic_acid": 0,
-                "calcium_hypochlorite": 1,
-                "cyanuric_acid": 1
-            },
-            "calcium_hypochlorite": {
-                "chlorine": 1,
-                "muriatic_acid": 0,
-                "sodium_bicarbonate": 1,
-                "cyanuric_acid": 1
-            },
-            "cyanuric_acid": {
-                "chlorine": 1,
-                "muriatic_acid": 1,
-                "sodium_bicarbonate": 1,
-                "calcium_hypochlorite": 1
-            }
-        }
-        
-        # Save default data
+        # Save data to file
         self._save_data()
     
     def _save_data(self) -> None:
-        """
-        Save chemical safety data to the data file.
-        
-        Creates the directory if it doesn't exist.
-        
-        Raises:
-            IOError: If there's an error writing to the data file
-            OSError: If there's an error creating the directory
-        """
+        """Save chemical safety data to file."""
         try:
-            # Ensure directory exists
-            os.makedirs(os.path.dirname(self.data_file_path), exist_ok=True)
+            # Create directory if it doesn't exist
+            os.makedirs(os.path.dirname(self.data_file), exist_ok=True)
             
-            data = {
-                "chemicals": self.chemicals_data,
-                "compatibility": self.compatibility_matrix
-            }
+            # Save data to file
+            with open(self.data_file, "w") as f:
+                json.dump(self.chemicals, f, indent=4)
             
-            with open(self.data_file_path, 'w') as file:
-                json.dump(data, file, indent=4)
-            
-            self.logger.info(f"Saved chemical safety data to {self.data_file_path}")
-        except (IOError, OSError) as e:
-            self.logger.error(f"Error saving chemical safety data: {str(e)}")
-            raise
+            self.logger.info(f"Saved chemical safety data to {self.data_file}")
+        except Exception as e:
+            self.logger.error(f"Error saving chemical safety data: {e}")
     
-    def get_chemical_safety_info(self, chemical_id: str) -> Optional[Dict[str, Any]]:
+    def get_chemical_safety_info(self, chemical_id: str) -> Dict[str, Any]:
         """
-        Get safety information for a specific chemical.
+        Get safety information for a chemical.
         
         Args:
-            chemical_id: Identifier for the chemical
+            chemical_id: ID of the chemical
             
         Returns:
-            Dictionary containing safety information or None if not found
+            Dictionary of safety information
         """
-        return self.chemicals_data.get(chemical_id.lower())
+        if chemical_id in self.chemicals:
+            return self.chemicals[chemical_id]
+        else:
+            self.logger.warning(f"Chemical {chemical_id} not found in safety database")
+            return {}
     
     def get_all_chemicals(self) -> Dict[str, Dict[str, Any]]:
         """
-        Get information for all chemicals in the database.
+        Get all chemicals in the database.
         
         Returns:
-            Dictionary containing all chemical safety information
+            Dictionary of all chemicals
         """
-        return self.chemicals_data
+        return self.chemicals
     
-    def check_compatibility(self, chemical1: str, chemical2: str) -> bool:
+    def add_chemical(self, chemical_id: str, chemical_info: Dict[str, Any]) -> bool:
         """
-        Check if two chemicals are compatible for storage or mixing.
+        Add a chemical to the database.
         
         Args:
-            chemical1: First chemical identifier
-            chemical2: Second chemical identifier
-            
-        Returns:
-            True if chemicals are compatible, False otherwise
-        """
-        chemical1 = chemical1.lower()
-        chemical2 = chemical2.lower()
-        
-        # Check if both chemicals exist in the database
-        if chemical1 not in self.compatibility_matrix or chemical2 not in self.compatibility_matrix:
-            self.logger.warning("Compatibility check failed: One or both chemicals not in database")
-            return False
-        
-        # Check compatibility (if same chemical, they're compatible)
-        if chemical1 == chemical2:
-            return True
-            
-        return bool(self.compatibility_matrix.get(chemical1, {}).get(chemical2, 0))
-    
-    def get_safety_guidelines(self, chemical_id: str) -> List[str]:
-        """
-        Get safety guidelines for handling a specific chemical.
-        
-        Args:
-            chemical_id: Identifier for the chemical
-            
-        Returns:
-            List of safety guidelines
-        """
-        chemical_info = self.get_chemical_safety_info(chemical_id)
-        if not chemical_info:
-            return []
-        return chemical_info.get("safety_precautions", [])
-    
-    def add_chemical(self, chemical_id: str, chemical_data: Dict[str, Any]) -> bool:
-        """
-        Add a new chemical to the safety database.
-        
-        Args:
-            chemical_id: Identifier for the chemical
-            chemical_data: Dictionary containing chemical safety information
+            chemical_id: ID of the chemical
+            chemical_info: Dictionary of chemical information
             
         Returns:
             True if successful, False otherwise
-            
-        Raises:
-            ValueError: If the chemical data is invalid
         """
         try:
-            # Validate required fields
-            required_fields = ["name", "hazard_rating", "safety_precautions"]
-            for field in required_fields:
-                if field not in chemical_data:
-                    raise ValueError(f"Missing required field: {field}")
+            # Add chemical to database
+            self.chemicals[chemical_id] = chemical_info
             
-            chemical_id = chemical_id.lower()
-            self.chemicals_data[chemical_id] = chemical_data
+            # Save data to file
             self._save_data()
+            
             self.logger.info(f"Added chemical {chemical_id} to safety database")
             return True
         except Exception as e:
-            self.logger.error(f"Error adding chemical {chemical_id}: {str(e)}")
+            self.logger.error(f"Error adding chemical {chemical_id}: {e}")
             return False
     
-    def update_chemical(self, chemical_id: str, chemical_data: Dict[str, Any]) -> bool:
+    def update_chemical(self, chemical_id: str, chemical_info: Dict[str, Any]) -> bool:
         """
-        Update information for an existing chemical.
+        Update a chemical in the database.
         
         Args:
-            chemical_id: Identifier for the chemical
-            chemical_data: Dictionary containing updated chemical safety information
+            chemical_id: ID of the chemical
+            chemical_info: Dictionary of chemical information
             
         Returns:
             True if successful, False otherwise
-            
-        Raises:
-            ValueError: If the chemical doesn't exist or the data is invalid
         """
-        chemical_id = chemical_id.lower()
-        if chemical_id not in self.chemicals_data:
-            self.logger.warning(f"Cannot update chemical {chemical_id}: Not found in database")
-            return False
-            
         try:
-            # Validate required fields
-            required_fields = ["name", "hazard_rating", "safety_precautions"]
-            for field in required_fields:
-                if field not in chemical_data:
-                    raise ValueError(f"Missing required field: {field}")
+            # Check if chemical exists
+            if chemical_id not in self.chemicals:
+                self.logger.warning(f"Chemical {chemical_id} not found in safety database")
+                return False
             
-            self.chemicals_data[chemical_id] = chemical_data
+            # Update chemical in database
+            self.chemicals[chemical_id] = chemical_info
+            
+            # Save data to file
             self._save_data()
+            
             self.logger.info(f"Updated chemical {chemical_id} in safety database")
             return True
         except Exception as e:
-            self.logger.error(f"Error updating chemical {chemical_id}: {str(e)}")
+            self.logger.error(f"Error updating chemical {chemical_id}: {e}")
             return False
-    
-    def set_compatibility(self, chemical1: str, chemical2: str, compatible: bool) -> bool:
-        """
-        Set compatibility between two chemicals.
-        
-        Args:
-            chemical1: First chemical identifier
-            chemical2: Second chemical identifier
-            compatible: True if chemicals are compatible, False otherwise
-            
-        Returns:
-            True if successful, False otherwise
-            
-        Raises:
-            ValueError: If either chemical doesn't exist in the database
-        """
-        chemical1 = chemical1.lower()
-        chemical2 = chemical2.lower()
-        
-        # Check if both chemicals exist in the database
-        if chemical1 not in self.chemicals_data or chemical2 not in self.chemicals_data:
-            self.logger.warning("Cannot set compatibility: One or both chemicals not in database")
-            return False
-            
-        try:
-            # Ensure compatibility matrix entries exist
-            if chemical1 not in self.compatibility_matrix:
-                self.compatibility_matrix[chemical1] = {}
-            if chemical2 not in self.compatibility_matrix:
-                self.compatibility_matrix[chemical2] = {}
-                
-            # Set bidirectional compatibility
-            self.compatibility_matrix[chemical1][chemical2] = 1 if compatible else 0
-            self.compatibility_matrix[chemical2][chemical1] = 1 if compatible else 0
-            
-            self._save_data()
-            self.logger.info(f"Set compatibility between {chemical1} and {chemical2} to {compatible}")
-            return True
-        except Exception as e:
-            self.logger.error(f"Error setting compatibility: {str(e)}")
-            return False
-    
-    def get_hazard_rating(self, chemical_id: str) -> Optional[int]:
-        """
-        Get the hazard rating for a specific chemical.
-        
-        Args:
-            chemical_id: Identifier for the chemical
-            
-        Returns:
-            Hazard rating (1-4) or None if not found
-        """
-        chemical_info = self.get_chemical_safety_info(chemical_id)
-        if not chemical_info:
-            return None
-        return chemical_info.get("hazard_rating")
-    
-    def get_emergency_procedures(self, chemical_id: str) -> Optional[str]:
-        """
-        Get emergency procedures for a specific chemical.
-        
-        Args:
-            chemical_id: Identifier for the chemical
-            
-        Returns:
-            Emergency procedures or None if not found
-        """
-        chemical_info = self.get_chemical_safety_info(chemical_id)
-        if not chemical_info:
-            return None
-        return chemical_info.get("emergency_procedures")
-    
-    def get_storage_guidelines(self, chemical_id: str) -> Optional[str]:
-        """
-        Get storage guidelines for a specific chemical.
-        
-        Args:
-            chemical_id: Identifier for the chemical
-            
-        Returns:
-            Storage guidelines or None if not found
-        """
-        chemical_info = self.get_chemical_safety_info(chemical_id)
-        if not chemical_info:
-            return None
-        return chemical_info.get("storage_guidelines")
-    
-    def get_chemical_formula(self, chemical_id: str) -> Optional[str]:
-        """
-        Get the chemical formula for a specific chemical.
-        
-        Args:
-            chemical_id: Identifier for the chemical
-            
-        Returns:
-            Chemical formula or None if not found
-        """
-        chemical_info = self.get_chemical_safety_info(chemical_id)
-        if not chemical_info:
-            return None
-        return chemical_info.get("chemical_formula")
-    
-    def get_compatible_chemicals(self, chemical_id: str) -> List[str]:
-        """
-        Get a list of chemicals that are compatible with the specified chemical.
-        
-        Args:
-            chemical_id: Identifier for the chemical
-            
-        Returns:
-            List of compatible chemical IDs
-        """
-        chemical_id = chemical_id.lower()
-        if chemical_id not in self.compatibility_matrix:
-            return []
-        
-        return [
-            chem_id for chem_id, compatible in self.compatibility_matrix[chemical_id].items()
-            if compatible == 1
-        ]
-    
-    def get_incompatible_chemicals(self, chemical_id: str) -> List[str]:
-        """
-        Get a list of chemicals that are incompatible with the specified chemical.
-        
-        Args:
-            chemical_id: Identifier for the chemical
-            
-        Returns:
-            List of incompatible chemical IDs
-        """
-        chemical_id = chemical_id.lower()
-        if chemical_id not in self.compatibility_matrix:
-            return []
-        
-        return [
-            chem_id for chem_id, compatible in self.compatibility_matrix[chemical_id].items()
-            if compatible == 0
-        ]
     
     def delete_chemical(self, chemical_id: str) -> bool:
         """
-        Delete a chemical from the safety database.
+        Delete a chemical from the database.
         
         Args:
-            chemical_id: Identifier for the chemical
+            chemical_id: ID of the chemical
             
         Returns:
             True if successful, False otherwise
         """
-        chemical_id = chemical_id.lower()
-        if chemical_id not in self.chemicals_data:
-            self.logger.warning(f"Cannot delete chemical {chemical_id}: Not found in database")
-            return False
-        
         try:
-            # Remove from chemicals data
-            del self.chemicals_data[chemical_id]
+            # Check if chemical exists
+            if chemical_id not in self.chemicals:
+                self.logger.warning(f"Chemical {chemical_id} not found in safety database")
+                return False
             
-            # Remove from compatibility matrix
-            if chemical_id in self.compatibility_matrix:
-                del self.compatibility_matrix[chemical_id]
+            # Delete chemical from database
+            del self.chemicals[chemical_id]
             
-            # Remove from other chemicals' compatibility entries
-            for chem_id in self.compatibility_matrix:
-                if chemical_id in self.compatibility_matrix[chem_id]:
-                    del self.compatibility_matrix[chem_id][chemical_id]
-            
+            # Save data to file
             self._save_data()
+            
             self.logger.info(f"Deleted chemical {chemical_id} from safety database")
             return True
         except Exception as e:
-            self.logger.error(f"Error deleting chemical {chemical_id}: {str(e)}")
+            self.logger.error(f"Error deleting chemical {chemical_id}: {e}")
             return False
+    
+    def get_compatibility(self, chemical_id):
+        """
+        Get compatibility information for a chemical.
+        
+        Args:
+            chemical_id: ID of the chemical
+            
+        Returns:
+            Dictionary mapping chemical IDs to compatibility (True/False)
+        """
+        # Default implementation - return empty compatibility dict
+        compatibility = {}
+        
+        try:
+            # In a real implementation, this would query a database or lookup table
+            # For now, we'll return some sample data
+            all_chemicals = self.get_all_chemicals()
+            
+            # Remove the current chemical from the list
+            other_chemicals = {cid: info for cid, info in all_chemicals.items() if cid != chemical_id}
+            
+            # For demonstration, we'll say chlorine is incompatible with acid
+            if chemical_id == "chlorine":
+                for cid, info in other_chemicals.items():
+                    compatibility[cid] = "acid" not in info["name"].lower()
+            # Acids are incompatible with chlorine and other acids
+            elif "acid" in all_chemicals.get(chemical_id, {}).get("name", "").lower():
+                for cid, info in other_chemicals.items():
+                    compatibility[cid] = ("chlorine" != cid and 
+                                         "acid" not in info["name"].lower())
+            # For other chemicals, assume compatibility with everything
+            else:
+                for cid in other_chemicals:
+                    compatibility[cid] = True
+                    
+        except Exception as e:
+            self.logger.error(f"Error getting compatibility for chemical {chemical_id}: {e}")
+        
+        return compatibility
+
+# For testing
+if __name__ == "__main__":
+    # Configure logging
+    logging.basicConfig(
+        level=logging.INFO,
+        format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+    )
+    
+    # Create chemical safety database
+    db = ChemicalSafetyDatabase()
+    
+    # Print all chemicals
+    chemicals = db.get_all_chemicals()
+    print(f"Found {len(chemicals)} chemicals:")
+    for chemical_id, chemical_info in chemicals.items():
+        print(f"- {chemical_info['name']} ({chemical_id})")
+    
+    # Print safety information for chlorine
+    chlorine_info = db.get_chemical_safety_info("chlorine")
+    print("\nChlorine Safety Information:")
+    print(f"Name: {chlorine_info['name']}")
+    print(f"Chemical Formula: {chlorine_info['chemical_formula']}")
+    print(f"Hazard Rating: {chlorine_info['hazard_rating']}")
+    print("Safety Precautions:")
+    for precaution in chlorine_info['safety_precautions']:
+        print(f"- {precaution}")
+    print(f"Storage Guidelines: {chlorine_info['storage_guidelines']}")
+    print(f"Emergency Procedures: {chlorine_info['emergency_procedures']}")
+    
+    # Print compatibility information for chlorine
+    compatibility = db.get_compatibility("chlorine")
+    print("\nChlorine Compatibility:")
+    for chemical_id, compatible in compatibility.items():
+        chemical_name = db.get_chemical_safety_info(chemical_id)["name"]
+        status = "Compatible" if compatible else "Incompatible"
+        print(f"- {chemical_name}: {status}")

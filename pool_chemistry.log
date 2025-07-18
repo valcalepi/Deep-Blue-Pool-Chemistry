@@ -293,3 +293,398 @@
 ModuleNotFoundError: No module named 'app.arduino_monitor'
 
 2025-07-17 17:16:32,075 - test_strip_analyzer - ERROR - No image captured for analysis
+2025-07-18 07:54:59,092 - PoolApp - INFO - Configuration loaded from config.json
+2025-07-18 07:54:59,095 - PoolApp - INFO - Initializing Pool Chemistry Application
+2025-07-18 07:54:59,102 - database_service - INFO - Database Service initialized with SQLite3 at data/pool_data.db
+2025-07-18 07:54:59,107 - database_service - INFO - Database initialized successfully
+2025-07-18 07:54:59,113 - PoolApp - INFO - Database service initialized successfully
+2025-07-18 07:54:59,115 - chemical_safety_database - INFO - Initializing Chemical Safety Database
+2025-07-18 07:54:59,124 - chemical_safety_database - INFO - Loaded chemical safety data for 5 chemicals
+2025-07-18 07:54:59,130 - PoolApp - INFO - Chemical safety database initialized successfully
+2025-07-18 07:54:59,133 - test_strip_analyzer - INFO - Loaded calibration data from data/calibration.json
+2025-07-18 07:54:59,141 - test_strip_analyzer - INFO - TestStripAnalyzer initialized with brand: default
+2025-07-18 07:54:59,146 - PoolApp - INFO - Test strip analyzer initialized successfully
+2025-07-18 07:54:59,149 - weather_service - INFO - Loaded weather cache from data/weather_cache.json
+2025-07-18 07:54:59,157 - weather_service - INFO - Weather Service initialized for location: Florida
+2025-07-18 07:54:59,163 - PoolApp - INFO - Weather service initialized successfully
+2025-07-18 07:54:59,165 - gui_controller - INFO - ChemicalCalculator initialized
+2025-07-18 07:54:59,173 - gui_controller - INFO - DatabaseManager initialized
+2025-07-18 07:54:59,176 - gui_controller - INFO - PoolChemistryController initialized
+2025-07-18 07:54:59,182 - PoolApp - INFO - Pool Chemistry Application initialized successfully
+2025-07-18 07:54:59,187 - PoolApp - INFO - Starting GUI application
+2025-07-18 07:54:59,295 - PoolApp - ERROR - Error initializing Arduino Monitor: No module named 'arduino_monitor_app'
+2025-07-18 07:54:59,298 - PoolApp - ERROR - Traceback (most recent call last):
+  File "C:\Scripts\deepbluepool\pool_app.py", line 191, in run_gui
+    from app.arduino_monitor import ArduinoMonitorApp
+ImportError: cannot import name 'ArduinoMonitorApp' from 'app.arduino_monitor' (C:\Scripts\deepbluepool\app\arduino_monitor\__init__.py)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Scripts\deepbluepool\pool_app.py", line 195, in run_gui
+    from arduino_monitor import ArduinoMonitorApp
+ModuleNotFoundError: No module named 'arduino_monitor'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Scripts\deepbluepool\pool_app.py", line 198, in run_gui
+    from arduino_monitor_app import ArduinoMonitorApp
+ModuleNotFoundError: No module named 'arduino_monitor_app'
+
+2025-07-18 07:55:17,645 - test_strip_analyzer - ERROR - No image captured for analysis
+2025-07-18 07:55:20,423 - test_strip_analyzer - ERROR - Test strip image not found: assets/images/test_strip.jpg
+2025-07-18 07:55:43,160 - weather_service - INFO - Removed weather cache file: data/weather_cache.json
+2025-07-18 07:55:43,197 - weather_service - INFO - Weather cache cleared
+2025-07-18 07:55:43,215 - weather_service - INFO - Saved weather cache to data/weather_cache.json
+2025-07-18 07:55:43,219 - weather_service - INFO - Retrieved weather data for Florida
+2025-07-18 07:55:43,238 - weather_service - INFO - Saved weather cache to data/weather_cache.json
+2025-07-18 07:55:43,245 - weather_service - INFO - Retrieved 3-day forecast for Florida
+2025-07-18 07:57:01,180 - gui_controller - INFO - Calculated chemicals for Concrete/Gunite pool
+2025-07-18 07:57:01,214 - gui_controller - INFO - Inserting test for location: Unknown
+2025-07-18 07:57:01,218 - gui_controller - INFO - Inserting test result: 1, pH, 6.0, 
+2025-07-18 07:57:01,223 - gui_controller - INFO - Inserting recommendation for pH: Add pH increaser to raise pH level
+2025-07-18 07:57:01,230 - gui_controller - INFO - Inserting test result: 1, Chlorine, 1.0, ppm
+2025-07-18 07:57:01,240 - gui_controller - INFO - Inserting recommendation for Chlorine: Chlorine level is within ideal range
+2025-07-18 07:57:01,247 - gui_controller - INFO - Inserting test result: 1, Alkalinity, 100.0, ppm
+2025-07-18 07:57:01,256 - gui_controller - INFO - Inserting recommendation for Alkalinity: Alkalinity level is within ideal range
+2025-07-18 07:57:01,260 - gui_controller - INFO - Inserting test result: 1, Calcium Hardness, 199.0, ppm
+2025-07-18 07:57:01,269 - gui_controller - INFO - Inserting recommendation for Calcium Hardness: Add calcium hardness increaser to raise level
+2025-07-18 07:57:01,272 - gui_controller - INFO - Exporting test results to CSV for test ID: 1
+2025-07-18 07:57:01,275 - gui_controller - INFO - Test results saved with ID 1
+2025-07-18 08:06:36,919 - PoolApp - INFO - Configuration loaded from config.json
+2025-07-18 08:06:36,943 - PoolApp - INFO - Initializing Pool Chemistry Application
+2025-07-18 08:06:36,947 - database_service - INFO - Database Service initialized with SQLite3 at data/pool_data.db
+2025-07-18 08:06:36,955 - database_service - INFO - Database initialized successfully
+2025-07-18 08:06:36,961 - PoolApp - INFO - Database service initialized successfully
+2025-07-18 08:06:36,964 - chemical_safety_database - INFO - Initializing Chemical Safety Database
+2025-07-18 08:06:36,971 - chemical_safety_database - INFO - Loaded chemical safety data for 2 chemicals
+2025-07-18 08:06:36,976 - PoolApp - INFO - Chemical safety database initialized successfully
+2025-07-18 08:06:36,979 - test_strip_analyzer - INFO - Loaded calibration data from data/calibration.json
+2025-07-18 08:06:36,986 - test_strip_analyzer - INFO - TestStripAnalyzer initialized with brand: default
+2025-07-18 08:06:36,989 - PoolApp - INFO - Test strip analyzer initialized successfully
+2025-07-18 08:06:36,998 - weather_service - INFO - Loaded weather cache from data/weather_cache.json
+2025-07-18 08:06:37,001 - weather_service - INFO - Weather Service initialized for location: Florida
+2025-07-18 08:06:37,007 - PoolApp - INFO - Weather service initialized successfully
+2025-07-18 08:06:37,010 - gui_controller - INFO - ChemicalCalculator initialized
+2025-07-18 08:06:37,016 - gui_controller - INFO - DatabaseManager initialized
+2025-07-18 08:06:37,019 - gui_controller - INFO - PoolChemistryController initialized
+2025-07-18 08:06:37,026 - PoolApp - INFO - Pool Chemistry Application initialized successfully
+2025-07-18 08:06:37,028 - PoolApp - INFO - Starting GUI application
+2025-07-18 08:06:37,137 - arduino_monitor - INFO - Initializing Arduino Monitor (Simplified)
+2025-07-18 08:06:37,148 - arduino_monitor - INFO - Arduino Monitor initialized
+2025-07-18 08:06:37,151 - PoolApp - INFO - Arduino Monitor initialized successfully
+2025-07-18 08:07:05,280 - test_strip_analyzer - ERROR - No image captured for analysis
+2025-07-18 08:07:09,522 - test_strip_analyzer - ERROR - No image captured for analysis
+2025-07-18 08:07:12,266 - test_strip_analyzer - ERROR - Test strip image not found: assets/images/test_strip.jpg
+2025-07-18 08:07:36,998 - weather_service - INFO - Removed weather cache file: data/weather_cache.json
+2025-07-18 08:07:37,012 - weather_service - INFO - Weather cache cleared
+2025-07-18 08:07:37,030 - weather_service - INFO - Saved weather cache to data/weather_cache.json
+2025-07-18 08:07:37,039 - weather_service - INFO - Retrieved weather data for Florida
+2025-07-18 08:07:37,050 - weather_service - INFO - Saved weather cache to data/weather_cache.json
+2025-07-18 08:07:37,054 - weather_service - INFO - Retrieved 3-day forecast for Florida
+2025-07-18 08:07:50,111 - gui_controller - INFO - Calculated chemicals for Concrete/Gunite pool
+2025-07-18 08:07:50,120 - gui_controller - INFO - Inserting test for location: Unknown
+2025-07-18 08:07:50,123 - gui_controller - INFO - Inserting test result: 1, pH, 6.0, 
+2025-07-18 08:07:50,130 - gui_controller - INFO - Inserting recommendation for pH: Add pH increaser to raise pH level
+2025-07-18 08:07:50,139 - gui_controller - INFO - Inserting test result: 1, Chlorine, 1.0, ppm
+2025-07-18 08:07:50,142 - gui_controller - INFO - Inserting recommendation for Chlorine: Chlorine level is within ideal range
+2025-07-18 08:07:50,146 - gui_controller - INFO - Inserting test result: 1, Alkalinity, 224.0, ppm
+2025-07-18 08:07:50,152 - gui_controller - INFO - Inserting recommendation for Alkalinity: Add acid to lower alkalinity level
+2025-07-18 08:07:50,155 - gui_controller - INFO - Inserting test result: 1, Calcium Hardness, 250.0, ppm
+2025-07-18 08:07:50,163 - gui_controller - INFO - Inserting recommendation for Calcium Hardness: Calcium hardness level is within ideal range
+2025-07-18 08:07:50,172 - gui_controller - INFO - Exporting test results to CSV for test ID: 1
+2025-07-18 08:07:50,179 - gui_controller - INFO - Test results saved with ID 1
+2025-07-18 08:21:15,603 - PoolApp - INFO - Configuration loaded from config.json
+2025-07-18 08:21:15,606 - PoolApp - INFO - Initializing Pool Chemistry Application
+2025-07-18 08:21:15,613 - database_service - INFO - Database Service initialized with SQLite3 at data/pool_data.db
+2025-07-18 08:21:15,617 - database_service - INFO - Database initialized successfully
+2025-07-18 08:21:15,623 - PoolApp - INFO - Database service initialized successfully
+2025-07-18 08:21:15,626 - chemical_safety_database - INFO - Initializing Chemical Safety Database
+2025-07-18 08:21:15,633 - chemical_safety_database - INFO - Loaded chemical safety data for 2 chemicals
+2025-07-18 08:21:15,636 - PoolApp - INFO - Chemical safety database initialized successfully
+2025-07-18 08:21:15,644 - test_strip_analyzer - INFO - Loaded calibration data from data/calibration.json
+2025-07-18 08:21:15,650 - test_strip_analyzer - INFO - TestStripAnalyzer initialized with brand: default
+2025-07-18 08:21:15,653 - PoolApp - INFO - Test strip analyzer initialized successfully
+2025-07-18 08:21:15,660 - weather_service - INFO - Loaded weather cache from data/weather_cache.json
+2025-07-18 08:21:15,667 - weather_service - INFO - Weather Service initialized for location: Florida
+2025-07-18 08:21:15,669 - PoolApp - INFO - Weather service initialized successfully
+2025-07-18 08:21:15,676 - gui_controller - INFO - ChemicalCalculator initialized
+2025-07-18 08:21:15,683 - gui_controller - INFO - DatabaseManager initialized
+2025-07-18 08:21:15,686 - gui_controller - INFO - PoolChemistryController initialized
+2025-07-18 08:21:15,693 - PoolApp - INFO - Pool Chemistry Application initialized successfully
+2025-07-18 08:21:15,695 - PoolApp - INFO - Starting GUI application
+2025-07-18 08:21:15,815 - arduino_monitor - INFO - Initializing Arduino Monitor (Simplified)
+2025-07-18 08:21:15,820 - arduino_monitor - INFO - Arduino Monitor initialized
+2025-07-18 08:21:15,823 - PoolApp - INFO - Arduino Monitor initialized successfully
+2025-07-18 08:21:42,398 - test_strip_analyzer - ERROR - No image captured for analysis
+2025-07-18 08:21:44,895 - test_strip_analyzer - ERROR - Test strip image not found: assets/images/test_strip.jpg
+2025-07-18 08:22:21,181 - weather_service - INFO - Removed weather cache file: data/weather_cache.json
+2025-07-18 08:22:21,187 - weather_service - INFO - Weather cache cleared
+2025-07-18 08:22:21,203 - weather_service - INFO - Saved weather cache to data/weather_cache.json
+2025-07-18 08:22:21,212 - weather_service - INFO - Retrieved weather data for Florida
+2025-07-18 08:22:21,225 - weather_service - INFO - Saved weather cache to data/weather_cache.json
+2025-07-18 08:22:21,231 - weather_service - INFO - Retrieved 3-day forecast for Florida
+2025-07-18 08:22:55,487 - gui_controller - INFO - Calculated chemicals for Concrete/Gunite pool
+2025-07-18 08:22:55,496 - gui_controller - INFO - Inserting test for location: Unknown
+2025-07-18 08:22:55,502 - gui_controller - INFO - Inserting test result: 1, pH, 6.0, 
+2025-07-18 08:22:55,510 - gui_controller - INFO - Inserting recommendation for pH: Add pH increaser to raise pH level
+2025-07-18 08:22:55,518 - gui_controller - INFO - Inserting test result: 1, Chlorine, 1.0, ppm
+2025-07-18 08:22:55,522 - gui_controller - INFO - Inserting recommendation for Chlorine: Chlorine level is within ideal range
+2025-07-18 08:22:55,528 - gui_controller - INFO - Inserting test result: 1, Alkalinity, 88.0, ppm
+2025-07-18 08:22:55,536 - gui_controller - INFO - Inserting recommendation for Alkalinity: Alkalinity level is within ideal range
+2025-07-18 08:22:55,543 - gui_controller - INFO - Inserting test result: 1, Calcium Hardness, 200.0, ppm
+2025-07-18 08:22:55,552 - gui_controller - INFO - Inserting recommendation for Calcium Hardness: Calcium hardness level is within ideal range
+2025-07-18 08:22:55,558 - gui_controller - INFO - Inserting test result: 1, Cyanuric Acid, 25.0, ppm
+2025-07-18 08:22:55,565 - gui_controller - INFO - Inserting recommendation for Cyanuric Acid: Maintain Cyanuric Acid at optimal levels
+2025-07-18 08:22:55,570 - gui_controller - INFO - Inserting test result: 1, Salt, 2400.0, ppm
+2025-07-18 08:22:55,576 - gui_controller - INFO - Inserting recommendation for Salt: Maintain Salt at optimal levels
+2025-07-18 08:22:55,579 - gui_controller - INFO - Exporting test results to CSV for test ID: 1
+2025-07-18 08:22:55,587 - gui_controller - INFO - Test results saved with ID 1
+2025-07-18 08:36:28,827 - PoolApp - INFO - Configuration loaded from config.json
+2025-07-18 08:36:28,855 - PoolApp - INFO - Initializing Pool Chemistry Application
+2025-07-18 08:36:28,859 - database_service - INFO - Database Service initialized with SQLite3 at data/pool_data.db
+2025-07-18 08:36:28,868 - database_service - INFO - Database initialized successfully
+2025-07-18 08:36:28,871 - PoolApp - INFO - Database service initialized successfully
+2025-07-18 08:36:28,878 - chemical_safety_database - INFO - Initializing Chemical Safety Database
+2025-07-18 08:36:28,882 - chemical_safety_database - INFO - Loaded chemical safety data for 2 chemicals
+2025-07-18 08:36:28,888 - PoolApp - INFO - Chemical safety database initialized successfully
+2025-07-18 08:36:28,892 - test_strip_analyzer - INFO - Loaded calibration data from data/calibration.json
+2025-07-18 08:36:28,900 - test_strip_analyzer - INFO - TestStripAnalyzer initialized with brand: default
+2025-07-18 08:36:28,904 - PoolApp - INFO - Test strip analyzer initialized successfully
+2025-07-18 08:36:28,910 - weather_service - INFO - Loaded weather cache from data/weather_cache.json
+2025-07-18 08:36:28,914 - weather_service - INFO - Weather Service initialized for location: Florida
+2025-07-18 08:36:28,920 - PoolApp - INFO - Weather service initialized successfully
+2025-07-18 08:36:28,926 - gui_controller - INFO - ChemicalCalculator initialized
+2025-07-18 08:36:28,933 - gui_controller - INFO - DatabaseManager initialized
+2025-07-18 08:36:28,939 - gui_controller - INFO - PoolChemistryController initialized
+2025-07-18 08:36:28,943 - PoolApp - INFO - Pool Chemistry Application initialized successfully
+2025-07-18 08:36:28,946 - PoolApp - INFO - Starting GUI application
+2025-07-18 08:36:29,067 - arduino_monitor - INFO - Initializing Arduino Monitor (Simplified)
+2025-07-18 08:36:29,073 - arduino_monitor - INFO - Arduino Monitor initialized
+2025-07-18 08:36:29,076 - PoolApp - INFO - Arduino Monitor initialized successfully
+2025-07-18 08:36:31,076 - PoolApp - ERROR - Error refreshing customers: 'DatabaseService' object has no attribute 'get_all_customers'
+2025-07-18 08:37:20,594 - PoolApp - ERROR - Error saving customer: 'DatabaseService' object has no attribute 'insert_customer'
+2025-07-18 08:37:27,144 - PoolApp - ERROR - Error saving customer: 'DatabaseService' object has no attribute 'insert_customer'
+2025-07-18 08:37:36,386 - test_strip_analyzer - ERROR - No image captured for analysis
+2025-07-18 08:37:48,777 - weather_service - INFO - Removed weather cache file: data/weather_cache.json
+2025-07-18 08:37:48,784 - weather_service - INFO - Weather cache cleared
+2025-07-18 08:37:48,800 - weather_service - INFO - Saved weather cache to data/weather_cache.json
+2025-07-18 08:37:48,807 - weather_service - INFO - Retrieved weather data for Florida
+2025-07-18 08:37:48,820 - weather_service - INFO - Saved weather cache to data/weather_cache.json
+2025-07-18 08:37:48,827 - weather_service - INFO - Retrieved 3-day forecast for Florida
+2025-07-18 08:38:15,292 - gui_controller - INFO - Calculated chemicals for Concrete/Gunite pool
+2025-07-18 08:38:15,347 - gui_controller - INFO - Inserting test for location: Unknown
+2025-07-18 08:38:15,357 - gui_controller - INFO - Inserting test result: 1, pH, 6.0, 
+2025-07-18 08:38:15,363 - gui_controller - INFO - Inserting recommendation for pH: Add pH increaser to raise pH level
+2025-07-18 08:38:15,368 - gui_controller - INFO - Inserting test result: 1, Chlorine, 1.0, ppm
+2025-07-18 08:38:15,372 - gui_controller - INFO - Inserting recommendation for Chlorine: Chlorine level is within ideal range
+2025-07-18 08:38:15,379 - gui_controller - INFO - Inserting test result: 1, Alkalinity, 77.0, ppm
+2025-07-18 08:38:15,381 - gui_controller - INFO - Inserting recommendation for Alkalinity: Add alkalinity increaser to raise level
+2025-07-18 08:38:15,389 - gui_controller - INFO - Inserting test result: 1, Calcium Hardness, 200.0, ppm
+2025-07-18 08:38:15,392 - gui_controller - INFO - Inserting recommendation for Calcium Hardness: Calcium hardness level is within ideal range
+2025-07-18 08:38:15,397 - gui_controller - INFO - Inserting test result: 1, Cyanuric Acid, 22.0, ppm
+2025-07-18 08:38:15,404 - gui_controller - INFO - Inserting recommendation for Cyanuric Acid: Maintain Cyanuric Acid at optimal levels
+2025-07-18 08:38:15,407 - gui_controller - INFO - Inserting test result: 1, Salt, 2450.0, ppm
+2025-07-18 08:38:15,414 - gui_controller - INFO - Inserting recommendation for Salt: Maintain Salt at optimal levels
+2025-07-18 08:38:15,417 - gui_controller - INFO - Exporting test results to CSV for test ID: 1
+2025-07-18 08:38:15,426 - gui_controller - INFO - Test results saved with ID 1
+2025-07-18 08:38:22,874 - gui_controller - INFO - Calculated chemicals for Concrete/Gunite pool
+2025-07-18 08:38:22,892 - gui_controller - INFO - Inserting test for location: Unknown
+2025-07-18 08:38:22,897 - gui_controller - INFO - Inserting test result: 1, pH, 6.0, 
+2025-07-18 08:38:22,907 - gui_controller - INFO - Inserting recommendation for pH: Add pH increaser to raise pH level
+2025-07-18 08:38:22,916 - gui_controller - INFO - Inserting test result: 1, Chlorine, 1.0, ppm
+2025-07-18 08:38:22,923 - gui_controller - INFO - Inserting recommendation for Chlorine: Chlorine level is within ideal range
+2025-07-18 08:38:22,927 - gui_controller - INFO - Inserting test result: 1, Alkalinity, 77.0, ppm
+2025-07-18 08:38:22,930 - gui_controller - INFO - Inserting recommendation for Alkalinity: Add alkalinity increaser to raise level
+2025-07-18 08:38:22,939 - gui_controller - INFO - Inserting test result: 1, Calcium Hardness, 200.0, ppm
+2025-07-18 08:38:22,943 - gui_controller - INFO - Inserting recommendation for Calcium Hardness: Calcium hardness level is within ideal range
+2025-07-18 08:38:22,948 - gui_controller - INFO - Inserting test result: 1, Cyanuric Acid, 22.0, ppm
+2025-07-18 08:38:22,951 - gui_controller - INFO - Inserting recommendation for Cyanuric Acid: Maintain Cyanuric Acid at optimal levels
+2025-07-18 08:38:22,956 - gui_controller - INFO - Inserting test result: 1, Salt, 2450.0, ppm
+2025-07-18 08:38:22,964 - gui_controller - INFO - Inserting recommendation for Salt: Maintain Salt at optimal levels
+2025-07-18 08:38:22,973 - gui_controller - INFO - Exporting test results to CSV for test ID: 1
+2025-07-18 08:38:22,977 - gui_controller - INFO - Test results saved with ID 1
+2025-07-18 08:47:30,275 - PoolApp - INFO - Configuration loaded from config.json
+2025-07-18 08:47:30,288 - PoolApp - INFO - Initializing Pool Chemistry Application
+2025-07-18 08:47:30,317 - database_service - INFO - Database initialized successfully
+2025-07-18 08:47:30,321 - database_service - INFO - Database Service initialized with SQLite3 at data/pool_data.db
+2025-07-18 08:47:30,328 - PoolApp - INFO - Database service initialized successfully
+2025-07-18 08:47:30,334 - chemical_safety_database - INFO - Initializing Chemical Safety Database
+2025-07-18 08:47:30,337 - chemical_safety_database - INFO - Loaded chemical safety data for 2 chemicals
+2025-07-18 08:47:30,345 - PoolApp - INFO - Chemical safety database initialized successfully
+2025-07-18 08:47:30,351 - test_strip_analyzer - INFO - Loaded calibration data from data/calibration.json
+2025-07-18 08:47:30,354 - test_strip_analyzer - INFO - TestStripAnalyzer initialized with brand: default
+2025-07-18 08:47:30,362 - PoolApp - INFO - Test strip analyzer initialized successfully
+2025-07-18 08:47:30,367 - weather_service - INFO - Loaded weather cache from data/weather_cache.json
+2025-07-18 08:47:30,370 - weather_service - INFO - Weather Service initialized for location: Florida
+2025-07-18 08:47:30,378 - PoolApp - INFO - Weather service initialized successfully
+2025-07-18 08:47:30,382 - gui_controller - INFO - ChemicalCalculator initialized
+2025-07-18 08:47:30,386 - gui_controller - INFO - DatabaseManager initialized
+2025-07-18 08:47:30,392 - gui_controller - INFO - PoolChemistryController initialized
+2025-07-18 08:47:30,401 - PoolApp - INFO - Pool Chemistry Application initialized successfully
+2025-07-18 08:47:30,411 - PoolApp - INFO - Starting GUI application
+2025-07-18 08:47:30,528 - arduino_monitor - INFO - Initializing Arduino Monitor (Simplified)
+2025-07-18 08:47:30,535 - arduino_monitor - INFO - Arduino Monitor initialized
+2025-07-18 08:47:30,538 - PoolApp - INFO - Arduino Monitor initialized successfully
+2025-07-18 08:48:29,606 - test_strip_analyzer - ERROR - No image captured for analysis
+2025-07-18 08:50:53,799 - gui_controller - INFO - Calculated chemicals for Concrete/Gunite pool
+2025-07-18 08:50:53,809 - gui_controller - INFO - Inserting test for location: Unknown
+2025-07-18 08:50:53,820 - gui_controller - INFO - Inserting test result: 1, pH, 7.2, 
+2025-07-18 08:50:53,827 - gui_controller - INFO - Inserting recommendation for pH: pH level is within ideal range
+2025-07-18 08:50:53,835 - gui_controller - INFO - Inserting test result: 1, Chlorine, 1.5, ppm
+2025-07-18 08:50:53,844 - gui_controller - INFO - Inserting recommendation for Chlorine: Chlorine level is within ideal range
+2025-07-18 08:50:53,853 - gui_controller - INFO - Inserting test result: 1, Alkalinity, 100.0, ppm
+2025-07-18 08:50:53,863 - gui_controller - INFO - Inserting recommendation for Alkalinity: Alkalinity level is within ideal range
+2025-07-18 08:50:53,868 - gui_controller - INFO - Inserting test result: 1, Calcium Hardness, 250.0, ppm
+2025-07-18 08:50:53,879 - gui_controller - INFO - Inserting recommendation for Calcium Hardness: Calcium hardness level is within ideal range
+2025-07-18 08:50:53,887 - gui_controller - INFO - Inserting test result: 1, Cyanuric Acid, 30.0, ppm
+2025-07-18 08:50:53,895 - gui_controller - INFO - Inserting recommendation for Cyanuric Acid: Maintain Cyanuric Acid at optimal levels
+2025-07-18 08:50:53,902 - gui_controller - INFO - Inserting test result: 1, Salt, 3000.0, ppm
+2025-07-18 08:50:53,906 - gui_controller - INFO - Inserting recommendation for Salt: Maintain Salt at optimal levels
+2025-07-18 08:50:53,912 - gui_controller - INFO - Exporting test results to CSV for test ID: 1
+2025-07-18 08:50:53,919 - gui_controller - INFO - Test results saved with ID 1
+2025-07-18 08:51:12,984 - gui_controller - INFO - Calculated chemicals for Concrete/Gunite pool
+2025-07-18 08:51:13,006 - gui_controller - INFO - Inserting test for location: Unknown
+2025-07-18 08:51:13,018 - gui_controller - INFO - Inserting test result: 1, pH, 6.0, 
+2025-07-18 08:51:13,027 - gui_controller - INFO - Inserting recommendation for pH: Add pH increaser to raise pH level
+2025-07-18 08:51:13,034 - gui_controller - INFO - Inserting test result: 1, Chlorine, 1.0, ppm
+2025-07-18 08:51:13,038 - gui_controller - INFO - Inserting recommendation for Chlorine: Chlorine level is within ideal range
+2025-07-18 08:51:13,043 - gui_controller - INFO - Inserting test result: 1, Alkalinity, 99.0, ppm
+2025-07-18 08:51:13,054 - gui_controller - INFO - Inserting recommendation for Alkalinity: Alkalinity level is within ideal range
+2025-07-18 08:51:13,060 - gui_controller - INFO - Inserting test result: 1, Calcium Hardness, 200.0, ppm
+2025-07-18 08:51:13,069 - gui_controller - INFO - Inserting recommendation for Calcium Hardness: Calcium hardness level is within ideal range
+2025-07-18 08:51:13,076 - gui_controller - INFO - Inserting test result: 1, Cyanuric Acid, 29.0, ppm
+2025-07-18 08:51:13,080 - gui_controller - INFO - Inserting recommendation for Cyanuric Acid: Maintain Cyanuric Acid at optimal levels
+2025-07-18 08:51:13,086 - gui_controller - INFO - Inserting test result: 1, Salt, 2400.0, ppm
+2025-07-18 08:51:13,093 - gui_controller - INFO - Inserting recommendation for Salt: Maintain Salt at optimal levels
+2025-07-18 08:51:13,102 - gui_controller - INFO - Exporting test results to CSV for test ID: 1
+2025-07-18 08:51:13,110 - gui_controller - INFO - Test results saved with ID 1
+2025-07-18 09:02:19,642 - PoolApp - INFO - Configuration loaded from config.json
+2025-07-18 09:02:19,647 - PoolApp - INFO - Initializing Pool Chemistry Application
+2025-07-18 09:02:19,655 - database_service - INFO - Database initialized successfully
+2025-07-18 09:02:19,658 - database_service - INFO - Database Service initialized with SQLite3 at data/pool_data.db
+2025-07-18 09:02:19,661 - PoolApp - INFO - Database service initialized successfully
+2025-07-18 09:02:19,664 - chemical_safety_database - INFO - Initializing Chemical Safety Database
+2025-07-18 09:02:19,669 - chemical_safety_database - INFO - Loaded chemical safety data for 2 chemicals
+2025-07-18 09:02:19,672 - PoolApp - INFO - Chemical safety database initialized successfully
+2025-07-18 09:02:19,678 - test_strip_analyzer - INFO - Loaded calibration data from data/calibration.json
+2025-07-18 09:02:19,684 - test_strip_analyzer - INFO - TestStripAnalyzer initialized with brand: default
+2025-07-18 09:02:19,691 - PoolApp - INFO - Test strip analyzer initialized successfully
+2025-07-18 09:02:19,695 - weather_service - INFO - Loaded weather cache from data/weather_cache.json
+2025-07-18 09:02:19,700 - weather_service - INFO - Weather Service initialized for location: Florida
+2025-07-18 09:02:19,704 - PoolApp - INFO - Weather service initialized successfully
+2025-07-18 09:02:19,707 - gui_controller - INFO - ChemicalCalculator initialized
+2025-07-18 09:02:19,712 - gui_controller - INFO - DatabaseManager initialized
+2025-07-18 09:02:19,717 - gui_controller - INFO - PoolChemistryController initialized
+2025-07-18 09:02:19,723 - PoolApp - INFO - Pool Chemistry Application initialized successfully
+2025-07-18 09:02:19,726 - PoolApp - INFO - Starting GUI application
+2025-07-18 09:02:19,861 - PoolApp - ERROR - Error initializing Arduino Monitor: No module named 'arduino_monitor_app'
+2025-07-18 09:02:19,868 - PoolApp - ERROR - Traceback (most recent call last):
+  File "C:\Scripts\deepbluepool\pool_app.py", line 194, in run_gui
+    from app.arduino_monitor import ArduinoMonitorApp
+ImportError: cannot import name 'ArduinoMonitorApp' from 'app.arduino_monitor' (C:\Scripts\deepbluepool\app\arduino_monitor\__init__.py)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Scripts\deepbluepool\pool_app.py", line 198, in run_gui
+    from arduino_monitor import ArduinoMonitorApp
+ModuleNotFoundError: No module named 'arduino_monitor'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Scripts\deepbluepool\pool_app.py", line 201, in run_gui
+    from arduino_monitor_app import ArduinoMonitorApp
+ModuleNotFoundError: No module named 'arduino_monitor_app'
+
+2025-07-18 09:03:02,542 - PoolApp - INFO - Configuration loaded from config.json
+2025-07-18 09:03:02,561 - PoolApp - INFO - Initializing Pool Chemistry Application
+2025-07-18 09:03:02,569 - database_service - INFO - Database initialized successfully
+2025-07-18 09:03:02,574 - database_service - INFO - Database Service initialized with SQLite3 at data/pool_data.db
+2025-07-18 09:03:02,577 - PoolApp - INFO - Database service initialized successfully
+2025-07-18 09:03:02,584 - chemical_safety_database - INFO - Initializing Chemical Safety Database
+2025-07-18 09:03:02,591 - chemical_safety_database - INFO - Loaded chemical safety data for 2 chemicals
+2025-07-18 09:03:02,595 - PoolApp - INFO - Chemical safety database initialized successfully
+2025-07-18 09:03:02,602 - test_strip_analyzer - INFO - Loaded calibration data from data/calibration.json
+2025-07-18 09:03:02,607 - test_strip_analyzer - INFO - TestStripAnalyzer initialized with brand: default
+2025-07-18 09:03:02,610 - PoolApp - INFO - Test strip analyzer initialized successfully
+2025-07-18 09:03:02,618 - weather_service - INFO - Loaded weather cache from data/weather_cache.json
+2025-07-18 09:03:02,622 - weather_service - INFO - Weather Service initialized for location: Florida
+2025-07-18 09:03:02,629 - PoolApp - INFO - Weather service initialized successfully
+2025-07-18 09:03:02,633 - gui_controller - INFO - ChemicalCalculator initialized
+2025-07-18 09:03:02,641 - gui_controller - INFO - DatabaseManager initialized
+2025-07-18 09:03:02,645 - gui_controller - INFO - PoolChemistryController initialized
+2025-07-18 09:03:02,652 - PoolApp - INFO - Pool Chemistry Application initialized successfully
+2025-07-18 09:03:02,655 - PoolApp - INFO - Starting GUI application
+2025-07-18 09:03:02,774 - PoolApp - ERROR - Error initializing Arduino Monitor: No module named 'arduino_monitor_app'
+2025-07-18 09:03:02,779 - PoolApp - ERROR - Traceback (most recent call last):
+  File "C:\Scripts\deepbluepool\pool_app.py", line 194, in run_gui
+    from app.arduino_monitor import ArduinoMonitorApp
+ImportError: cannot import name 'ArduinoMonitorApp' from 'app.arduino_monitor' (C:\Scripts\deepbluepool\app\arduino_monitor\__init__.py)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Scripts\deepbluepool\pool_app.py", line 198, in run_gui
+    from arduino_monitor import ArduinoMonitorApp
+ModuleNotFoundError: No module named 'arduino_monitor'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Scripts\deepbluepool\pool_app.py", line 201, in run_gui
+    from arduino_monitor_app import ArduinoMonitorApp
+ModuleNotFoundError: No module named 'arduino_monitor_app'
+
+2025-07-18 09:05:09,257 - PoolApp - INFO - Configuration loaded from config.json
+2025-07-18 09:05:09,260 - PoolApp - INFO - Initializing Pool Chemistry Application
+2025-07-18 09:05:09,264 - database_service - INFO - Database initialized successfully
+2025-07-18 09:05:09,266 - database_service - INFO - Database Service initialized with SQLite3 at data/pool_data.db
+2025-07-18 09:05:09,268 - PoolApp - INFO - Database service initialized successfully
+2025-07-18 09:05:09,271 - chemical_safety_database - INFO - Initializing Chemical Safety Database
+2025-07-18 09:05:09,273 - chemical_safety_database - INFO - Loaded chemical safety data for 2 chemicals
+2025-07-18 09:05:09,275 - PoolApp - INFO - Chemical safety database initialized successfully
+2025-07-18 09:05:09,278 - test_strip_analyzer - INFO - Loaded calibration data from data/calibration.json
+2025-07-18 09:05:09,280 - test_strip_analyzer - INFO - TestStripAnalyzer initialized with brand: default
+2025-07-18 09:05:09,284 - PoolApp - INFO - Test strip analyzer initialized successfully
+2025-07-18 09:05:09,285 - weather_service - INFO - Loaded weather cache from data/weather_cache.json
+2025-07-18 09:05:09,287 - weather_service - INFO - Weather Service initialized for location: Florida
+2025-07-18 09:05:09,305 - PoolApp - INFO - Weather service initialized successfully
+2025-07-18 09:05:09,307 - gui_controller - INFO - ChemicalCalculator initialized
+2025-07-18 09:05:09,310 - gui_controller - INFO - DatabaseManager initialized
+2025-07-18 09:05:09,311 - gui_controller - INFO - PoolChemistryController initialized
+2025-07-18 09:05:09,314 - PoolApp - INFO - Pool Chemistry Application initialized successfully
+2025-07-18 09:05:09,317 - PoolApp - INFO - Starting GUI application
+2025-07-18 09:05:09,550 - PoolApp - INFO - Found 1 serial ports
+2025-07-18 09:05:26,181 - PoolApp - INFO - Connected to Arduino on COM3
+2025-07-18 09:05:47,002 - test_strip_analyzer - ERROR - No image captured for analysis
+2025-07-18 09:07:53,478 - gui_controller - INFO - Calculated chemicals for Concrete/Gunite pool
+2025-07-18 09:07:53,521 - gui_controller - INFO - Inserting test for location: Unknown
+2025-07-18 09:07:53,529 - gui_controller - INFO - Inserting test result: 1, pH, 6.0, 
+2025-07-18 09:07:53,537 - gui_controller - INFO - Inserting recommendation for pH: Add pH increaser to raise pH level
+2025-07-18 09:07:53,545 - gui_controller - INFO - Inserting test result: 1, Chlorine, 1.0, ppm
+2025-07-18 09:07:53,553 - gui_controller - INFO - Inserting recommendation for Chlorine: Chlorine level is within ideal range
+2025-07-18 09:07:53,559 - gui_controller - INFO - Inserting test result: 1, Alkalinity, 99.0, ppm
+2025-07-18 09:07:53,565 - gui_controller - INFO - Inserting recommendation for Alkalinity: Alkalinity level is within ideal range
+2025-07-18 09:07:53,570 - gui_controller - INFO - Inserting test result: 1, Calcium Hardness, 200.0, ppm
+2025-07-18 09:07:53,574 - gui_controller - INFO - Inserting recommendation for Calcium Hardness: Calcium hardness level is within ideal range
+2025-07-18 09:07:53,580 - gui_controller - INFO - Inserting test result: 1, Cyanuric Acid, 29.0, ppm
+2025-07-18 09:07:53,586 - gui_controller - INFO - Inserting recommendation for Cyanuric Acid: Maintain Cyanuric Acid at optimal levels
+2025-07-18 09:07:53,592 - gui_controller - INFO - Inserting test result: 1, Salt, 3000.0, ppm
+2025-07-18 09:07:53,595 - gui_controller - INFO - Inserting recommendation for Salt: Maintain Salt at optimal levels
+2025-07-18 09:07:53,599 - gui_controller - INFO - Exporting test results to CSV for test ID: 1
+2025-07-18 09:07:53,603 - gui_controller - INFO - Test results saved with ID 1
+2025-07-18 09:07:53,605 - chemical_safety_database - WARNING - Chemical sodium_bicarbonate not found in safety database
+2025-07-18 09:21:39,063 - weather_service - INFO - Removed weather cache file: data/weather_cache.json
+2025-07-18 09:21:39,067 - weather_service - INFO - Weather cache cleared
+2025-07-18 09:21:39,108 - weather_service - INFO - Saved weather cache to data/weather_cache.json
+2025-07-18 09:21:39,115 - weather_service - INFO - Retrieved weather data for Florida
+2025-07-18 09:21:39,129 - weather_service - INFO - Saved weather cache to data/weather_cache.json
+2025-07-18 09:21:39,135 - weather_service - INFO - Retrieved 3-day forecast for Florida
+2025-07-18 09:21:39,149 - PoolApp - INFO - Weather data refreshed
+2025-07-18 09:21:48,944 - database_service - INFO - All database connections closed
+2025-07-18 09:21:48,995 - weather_service - INFO - Removed weather cache file: data/weather_cache.json
+2025-07-18 09:21:49,006 - weather_service - INFO - Weather cache cleared
+2025-07-18 09:21:49,012 - PoolApp - INFO - Application resources cleaned up

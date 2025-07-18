@@ -1,3 +1,4 @@
+
 """
 Test strip analyzer module for the Deep Blue Pool Chemistry application.
 
@@ -10,8 +11,10 @@ import cv2
 import json
 import logging
 import numpy as np
+import time
 from typing import Dict, List, Optional, Any, Tuple
 from PIL import Image
+from datetime import datetime
 
 # Configure logger
 logger = logging.getLogger(__name__)
@@ -49,154 +52,314 @@ class ColorCalibrator:
             json.JSONDecodeError: If the calibration file contains invalid JSON
         """
         try:
-            with open(path, "r") as f:
-                self.calibration_data = json.load(f)
-            logger.info(f"Loaded calibration data from {path}")
-        except (FileNotFoundError, json.JSONDecodeError) as e:
-            logger.error(f"Failed to load calibration data: {e}")
-            self.calibration_data = {}
-
-    def _distance(self, rgb1: List[int], rgb2: List[int]) -> float:
-        """
-        Calculate the Euclidean distance between two RGB colors.
-        
-        Args:
-            rgb1: First RGB color as a list [R, G, B]
-            rgb2: Second RGB color as a list [R, G, B]
+            # Try the specified path
+            if os.path.exists(path):
+                with open(path, 'r') as f:
+                    self.calibration_data = json.load(f)
+                return
             
-        Returns:
-            Euclidean distance between the colors
-        """
-        return np.sqrt(sum((a - b) ** 2 for a, b in zip(rgb1, rgb2)))
+            # Try alternative paths
+            alt_paths = [
+                "data/calibration.json",
+                "data/test_strip_calibration.json",
+                "data/strip_calibration.json",
+                "test_calibration.json"
+            ]
+            
+            for alt_path in alt_paths:
+                if os.path.exists(alt_path):
+                    with open(alt_path, 'r') as f:
+                        self.calibration_data = json.load(f)
+                    return
+            
+            # If no file found, use default calibration data
+            self.calibration_data = {
+                "pH": [
+                    {"color": [255, 0, 0], "value": 6.2},
+                    {"color": [255, 127, 0], "value": 6.8},
+                    {"color": [255, 255, 0], "value": 7.2},
+                    {"color": [0, 255, 0], "value": 7.8},
+                    {"color": [0, 0, 255], "value": 8.4}
+                ],
+                "chlorine": [
+                    {"color": [255, 255, 255], "value": 0.0},
+                    {"color": [255, 255, 200], "value": 1.0},
+                    {"color": [255, 255, 150], "value": 3.0},
+                    {"color": [255, 255, 100], "value": 5.0},
+                    {"color": [255, 255, 50], "value": 10.0}
+                ],
+                "alkalinity": [
+                    {"color": [200, 200, 255], "value": 0},
+                    {"color": [150, 150, 255], "value": 40},
+                    {"color": [100, 100, 255], "value": 80},
+                    {"color": [50, 50, 255], "value": 120},
+                    {"color": [0, 0, 255], "value": 180},
+                    {"color": [0, 0, 200], "value": 240}
+                ]
+            }
+            
+        except (FileNotFoundError, json.JSONDecodeError) as e:
+            logger.error(f"Error loading calibration data: {e}")
+            # Use default calibration data
+            self.calibration_data = {
+                "pH": [
+                    {"color": [255, 0, 0], "value": 6.2},
+                    {"color": [255, 127, 0], "value": 6.8},
+                    {"color": [255, 255, 0], "value": 7.2},
+                    {"color": [0, 255, 0], "value": 7.8},
+                    {"color": [0, 0, 255], "value": 8.4}
+                ],
+                "chlorine": [
+                    {"color": [255, 255, 255], "value": 0.0},
+                    {"color": [255, 255, 200], "value": 1.0},
+                    {"color": [255, 255, 150], "value": 3.0},
+                    {"color": [255, 255, 100], "value": 5.0},
+                    {"color": [255, 255, 50], "value": 10.0}
+                ],
+                "alkalinity": [
+                    {"color": [200, 200, 255], "value": 0},
+                    {"color": [150, 150, 255], "value": 40},
+                    {"color": [100, 100, 255], "value": 80},
+                    {"color": [50, 50, 255], "value": 120},
+                    {"color": [0, 0, 255], "value": 180},
+                    {"color": [0, 0, 200], "value": 240}
+                ]
+            }
 
-    def map_rgb_to_value(self, chemical: str, rgb_sample: List[int]) -> Tuple[Optional[float], float]:
+    def get_value_from_color(self, chemical: str, color: List[int]) -> float:
         """
-        Map an RGB color to a chemical value using calibration data.
-        
-        Uses weighted interpolation of the closest calibration samples.
+        Get the chemical value from a color.
         
         Args:
             chemical: Name of the chemical
-            rgb_sample: RGB color as a list [R, G, B]
+            color: RGB color value
             
         Returns:
-            Tuple of (interpolated value, confidence percentage)
+            The chemical value corresponding to the color
         """
-        samples = self.calibration_data.get(chemical, [])
-        if not samples:
-            return None, 0.0
-
-        # Calculate distances to all calibration samples
-        distances = [(self._distance(rgb_sample, s["rgb"]), s["value"]) for s in samples]
-        distances.sort(key=lambda x: x[0])
+        if chemical not in self.calibration_data:
+            logger.warning(f"No calibration data for chemical: {chemical}")
+            return 0.0
         
-        # Use the top 3 closest samples for interpolation
-        top = distances[:3]
-
-        # Calculate weighted average based on inverse distance
-        weights = [1 / (d + 1e-6) for d, _ in top]
-        total_weight = sum(weights)
-        interpolated = sum(v * w for (_, v), w in zip(top, weights)) / total_weight
+        # Find the closest color in the calibration data
+        min_distance = float('inf')
+        closest_value = 0.0
         
-        # Calculate confidence based on distance to closest sample
-        # 0 distance = 100% confidence, max possible distance = 0% confidence
-        max_possible_distance = np.sqrt(3 * 255 ** 2)  # Maximum RGB distance
-        confidence = max(0.0, 100 - top[0][0] / max_possible_distance * 100)
-
-        return round(interpolated, 2), round(confidence, 1)
-
-    def rgb_confidence(self, sample: List[int], reference: List[int]) -> float:
-        """
-        Calculate confidence score for how closely a sample matches a reference color.
-        
-        Args:
-            sample: Sample RGB color as a list [R, G, B]
-            reference: Reference RGB color as a list [R, G, B]
+        for entry in self.calibration_data[chemical]:
+            cal_color = entry["color"]
+            distance = sum((c1 - c2) ** 2 for c1, c2 in zip(color, cal_color))
             
-        Returns:
-            Confidence score (0-100)
-        """
-        dist = self._distance(sample, reference)
-        max_dist = np.sqrt(3 * 255 ** 2)
-        score = max(0, 100 - (dist / max_dist) * 100)
-        return round(score, 1)
+            if distance < min_distance:
+                min_distance = distance
+                closest_value = entry["value"]
+        
+        return closest_value
 
 
 class TestStripAnalyzer:
     """
-    Analyzer for pool test strips using computer vision.
+    Test strip analyzer for pool water chemistry.
     
-    This class provides functionality for capturing, analyzing, and interpreting
-    pool test strips to determine water chemistry parameters.
+    This class provides functionality for analyzing pool test strips using computer vision
+    to determine water chemistry parameters and provide recommendations.
     
     Attributes:
-        latest_image_path: Path to the most recently captured or loaded image
-        brand: Brand of test strips being used
+        image_path: Path to the test strip image
         calibrator: Color calibrator for mapping RGB values to chemical readings
-        pad_zones: Dictionary of test strip pad zones for each chemical
+        config: Configuration dictionary
     """
     
-    def __init__(self, config: Optional[Dict[str, Any]] = None):
+    def __init__(self, config: Dict[str, Any] = None):
         """
         Initialize the test strip analyzer.
         
         Args:
-            config: Configuration dictionary with optional settings
+            config: Configuration dictionary
         """
+        self.logger = logging.getLogger(__name__)
+        self.logger.info("Initializing Test Strip Analyzer")
+        
+        self.image_path = None
         self.latest_image_path = None
-        self.brand = (config or {}).get("strip_brand", "default")
-        calib_file = (config or {}).get("calibration_file", "services/image_processing/calibration.json")
-        self.calibrator = ColorCalibrator(calib_file)
+        self.image_cache = {}
+        
+        # Default configuration
+        self.config = {
+            "brand": "default",
+            "calibration_file": "data/calibration.json",
+            "pad_zones_file": "data/pad_zones.json",
+            "cache_dir": "data/cache"
+        }
+        
+        # Update with provided configuration
+        if config:
+            self.config.update(config)
+        
+        # Initialize color calibrator
+        self.calibrator = ColorCalibrator(self.config["calibration_file"])
+        
+        # Load pad zones
         self.pad_zones = self._load_pad_zones()
-        self.image_cache = {}  # Cache for processed images
-        logger.info(f"TestStripAnalyzer initialized with brand: {self.brand}")
-
-    def _load_pad_zones(self) -> Dict[str, List[int]]:
+        
+        # Ensure cache directory exists
+        os.makedirs(self.config["cache_dir"], exist_ok=True)
+        
+        self.logger.info("Test Strip Analyzer initialized")
+    
+    def _load_pad_zones(self) -> Dict[str, Dict[str, int]]:
         """
-        Load test strip pad zones from configuration file.
+        Load pad zones from a JSON file.
         
         Returns:
             Dictionary of pad zones for each chemical
-            
-        Raises:
-            FileNotFoundError: If the pad zones file doesn't exist
-            json.JSONDecodeError: If the pad zones file contains invalid JSON
         """
         try:
-            with open("services/image_processing/pad_zones.json", "r") as f:
-                brands = json.load(f)
-                zones = brands.get(self.brand)
-                if not zones:
-                    logger.warning(f"No pad zones found for brand '{self.brand}', using default layout")
-                return zones or {}
+            # Try the specified path
+            if os.path.exists(self.config["pad_zones_file"]):
+                with open(self.config["pad_zones_file"], 'r') as f:
+                    return json.load(f)
+            
+            # Try alternative paths
+            alt_paths = [
+                "data/pad_zones.json",
+                "services/image_processing/pad_zones.json"
+            ]
+            
+            for path in alt_paths:
+                if os.path.exists(path):
+                    with open(path, 'r') as f:
+                        return json.load(f)
+            
+            # If no file found, use default pad zones
+            return {
+                "pH": {"x": 50, "y": 100, "width": 50, "height": 50},
+                "chlorine": {"x": 150, "y": 100, "width": 50, "height": 50},
+                "alkalinity": {"x": 250, "y": 100, "width": 50, "height": 50},
+                "calcium": {"x": 350, "y": 100, "width": 50, "height": 50},
+                "cyanuric_acid": {"x": 450, "y": 100, "width": 50, "height": 50}
+            }
         except (FileNotFoundError, json.JSONDecodeError) as e:
-            logger.error(f"Failed to load pad zones: {e}")
-            return {}
-
+            self.logger.error(f"Error loading pad zones: {e}")
+            # Use default pad zones
+            return {
+                "pH": {"x": 50, "y": 100, "width": 50, "height": 50},
+                "chlorine": {"x": 150, "y": 100, "width": 50, "height": 50},
+                "alkalinity": {"x": 250, "y": 100, "width": 50, "height": 50},
+                "calcium": {"x": 350, "y": 100, "width": 50, "height": 50},
+                "cyanuric_acid": {"x": 450, "y": 100, "width": 50, "height": 50}
+            }
+    
     def capture_image(self) -> Optional[str]:
         """
-        Capture or load a test strip image.
-        
-        In a real implementation, this would capture from a camera.
-        This implementation loads a test image from a file.
+        Capture an image from the camera.
         
         Returns:
-            Path to the captured image or None if failed
-            
-        Raises:
-            FileNotFoundError: If the test image doesn't exist
+            Path to the captured image, or None if capture failed
         """
-        test_image_path = "assets/images/test_strip.jpg"
-        if not os.path.exists(test_image_path):
-            logger.error(f"Test strip image not found: {test_image_path}")
-            self.latest_image_path = None
-            return None
-
-        self.latest_image_path = test_image_path
-        # Clear the image cache when a new image is captured
-        self.image_cache = {}
-        logger.info(f"Captured image: {self.latest_image_path}")
-        return self.latest_image_path
+        try:
+            import cv2
+            
+            # Initialize camera
+            cap = cv2.VideoCapture(0)
+            
+            if not cap.isOpened():
+                self.logger.error("Failed to open camera")
+                # Try alternative camera index
+                cap = cv2.VideoCapture(1)
+                if not cap.isOpened():
+                    self.logger.error("Failed to open alternative camera")
+                    # Fall back to test image
+                    return self._use_test_image()
+            
+            # Wait for camera to initialize
+            time.sleep(1)
+            
+            # Set camera properties for better image quality
+            cap.set(cv2.CAP_PROP_FRAME_WIDTH, 1280)
+            cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 720)
+            cap.set(cv2.CAP_PROP_BRIGHTNESS, 150)
+            cap.set(cv2.CAP_PROP_CONTRAST, 150)
+            
+            # Capture multiple frames to allow camera to adjust
+            for i in range(5):
+                ret, frame = cap.read()
+                time.sleep(0.1)
+            
+            # Capture final frame
+            ret, frame = cap.read()
+            
+            if not ret or frame is None:
+                self.logger.error("Failed to capture frame")
+                cap.release()
+                # Fall back to test image
+                return self._use_test_image()
+            
+            # Save frame to file
+            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+            image_path = f"data/captured_strip_{timestamp}.jpg"
+            
+            # Ensure directory exists
+            os.makedirs(os.path.dirname(image_path), exist_ok=True)
+            
+            # Apply image enhancement
+            # Convert to HSV for better color analysis
+            hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
+            
+            # Apply slight Gaussian blur to reduce noise
+            blurred = cv2.GaussianBlur(hsv, (5, 5), 0)
+            
+            # Convert back to BGR for saving
+            enhanced = cv2.cvtColor(blurred, cv2.COLOR_HSV2BGR)
+            
+            # Save both original and enhanced images
+            cv2.imwrite(image_path, frame)
+            
+            enhanced_path = f"data/enhanced_strip_{timestamp}.jpg"
+            cv2.imwrite(enhanced_path, enhanced)
+            
+            # Release camera
+            cap.release()
+            
+            self.logger.info(f"Image captured and saved to {image_path}")
+            self.logger.info(f"Enhanced image saved to {enhanced_path}")
+            
+            # Set the image path and clear the cache
+            self.image_path = enhanced_path
+            self.latest_image_path = enhanced_path
+            self.image_cache = {}
+            
+            # Return the enhanced image path
+            return enhanced_path
+        except Exception as e:
+            self.logger.error(f"Error capturing image: {e}")
+            import traceback
+            self.logger.error(traceback.format_exc())
+            # Fall back to test image
+            return self._use_test_image()
+    
+    def _use_test_image(self) -> Optional[str]:
+        """
+        Use a test image as a fallback.
+        
+        Returns:
+            Path to the test image or None if not found
+        """
+        test_image_paths = [
+            "assets/images/test_strip.jpg",
+            "data/test_strip.jpg",
+            "services/image_processing/test_strip.jpg"
+        ]
+        
+        for path in test_image_paths:
+            if os.path.exists(path):
+                self.image_path = path
+                self.latest_image_path = path
+                self.image_cache = {}
+                self.logger.info(f"Using test image: {path}")
+                return path
+        
+        self.logger.error("No test image found")
+        return None
 
     def load_image(self, image_path: str) -> Optional[str]:
         """
@@ -209,211 +372,159 @@ class TestStripAnalyzer:
             Path to the loaded image or None if failed
             
         Raises:
-            FileNotFoundError: If the image doesn't exist
+            FileNotFoundError: If the image file doesn't exist
         """
         if not os.path.exists(image_path):
-            logger.error(f"Image not found: {image_path}")
+            self.logger.error(f"Image file not found: {image_path}")
             return None
-
+        
+        self.image_path = image_path
         self.latest_image_path = image_path
         # Clear the image cache when a new image is loaded
         self.image_cache = {}
-        logger.info(f"Loaded image: {self.latest_image_path}")
-        return self.latest_image_path
-
-    def get_image_preview(self, with_annotations: bool = True) -> Optional[Image.Image]:
+        self.logger.info(f"Loaded image: {self.image_path}")
+        return self.image_path
+    
+    def analyze(self) -> Dict[str, Any]:
         """
-        Get a preview of the test strip image with optional annotations.
-        
-        Args:
-            with_annotations: Whether to include pad zone annotations
-            
-        Returns:
-            PIL Image object or None if no image is available
-            
-        Raises:
-            cv2.error: If there's an error processing the image
-        """
-        if not self.latest_image_path:
-            logger.warning("No image available for preview")
-            return None
-            
-        # Check if we have this preview in the cache
-        cache_key = f"preview_{with_annotations}"
-        if cache_key in self.image_cache:
-            return self.image_cache[cache_key]
-            
-        try:
-            image = cv2.imread(self.latest_image_path)
-            if image is None:
-                logger.error(f"Failed to load image: {self.latest_image_path}")
-                return None
-                
-            # Create a copy for annotations
-            if with_annotations:
-                for chem, (x, y, w, h) in self.pad_zones.items():
-                    cv2.rectangle(image, (x, y), (x + w, y + h), (0, 255, 0), 2)
-                    cv2.putText(image, chem, (x, y - 8), cv2.FONT_HERSHEY_SIMPLEX, 0.4, (255, 255, 255), 1)
-                    
-            # Convert to PIL Image and resize
-            preview = Image.fromarray(cv2.cvtColor(image, cv2.COLOR_BGR2RGB))
-            preview = preview.resize((300, 200))
-            
-            # Cache the preview
-            self.image_cache[cache_key] = preview
-            return preview
-        except cv2.error as e:
-            logger.error(f"Failed to generate image preview: {e}")
-            return None
-        except Exception as e:
-            logger.error(f"Unexpected error generating preview: {e}")
-            return None
-
-    def analyze(self) -> Dict[str, Dict[str, Any]]:
-        """
-        Analyze the test strip image to determine chemical readings.
+        Analyze the test strip image.
         
         Returns:
-            Dictionary of chemical readings with values, confidence, and RGB colors
+            Dictionary of chemical readings
             
         Raises:
-            cv2.error: If there's an error processing the image
+            ValueError: If no image is loaded
+            FileNotFoundError: If the image file doesn't exist
         """
-        if not self.latest_image_path:
-            logger.error("No image captured for analysis")
-            return {}
-            
-        # Check if we have the analysis in the cache
-        if "analysis" in self.image_cache:
-            return self.image_cache["analysis"]
-
-        try:
-            image = cv2.imread(self.latest_image_path)
-            if image is None:
-                logger.error(f"Failed to load image for analysis: {self.latest_image_path}")
+        if not self.image_path:
+            if self.latest_image_path:
+                self.image_path = self.latest_image_path
+            else:
+                self.logger.error("No image loaded")
                 return {}
-
-            # Apply image preprocessing for better color detection
-            # Convert to LAB color space for better color differentiation
-            lab_image = cv2.cvtColor(image, cv2.COLOR_BGR2LAB)
+        
+        if not os.path.exists(self.image_path):
+            self.logger.error(f"Image file not found: {self.image_path}")
+            return {}
+        
+        try:
+            # Load the image
+            image = cv2.imread(self.image_path)
             
-            # Apply slight Gaussian blur to reduce noise
-            lab_image = cv2.GaussianBlur(lab_image, (3, 3), 0)
+            if image is None:
+                self.logger.error(f"Failed to load image: {self.image_path}")
+                return {}
             
+            # Analyze each chemical pad
             results = {}
-            for chem, (x, y, w, h) in self.pad_zones.items():
-                # Extract region of interest (ROI)
-                roi = image[y:y + h, x:x + w]
+            
+            for chemical, zone in self.pad_zones.items():
+                # Extract the pad region
+                x, y, width, height = zone["x"], zone["y"], zone["width"], zone["height"]
                 
-                # Calculate average color in the ROI
-                avg_color = cv2.mean(roi)[:3]  # BGR
+                # Ensure coordinates are within image bounds
+                img_height, img_width = image.shape[:2]
+                x = min(max(0, x), img_width - 1)
+                y = min(max(0, y), img_height - 1)
+                width = min(width, img_width - x)
+                height = min(height, img_height - y)
                 
-                # Convert to RGB for the calibrator
-                rgb = [int(avg_color[2]), int(avg_color[1]), int(avg_color[0])]
+                # Extract the pad region
+                pad = image[y:y+height, x:x+width]
                 
-                # Map RGB to chemical value
-                value, confidence = self.calibrator.map_rgb_to_value(chem, rgb)
+                if pad.size == 0:
+                    self.logger.warning(f"Empty pad region for {chemical}")
+                    continue
                 
-                results[chem] = {
-                    "value": value,
-                    "confidence": confidence,
-                    "rgb": rgb
-                }
-                logger.debug(f"{chem}: RGB={rgb}, Value={value}, Confidence={confidence}%")
-
-            # Cache the analysis results
-            self.image_cache["analysis"] = results
-            logger.info("Test strip analysis completed")
+                # Calculate the average color
+                avg_color = np.mean(pad, axis=(0, 1)).astype(int)
+                
+                # Convert BGR to RGB
+                avg_color = avg_color[::-1]
+                
+                # Get the chemical value from the color
+                value = self.calibrator.get_value_from_color(chemical, avg_color.tolist())
+                
+                # Add to results
+                results[chemical] = value
+            
+            # Add additional information
+            results["timestamp"] = datetime.now().isoformat()
+            results["source"] = "test_strip"
+            
+            self.logger.info(f"Analysis results: {results}")
             return results
-        except cv2.error as e:
-            logger.error(f"OpenCV error during analysis: {e}")
-            return {}
         except Exception as e:
-            logger.error(f"Unexpected error during analysis: {e}")
+            self.logger.error(f"Error analyzing image: {e}")
+            import traceback
+            self.logger.error(traceback.format_exc())
             return {}
-
-    def get_recommendations(self, analysis_results: Dict[str, Dict[str, Any]]) -> Dict[str, str]:
+    
+    def get_recommendations(self, results: Dict[str, Any]) -> Dict[str, str]:
         """
-        Generate recommendations based on analysis results.
+        Get recommendations based on the analysis results.
         
         Args:
-            analysis_results: Dictionary of chemical readings from analyze()
+            results: Dictionary of chemical readings
             
         Returns:
             Dictionary of recommendations for each chemical
         """
         recommendations = {}
         
-        # Define ideal ranges for each chemical
-        ideal_ranges = {
-            "pH": (7.2, 7.8),
-            "free_chlorine": (1.0, 3.0),
-            "total_chlorine": (1.0, 3.0),
-            "alkalinity": (80, 120),
-            "calcium": (200, 400),
-            "cyanuric_acid": (30, 50),
-            "bromine": (3.0, 5.0),
-            "salt": (2700, 3400)
-        }
-        
-        for chem, result in analysis_results.items():
-            value = result.get("value")
-            if value is None:
-                continue
-                
-            ideal_range = ideal_ranges.get(chem)
-            if not ideal_range:
-                continue
-                
-            low, high = ideal_range
-            
-            if value < low:
-                recommendations[chem] = f"Increase {chem} from {value} to {low}-{high}"
-            elif value > high:
-                recommendations[chem] = f"Decrease {chem} from {value} to {low}-{high}"
+        # pH recommendations
+        if "pH" in results:
+            ph = float(results["pH"])
+            if ph < 7.2:
+                recommendations["pH"] = "pH is too low. Add pH increaser."
+            elif ph > 7.8:
+                recommendations["pH"] = "pH is too high. Add pH decreaser."
             else:
-                recommendations[chem] = f"{chem} level is good at {value} (ideal: {low}-{high})"
-                
-        return recommendations
-
-    def save_analysis_results(self, results: Dict[str, Dict[str, Any]], filename: str) -> bool:
-        """
-        Save analysis results to a JSON file.
+                recommendations["pH"] = "pH is in the ideal range."
         
-        Args:
-            results: Dictionary of chemical readings from analyze()
-            filename: Path to save the results
-            
-        Returns:
-            True if successful, False otherwise
-            
-        Raises:
-            IOError: If there's an error writing to the file
-        """
-        try:
-            # Ensure directory exists
-            os.makedirs(os.path.dirname(filename), exist_ok=True)
-            
-            # Add timestamp and image path to results
-            from datetime import datetime
-            output = {
-                "timestamp": datetime.now().isoformat(),
-                "image_path": self.latest_image_path,
-                "results": results
-            }
-            
-            with open(filename, "w") as f:
-                json.dump(output, f, indent=4)
-                
-            logger.info(f"Analysis results saved to {filename}")
-            return True
-        except (IOError, OSError) as e:
-            logger.error(f"Failed to save analysis results: {e}")
-            return False
-
+        # Chlorine recommendations
+        if "chlorine" in results:
+            chlorine = float(results["chlorine"])
+            if chlorine < 1.0:
+                recommendations["chlorine"] = "Chlorine is too low. Add chlorine."
+            elif chlorine > 3.0:
+                recommendations["chlorine"] = "Chlorine is too high. Stop adding chlorine and wait for levels to decrease."
+            else:
+                recommendations["chlorine"] = "Chlorine is in the ideal range."
+        
+        # Alkalinity recommendations
+        if "alkalinity" in results:
+            alkalinity = float(results["alkalinity"])
+            if alkalinity < 80:
+                recommendations["alkalinity"] = "Alkalinity is too low. Add alkalinity increaser."
+            elif alkalinity > 120:
+                recommendations["alkalinity"] = "Alkalinity is too high. Add pH decreaser to lower alkalinity."
+            else:
+                recommendations["alkalinity"] = "Alkalinity is in the ideal range."
+        
+        # Calcium recommendations
+        if "calcium" in results:
+            calcium = float(results["calcium"])
+            if calcium < 200:
+                recommendations["calcium"] = "Calcium hardness is too low. Add calcium hardness increaser."
+            elif calcium > 400:
+                recommendations["calcium"] = "Calcium hardness is too high. Dilute with fresh water."
+            else:
+                recommendations["calcium"] = "Calcium hardness is in the ideal range."
+        
+        # Cyanuric acid recommendations
+        if "cyanuric_acid" in results:
+            cyanuric_acid = float(results["cyanuric_acid"])
+            if cyanuric_acid < 30:
+                recommendations["cyanuric_acid"] = "Cyanuric acid is too low. Add cyanuric acid."
+            elif cyanuric_acid > 50:
+                recommendations["cyanuric_acid"] = "Cyanuric acid is too high. Dilute with fresh water."
+            else:
+                recommendations["cyanuric_acid"] = "Cyanuric acid is in the ideal range."
+        
+        return recommendations
+    
     def clear_cache(self) -> None:
-        """
-        Clear the image cache to free memory.
-        """
+        """Clear the image cache."""
         self.image_cache = {}
-        logger.debug("Image cache cleared")
+        self.logger.info("Image cache cleared")
