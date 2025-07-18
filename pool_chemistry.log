@@ -688,3 +688,91 @@ ModuleNotFoundError: No module named 'arduino_monitor_app'
 2025-07-18 09:21:48,995 - weather_service - INFO - Removed weather cache file: data/weather_cache.json
 2025-07-18 09:21:49,006 - weather_service - INFO - Weather cache cleared
 2025-07-18 09:21:49,012 - PoolApp - INFO - Application resources cleaned up
+2025-07-18 10:06:05,224 - PoolApp - INFO - Configuration loaded from config.json
+2025-07-18 10:06:05,227 - PoolApp - INFO - Initializing Pool Chemistry Application
+2025-07-18 10:06:05,231 - database_service - INFO - Database Service initialized with SQLite3 at data/pool_data.db
+2025-07-18 10:06:05,243 - database_service - INFO - Database initialized successfully
+2025-07-18 10:06:05,247 - PoolApp - INFO - Database service initialized successfully
+2025-07-18 10:06:05,249 - chemical_safety_database - INFO - Initializing Chemical Safety Database
+2025-07-18 10:06:05,251 - chemical_safety_database - INFO - Loaded chemical safety data for 2 chemicals
+2025-07-18 10:06:05,253 - PoolApp - INFO - Chemical safety database initialized successfully
+2025-07-18 10:06:05,255 - test_strip_analyzer - INFO - Initializing Test Strip Analyzer
+2025-07-18 10:06:05,258 - test_strip_analyzer - INFO - Test Strip Analyzer initialized
+2025-07-18 10:06:05,260 - PoolApp - INFO - Test strip analyzer initialized successfully
+2025-07-18 10:06:05,263 - weather_service - INFO - Weather Service initialized for location: Florida
+2025-07-18 10:06:05,264 - PoolApp - INFO - Weather service initialized successfully
+2025-07-18 10:06:05,268 - gui_controller - INFO - ChemicalCalculator initialized
+2025-07-18 10:06:05,270 - gui_controller - INFO - DatabaseManager initialized
+2025-07-18 10:06:05,274 - gui_controller - INFO - PoolChemistryController initialized
+2025-07-18 10:06:05,277 - PoolApp - INFO - Pool Chemistry Application initialized successfully
+2025-07-18 10:06:05,280 - PoolApp - INFO - Starting GUI application
+2025-07-18 10:06:05,401 - weather_service - INFO - Saved weather cache to data/weather_cache.json
+2025-07-18 10:06:05,404 - weather_service - INFO - Retrieved weather data for Florida
+2025-07-18 10:06:05,430 - database_service - ERROR - Failed to get customers: no such column: name
+2025-07-18 10:06:05,447 - database_service - ERROR - Failed to get customers: no such column: name
+2025-07-18 10:06:05,550 - PoolApp - INFO - Found 1 serial ports
+2025-07-18 10:06:05,560 - weather_service - INFO - Saved weather cache to data/weather_cache.json
+2025-07-18 10:06:05,563 - weather_service - INFO - Retrieved 3-day forecast for Florida
+2025-07-18 10:08:26,874 - PoolApp - INFO - Configuration loaded from config.json
+2025-07-18 10:08:26,878 - PoolApp - INFO - Initializing Pool Chemistry Application
+2025-07-18 10:08:26,882 - database_service - INFO - Database Service initialized with SQLite3 at data/pool_data.db
+2025-07-18 10:08:26,890 - database_service - INFO - Database initialized successfully
+2025-07-18 10:08:26,893 - PoolApp - INFO - Database service initialized successfully
+2025-07-18 10:08:26,896 - chemical_safety_database - INFO - Initializing Chemical Safety Database
+2025-07-18 10:08:26,899 - chemical_safety_database - INFO - Loaded chemical safety data for 2 chemicals
+2025-07-18 10:08:26,904 - PoolApp - INFO - Chemical safety database initialized successfully
+2025-07-18 10:08:26,908 - test_strip_analyzer - INFO - Initializing Test Strip Analyzer
+2025-07-18 10:08:26,912 - test_strip_analyzer - INFO - Test Strip Analyzer initialized
+2025-07-18 10:08:26,915 - PoolApp - INFO - Test strip analyzer initialized successfully
+2025-07-18 10:08:26,918 - weather_service - INFO - Loaded weather cache from data/weather_cache.json
+2025-07-18 10:08:26,921 - weather_service - INFO - Weather Service initialized for location: Florida
+2025-07-18 10:08:26,926 - PoolApp - INFO - Weather service initialized successfully
+2025-07-18 10:08:26,929 - gui_controller - INFO - ChemicalCalculator initialized
+2025-07-18 10:08:26,932 - gui_controller - INFO - DatabaseManager initialized
+2025-07-18 10:08:26,934 - gui_controller - INFO - PoolChemistryController initialized
+2025-07-18 10:08:26,937 - PoolApp - INFO - Pool Chemistry Application initialized successfully
+2025-07-18 10:08:26,941 - PoolApp - INFO - Starting GUI application
+2025-07-18 10:08:27,075 - database_service - ERROR - Failed to get customers: no such column: name
+2025-07-18 10:08:27,093 - database_service - ERROR - Failed to get customers: no such column: name
+2025-07-18 10:08:27,206 - PoolApp - INFO - Found 1 serial ports
+2025-07-18 10:08:37,418 - PoolApp - INFO - Connected to Arduino on COM3
+2025-07-18 10:08:40,739 - PoolApp - INFO - Found 1 serial ports
+2025-07-18 10:08:42,258 - PoolApp - INFO - Found 1 serial ports
+2025-07-18 10:08:46,745 - PoolApp - INFO - Started Arduino monitoring
+2025-07-18 10:09:17,662 - test_strip_analyzer - ERROR - Error analyzing image: 'x'
+2025-07-18 10:09:17,709 - test_strip_analyzer - ERROR - Traceback (most recent call last):
+  File "C:\Scripts\deepbluepool\test_strip_analyzer.py", line 423, in analyze
+    x, y, width, height = zone["x"], zone["y"], zone["width"], zone["height"]
+KeyError: 'x'
+
+2025-07-18 10:12:01,593 - PoolApp - INFO - Found 1 serial ports
+2025-07-18 10:28:42,452 - database_service - INFO - All database connections closed
+2025-07-18 10:28:42,456 - test_strip_analyzer - INFO - Image cache cleared
+2025-07-18 10:28:42,461 - weather_service - INFO - Removed weather cache file: data/weather_cache.json
+2025-07-18 10:28:42,465 - weather_service - INFO - Weather cache cleared
+2025-07-18 10:28:42,469 - PoolApp - INFO - Application resources cleaned up
+2025-07-18 10:30:08,350 - PoolApp - INFO - Configuration loaded from config.json
+2025-07-18 10:30:08,354 - PoolApp - INFO - Initializing Pool Chemistry Application
+2025-07-18 10:30:08,358 - database_service - INFO - Database Service initialized with SQLite3 at data/pool_data.db
+2025-07-18 10:30:08,360 - database_service - INFO - Database initialized successfully
+2025-07-18 10:30:08,363 - PoolApp - INFO - Database service initialized successfully
+2025-07-18 10:30:08,365 - chemical_safety_database - INFO - Initializing Chemical Safety Database
+2025-07-18 10:30:08,368 - chemical_safety_database - INFO - Loaded chemical safety data for 2 chemicals
+2025-07-18 10:30:08,370 - PoolApp - INFO - Chemical safety database initialized successfully
+2025-07-18 10:30:08,373 - test_strip_analyzer - INFO - Initializing Test Strip Analyzer
+2025-07-18 10:30:08,375 - test_strip_analyzer - INFO - Test Strip Analyzer initialized
+2025-07-18 10:30:08,377 - PoolApp - INFO - Test strip analyzer initialized successfully
+2025-07-18 10:30:08,380 - weather_service - INFO - Weather Service initialized for location: Florida
+2025-07-18 10:30:08,382 - PoolApp - INFO - Weather service initialized successfully
+2025-07-18 10:30:08,384 - gui_controller - INFO - ChemicalCalculator initialized
+2025-07-18 10:30:08,386 - gui_controller - INFO - DatabaseManager initialized
+2025-07-18 10:30:08,388 - gui_controller - INFO - PoolChemistryController initialized
+2025-07-18 10:30:08,391 - PoolApp - INFO - Pool Chemistry Application initialized successfully
+2025-07-18 10:30:08,395 - PoolApp - INFO - Starting GUI application
+2025-07-18 10:30:08,503 - weather_service - INFO - Saved weather cache to data/weather_cache.json
+2025-07-18 10:30:08,506 - weather_service - INFO - Retrieved weather data for Florida
+2025-07-18 10:30:08,530 - database_service - ERROR - Failed to get customers: no such column: name
+2025-07-18 10:30:08,541 - database_service - ERROR - Failed to get customers: no such column: name
+2025-07-18 10:30:08,640 - PoolApp - INFO - Found 1 serial ports
+2025-07-18 10:30:08,653 - weather_service - INFO - Saved weather cache to data/weather_cache.json
+2025-07-18 10:30:08,656 - weather_service - INFO - Retrieved 3-day forecast for Florida
