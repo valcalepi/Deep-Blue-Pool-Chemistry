@@ -1,0 +1,18 @@
+2025-07-18 11:56:55,051 - Integration - INFO - Starting integration of enhancements
+2025-07-18 11:56:55,967 - Integration - INFO - All dependencies are installed
+2025-07-18 11:56:55,971 - Integration - INFO - Created directory: logs
+2025-07-18 11:56:55,974 - Integration - INFO - Created directory: config
+2025-07-18 11:56:55,977 - Integration - INFO - Created directory: data
+2025-07-18 11:56:55,980 - Integration - INFO - Created directory: data/maintenance_tasks
+2025-07-18 11:56:55,983 - Integration - INFO - Created directory: data/notifications
+2025-07-18 11:56:55,990 - Integration - INFO - Created config/launcher_config.json
+2025-07-18 11:56:55,995 - Integration - INFO - Created config/notification_config.json
+2025-07-18 11:56:56,004 - Integration - INFO - Created config/maintenance_config.json
+2025-07-18 11:56:56,007 - Integration - WARNING - main.py not found, creating new file
+2025-07-18 11:56:56,012 - Integration - INFO - Created new main.py
+2025-07-18 11:56:56,017 - Integration - WARNING - pool_app.py not found, cannot update
+2025-07-18 11:56:56,019 - Integration - WARNING - Failed to update pool_app.py
+2025-07-18 11:56:56,038 - Integration - INFO - Created run_all.py
+2025-07-18 11:56:56,045 - Integration - INFO - Created docs/unified_launcher.md
+2025-07-18 11:56:56,059 - Integration - INFO - Created docs/notification_system.md
+2025-07-18 11:56:56,071 - Integration - INFO - Created docs/maintenance_scheduler.md
