@@ -25,7 +25,7 @@ import time
 import numpy as np
 
 # Import updated modules
-from database_service import DatabaseService
+from services.database_service import DatabaseService
 from chemical_safety_database import ChemicalSafetyDatabase
 from test_strip_analyzer import TestStripAnalyzer
 from weather_service import WeatherService
