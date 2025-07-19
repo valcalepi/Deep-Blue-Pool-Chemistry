@@ -1,0 +1,15 @@
+{
+    "database": {
+        "path": "data/pool_data.db"
+    },
+    "chemical_safety": {
+        "data_file": "data/chemical_safety.json"
+    },
+    "test_strip": {
+        "profiles_dir": "data/strip_profiles"
+    },
+    "weather": {
+        "api_key": "",
+        "default_location": "New York, US"
+    }
+}

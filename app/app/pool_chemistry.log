@@ -1,0 +1,175 @@
+2025-07-18 20:34:49,602 - PoolApp - WARNING - Configuration file config.json not found. Using default configuration.
+2025-07-18 20:43:19,725 - PoolApp - WARNING - Configuration file config.json not found. Using default configuration.
+2025-07-18 20:43:19,731 - PoolApp - INFO - Configuration loaded from config.json
+2025-07-18 20:43:19,733 - PoolApp - INFO - Initializing Pool Chemistry Application
+2025-07-18 20:43:19,734 - database_service - INFO - Database Service initialized with SQLite3 at data/pool_data.db
+2025-07-18 20:43:19,777 - database_service - INFO - Database initialized successfully
+2025-07-18 20:43:19,780 - PoolApp - INFO - Database service initialized successfully
+2025-07-18 20:43:19,781 - chemical_safety_database - INFO - Initializing Chemical Safety Database
+2025-07-18 20:43:19,782 - chemical_safety_database - WARNING - Chemical safety data file not found at data/chemical_safety.json
+2025-07-18 20:43:19,783 - chemical_safety_database - INFO - Creating default chemical safety data
+2025-07-18 20:43:19,788 - chemical_safety_database - INFO - Saved chemical safety data to data/chemical_safety.json
+2025-07-18 20:43:19,790 - PoolApp - INFO - Chemical safety database initialized successfully
+2025-07-18 20:43:19,791 - services.test_strip - INFO - Initializing Test Strip Analyzer
+2025-07-19 12:41:10,288 - PoolApp - INFO - Configuration loaded from config.json
+2025-07-19 12:41:10,332 - PoolApp - INFO - Initializing Pool Chemistry Application
+2025-07-19 12:41:10,332 - database_service - INFO - Database Service initialized with SQLite3 at data/pool_data.db
+2025-07-19 12:41:10,348 - database_service - INFO - Database initialized successfully
+2025-07-19 12:41:10,353 - PoolApp - INFO - Database service initialized successfully
+2025-07-19 12:41:10,353 - chemical_safety_database - INFO - Initializing Chemical Safety Database
+2025-07-19 12:41:10,353 - chemical_safety_database - INFO - Loaded chemical safety data for 5 chemicals
+2025-07-19 12:41:10,353 - PoolApp - INFO - Chemical safety database initialized successfully
+2025-07-19 12:41:10,353 - services.test_strip - INFO - Initializing Test Strip Analyzer
+2025-07-19 12:41:39,729 - PoolApp - INFO - Configuration loaded from config.json
+2025-07-19 12:41:39,738 - PoolApp - INFO - Initializing Pool Chemistry Application
+2025-07-19 12:41:39,749 - database_service - INFO - Database Service initialized with SQLite3 at data/pool_data.db
+2025-07-19 12:41:39,754 - database_service - INFO - Database initialized successfully
+2025-07-19 12:41:39,759 - PoolApp - INFO - Database service initialized successfully
+2025-07-19 12:41:39,759 - chemical_safety_database - INFO - Initializing Chemical Safety Database
+2025-07-19 12:41:39,764 - chemical_safety_database - INFO - Loaded chemical safety data for 5 chemicals
+2025-07-19 12:41:39,764 - PoolApp - INFO - Chemical safety database initialized successfully
+2025-07-19 12:41:39,772 - services.test_strip - INFO - Initializing Test Strip Analyzer
+2025-07-19 13:28:05,365 - SimplePoolApp - INFO - Configuration loaded from config.json
+2025-07-19 13:28:05,371 - SimplePoolApp - INFO - Initializing Pool Chemistry Application
+2025-07-19 13:28:05,374 - SimplePoolApp - INFO - Initializing Simple Database Service with path: data/pool_data.db
+2025-07-19 13:28:05,376 - SimplePoolApp - INFO - Database service initialized successfully
+2025-07-19 13:28:05,379 - SimplePoolApp - INFO - Initializing Simple Chemical Safety Database with file: data/chemical_safety.json
+2025-07-19 13:28:05,383 - SimplePoolApp - INFO - Chemical safety database initialized successfully
+2025-07-19 13:28:05,386 - SimplePoolApp - INFO - Initializing Simple Test Strip Analyzer
+2025-07-19 13:28:05,389 - SimplePoolApp - INFO - Test strip analyzer initialized successfully
+2025-07-19 13:28:05,393 - SimplePoolApp - INFO - Initializing Simple Weather Service for location: New York, US
+2025-07-19 13:28:05,396 - SimplePoolApp - INFO - Weather service initialized successfully
+2025-07-19 13:28:05,398 - SimplePoolApp - INFO - Pool Chemistry Application initialized successfully
+2025-07-19 13:28:05,401 - SimplePoolApp - INFO - Starting GUI application
+2025-07-19 13:28:05,639 - SimplePoolApp - INFO - Simple Tab-based UI initialized successfully
+2025-07-19 13:42:05,001 - SimplePoolApp - INFO - Configuration loaded from config.json
+2025-07-19 13:42:05,001 - SimplePoolApp - INFO - Initializing Pool Chemistry Application
+2025-07-19 13:42:05,007 - SimplePoolApp - INFO - Initializing Simple Database Service with path: data/pool_data.db
+2025-07-19 13:42:05,011 - SimplePoolApp - INFO - Database service initialized successfully
+2025-07-19 13:42:05,011 - SimplePoolApp - INFO - Initializing Simple Chemical Safety Database with file: data/chemical_safety.json
+2025-07-19 13:42:05,011 - SimplePoolApp - INFO - Chemical safety database initialized successfully
+2025-07-19 13:42:05,011 - SimplePoolApp - INFO - Initializing Simple Test Strip Analyzer
+2025-07-19 13:42:05,022 - SimplePoolApp - INFO - Test strip analyzer initialized successfully
+2025-07-19 13:42:05,024 - SimplePoolApp - INFO - Initializing Simple Weather Service for location: New York, US
+2025-07-19 13:42:05,024 - SimplePoolApp - INFO - Weather service initialized successfully
+2025-07-19 13:42:05,024 - SimplePoolApp - INFO - Pool Chemistry Application initialized successfully
+2025-07-19 13:42:05,031 - SimplePoolApp - INFO - Starting GUI application
+2025-07-19 13:42:05,165 - SimplePoolApp - INFO - Simple Tab-based UI initialized successfully
+2025-07-19 14:07:31,873 - DeepBluePoolApp - INFO - Initializing Deep Blue Pool Chemistry Application
+2025-07-19 14:07:31,873 - DeepBluePoolApp - INFO - Initializing Database Service with path: data/pool_data.db
+2025-07-19 14:07:31,890 - DeepBluePoolApp - INFO - Saved customers data to data\customers.json
+2025-07-19 14:07:31,903 - DeepBluePoolApp - INFO - Saved readings data to data\readings.json
+2025-07-19 14:07:31,913 - DeepBluePoolApp - INFO - Available ports: ['COM3']
+2025-07-19 14:07:32,012 - DeepBluePoolApp - INFO - Available ports: ['COM3']
+2025-07-19 14:07:32,028 - DeepBluePoolApp - INFO - Set default ZIP code to 10001
+2025-07-19 14:07:32,033 - DeepBluePoolApp - INFO - Deep Blue Pool Chemistry Application initialized successfully
+2025-07-19 14:08:20,781 - DeepBluePoolApp - INFO - Saved readings data to data\readings.json
+2025-07-19 14:08:27,152 - DeepBluePoolApp - INFO - Connected to Arduino on port COM3
+2025-07-19 14:08:27,162 - DeepBluePoolApp - INFO - Started monitoring Arduino
+2025-07-19 14:08:31,621 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '681}'
+2025-07-19 14:08:34,400 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '531}'
+2025-07-19 14:08:36,681 - DeepBluePoolApp - ERROR - Error parsing Arduino data: 'temperature'
+2025-07-19 14:08:36,736 - DeepBluePoolApp - ERROR - Error parsing Arduino data: 'temperature'
+2025-07-19 14:08:37,141 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '509}'
+2025-07-19 14:08:39,851 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '509}'
+2025-07-19 14:08:40,421 - DeepBluePoolApp - INFO - Available ports: ['COM3']
+2025-07-19 14:08:42,634 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '509}'
+2025-07-19 14:08:45,430 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '504}'
+2025-07-19 14:08:48,126 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '504}'
+2025-07-19 14:08:49,160 - DeepBluePoolApp - INFO - Set default ZIP code to 34773
+2025-07-19 14:08:50,861 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '504}'
+2025-07-19 14:08:53,621 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '509}'
+2025-07-19 14:08:56,372 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '506}'
+2025-07-19 14:08:59,121 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '502}'
+2025-07-19 14:09:01,876 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '502}'
+2025-07-19 14:09:04,682 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '506}'
+2025-07-19 14:09:08,030 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '506}'
+2025-07-19 14:09:10,885 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '504}'
+2025-07-19 14:09:12,902 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '502}'
+2025-07-19 14:09:15,645 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '504}'
+2025-07-19 14:09:18,396 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '506}'
+2025-07-19 14:09:21,201 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '506}'
+2025-07-19 14:09:23,940 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '502}'
+2025-07-19 14:09:24,469 - DeepBluePoolApp - INFO - Saved readings data to data\readings.json
+2025-07-19 14:09:26,653 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '502}'
+2025-07-19 14:09:29,470 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '506}'
+2025-07-19 14:09:32,159 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '506}'
+2025-07-19 14:09:34,957 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '504}'
+2025-07-19 14:09:37,669 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '502}'
+2025-07-19 14:09:40,460 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '506}'
+2025-07-19 14:09:43,172 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '506}'
+2025-07-19 14:09:45,959 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '504}'
+2025-07-19 14:09:48,681 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '502}'
+2025-07-19 14:09:51,476 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '504}'
+2025-07-19 14:09:54,179 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '506}'
+2025-07-19 14:09:56,960 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '504}'
+2025-07-19 14:09:59,698 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '502}'
+2025-07-19 14:10:02,438 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '502}'
+2025-07-19 14:10:05,263 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '504}'
+2025-07-19 14:10:07,965 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '504}'
+2025-07-19 14:10:10,701 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '502}'
+2025-07-19 14:10:13,504 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '500}'
+2025-07-19 14:10:16,214 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '502}'
+2025-07-19 14:10:19,003 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '506}'
+2025-07-19 14:10:21,724 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '504}'
+2025-07-19 14:10:24,506 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '502}'
+2025-07-19 14:10:27,292 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '502}'
+2025-07-19 14:10:29,989 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '506}'
+2025-07-19 14:10:32,797 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '504}'
+2025-07-19 14:10:35,488 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '504}'
+2025-07-19 14:10:38,227 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '502}'
+2025-07-19 14:10:41,029 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '504}'
+2025-07-19 14:10:43,737 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '506}'
+2025-07-19 14:10:46,526 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '504}'
+2025-07-19 14:11:12,186 - DeepBluePoolApp - INFO - Initializing Deep Blue Pool Chemistry Application
+2025-07-19 14:11:12,246 - DeepBluePoolApp - INFO - Initializing Database Service with path: data/pool_data.db
+2025-07-19 14:11:12,258 - DeepBluePoolApp - INFO - Available ports: ['COM3']
+2025-07-19 14:11:12,356 - DeepBluePoolApp - INFO - Available ports: ['COM3']
+2025-07-19 14:11:12,386 - DeepBluePoolApp - INFO - Set default ZIP code to 10001
+2025-07-19 14:11:12,386 - DeepBluePoolApp - INFO - Deep Blue Pool Chemistry Application initialized successfully
+2025-07-19 14:11:25,626 - DeepBluePoolApp - INFO - Set default ZIP code to 3473
+2025-07-19 14:11:38,615 - DeepBluePoolApp - INFO - Connected to Arduino on port COM3
+2025-07-19 14:11:38,615 - DeepBluePoolApp - INFO - Started monitoring Arduino
+2025-07-19 14:11:38,615 - DeepBluePoolApp - ERROR - Error parsing Arduino data: not enough values to unpack (expected 2, got 1)
+2025-07-19 14:11:38,739 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '504}'
+2025-07-19 14:11:38,852 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '500}'
+2025-07-19 14:11:38,979 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '502}'
+2025-07-19 14:11:39,090 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '504}'
+2025-07-19 14:11:39,201 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '504}'
+2025-07-19 14:11:43,092 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '684}'
+2025-07-19 14:11:43,650 - DeepBluePoolApp - INFO - Saved readings data to data\readings.json
+2025-07-19 14:11:45,807 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '531}'
+2025-07-19 14:11:48,565 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '509}'
+2025-07-19 14:11:48,674 - DeepBluePoolApp - INFO - Available ports: ['COM3']
+2025-07-19 14:11:51,345 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '506}'
+2025-07-19 14:11:54,066 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '506}'
+2025-07-19 14:11:56,866 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '504}'
+2025-07-19 14:11:59,644 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '502}'
+2025-07-19 14:12:02,334 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '504}'
+2025-07-19 14:12:05,126 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '506}'
+2025-07-19 14:12:07,674 - DeepBluePoolApp - INFO - Saved readings data to data\readings.json
+2025-07-19 14:12:07,834 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '504}'
+2025-07-19 14:12:10,617 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '502}'
+2025-07-19 14:12:13,334 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '502}'
+2025-07-19 14:12:16,135 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '506}'
+2025-07-19 14:12:18,916 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '506}'
+2025-07-19 14:12:21,645 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '502}'
+2025-07-19 14:12:24,354 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '500}'
+2025-07-19 14:12:27,174 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '504}'
+2025-07-19 14:12:29,857 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '506}'
+2025-07-19 14:12:32,283 - DeepBluePoolApp - INFO - Saved readings data to data\readings.json
+2025-07-19 14:12:32,675 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '504}'
+2025-07-19 14:12:35,406 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '502}'
+2025-07-19 14:12:38,113 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '502}'
+2025-07-19 14:12:40,913 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '504}'
+2025-07-19 14:12:43,645 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '506}'
+2025-07-19 14:12:45,395 - DeepBluePoolApp - INFO - Saved readings data to data\readings.json
+2025-07-19 14:12:46,373 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '504}'
+2025-07-19 14:12:49,163 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '502}'
+2025-07-19 14:12:51,897 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '502}'
+2025-07-19 14:12:54,688 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '504}'
+2025-07-19 14:12:57,416 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '506}'
+2025-07-19 14:12:57,632 - DeepBluePoolApp - INFO - Set default ZIP code to 34773
+2025-07-19 14:13:00,141 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '506}'
+2025-07-19 14:13:02,932 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '504}'
+2025-07-19 14:13:06,753 - DeepBluePoolApp - ERROR - Error reading from Arduino: main thread is not in main loop
