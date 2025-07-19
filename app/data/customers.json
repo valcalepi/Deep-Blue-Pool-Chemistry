@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "name": "John Doe",
+    "email": "john@example.com",
+    "phone": "555-123-4567",
+    "address": "123 Main Street, Anytown, CA",
+    "created_at": "2025-06-19T14:07:31.885086",
+    "updated_at": "2025-07-14T14:07:31.885086",
+    "pools": [
+      {
+        "id": 1,
+        "name": "Main Pool",
+        "type": "In-ground",
+        "volume": 20000,
+        "volume_unit": "gal",
+        "surface": "Plaster",
+        "sanitizer": "Chlorine"
+      }
+    ]
+  }
+]

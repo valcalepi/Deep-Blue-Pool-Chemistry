@@ -1,0 +1,19 @@
+2025-07-18 14:57:14,371 - PoolApp - ERROR - Error running unified launcher: No module named 'unified_launcher'
+2025-07-18 14:57:14,382 - PoolApp - ERROR - Traceback (most recent call last):
+  File "C:\Scripts\deepbluepool3\main.py", line 35, in main
+    from unified_launcher import main as run_launcher
+ModuleNotFoundError: No module named 'unified_launcher'
+
+2025-07-18 14:57:14,387 - PoolApp - ERROR - Error running fallback: No module named 'pool_app'
+2025-07-18 14:57:14,391 - PoolApp - ERROR - Traceback (most recent call last):
+  File "C:\Scripts\deepbluepool3\main.py", line 35, in main
+    from unified_launcher import main as run_launcher
+ModuleNotFoundError: No module named 'unified_launcher'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Scripts\deepbluepool3\main.py", line 44, in main
+    from pool_app import PoolChemistryApp
+ModuleNotFoundError: No module named 'pool_app'
+

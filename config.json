@@ -1,15 +1,28 @@
+
 {
     "database": {
         "path": "data/pool_data.db"
     },
     "chemical_safety": {
-        "data_file": "data/chemical_safety.json"
+        "data_file": "data/chemical_safety_data.json"
     },
     "test_strip": {
-        "profiles_dir": "data/strip_profiles"
+        "brand": "default",
+        "calibration_file": "data/calibration.json"
     },
     "weather": {
-        "api_key": "",
-        "default_location": "New York, US"
+        "location": "Florida",
+        "update_interval": 3600,
+        "cache_file": "data/weather_cache.json"
+    },
+    "pool": {
+        "size": "10000",
+        "type": "chlorine",
+        "test_strip_brand": "default"
+    },
+    "display": {
+        "theme": "light",
+        "font_size": "normal",
+        "chart_dpi": "100"
     }
 }
