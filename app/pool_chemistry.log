@@ -173,3 +173,182 @@
 2025-07-19 14:13:00,141 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '506}'
 2025-07-19 14:13:02,932 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '504}'
 2025-07-19 14:13:06,753 - DeepBluePoolApp - ERROR - Error reading from Arduino: main thread is not in main loop
+2025-07-19 14:41:34,220 - DeepBluePoolApp - INFO - Initializing Deep Blue Pool Chemistry Application
+2025-07-19 14:41:34,251 - DeepBluePoolApp - INFO - Initializing Database Service with path: data/pool_data.db
+2025-07-19 14:41:34,268 - DeepBluePoolApp - INFO - Available ports: ['COM3']
+2025-07-19 14:41:34,362 - DeepBluePoolApp - INFO - Available ports: ['COM3']
+2025-07-19 14:41:34,396 - DeepBluePoolApp - INFO - Set default ZIP code to 10001
+2025-07-19 14:41:34,396 - DeepBluePoolApp - INFO - Deep Blue Pool Chemistry Application initialized successfully
+2025-07-19 14:41:46,310 - DeepBluePoolApp - INFO - Set default ZIP code to 34773
+2025-07-19 14:42:13,210 - DeepBluePoolApp - INFO - Saved readings data to data\readings.json
+2025-07-19 14:42:24,919 - DeepBluePoolApp - INFO - Connected to Arduino on port COM3
+2025-07-19 14:42:24,925 - DeepBluePoolApp - ERROR - Error reading from Arduino: empty separator
+2025-07-19 14:42:24,929 - DeepBluePoolApp - INFO - Started monitoring Arduino
+2025-07-19 14:42:57,508 - DeepBluePoolApp - INFO - Saved readings data to data\readings.json
+2025-07-19 14:43:00,244 - DeepBluePoolApp - ERROR - Error parsing Arduino data: 'temperature'
+2025-07-19 14:43:00,248 - DeepBluePoolApp - ERROR - Error parsing Arduino data: 'temperature'
+2025-07-19 14:47:12,216 - DeepBluePool - ERROR - Import error: No module named 'simple_fixed_pool_app'
+2025-07-19 14:48:17,841 - DeepBluePool - ERROR - Import error: No module named 'simple_fixed_pool_app'
+2025-07-19 16:13:17,183 - DeepBluePoolApp - INFO - Initializing Deep Blue Pool Chemistry Application
+2025-07-19 16:13:17,231 - DeepBluePoolApp - INFO - Initializing Database Service with path: data/pool_data.db
+2025-07-19 16:13:17,231 - DeepBluePoolApp - INFO - Available ports: ['COM3']
+2025-07-19 16:13:17,326 - DeepBluePoolApp - INFO - Available ports: ['COM3']
+2025-07-19 16:13:17,357 - DeepBluePoolApp - INFO - Set default ZIP code to 10001
+2025-07-19 16:13:17,357 - DeepBluePoolApp - INFO - Deep Blue Pool Chemistry Application initialized successfully
+2025-07-19 16:13:26,644 - DeepBluePoolApp - INFO - Connected to Arduino on port COM3
+2025-07-19 16:13:26,644 - DeepBluePoolApp - INFO - Started monitoring Arduino
+2025-07-19 16:13:26,644 - DeepBluePoolApp - ERROR - Error reading from Arduino: empty separator
+2025-07-19 16:13:30,630 - DeepBluePoolApp - ERROR - Error parsing Arduino data: 'temperature'
+2025-07-19 16:13:30,646 - DeepBluePoolApp - ERROR - Error parsing Arduino data: 'temperature'
+2025-07-19 16:13:35,324 - DeepBluePoolApp - INFO - Saved readings data to data\readings.json
+2025-07-19 16:13:53,346 - DeepBluePoolApp - INFO - Saved readings data to data\readings.json
+2025-07-20 11:37:46,822 - DeepBluePoolApp - INFO - Initializing Deep Blue Pool Chemistry Application
+2025-07-20 11:37:46,837 - DeepBluePoolApp - INFO - Initializing Database Service with path: data/pool_data.db
+2025-07-20 11:37:46,849 - DeepBluePoolApp - INFO - Available ports: ['COM3']
+2025-07-20 11:37:46,948 - DeepBluePoolApp - INFO - Available ports: ['COM3']
+2025-07-20 11:37:46,948 - DeepBluePoolApp - INFO - Set default ZIP code to 10001
+2025-07-20 11:37:46,948 - DeepBluePoolApp - INFO - Deep Blue Pool Chemistry Application initialized successfully
+2025-07-20 11:37:54,460 - DeepBluePoolApp - INFO - Connected to Arduino on port COM3
+2025-07-20 11:37:54,476 - DeepBluePoolApp - INFO - Started monitoring Arduino
+2025-07-20 11:37:57,462 - DeepBluePoolApp - ERROR - Error parsing Arduino data: 'temperature'
+2025-07-20 11:37:57,526 - DeepBluePoolApp - ERROR - Error parsing Arduino data: 'temperature'
+2025-07-20 11:37:58,949 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '656}'
+2025-07-20 11:38:01,674 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '511}'
+2025-07-20 11:38:04,480 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '489}'
+2025-07-20 11:38:07,184 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '485}'
+2025-07-20 11:38:10,411 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '481}'
+2025-07-20 11:38:12,676 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '481}'
+2025-07-20 11:38:15,483 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '483}'
+2025-07-20 11:38:18,188 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '483}'
+2025-07-20 11:38:20,991 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '485}'
+2025-07-20 11:38:23,718 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '485}'
+2025-07-20 11:38:26,445 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '483}'
+2025-07-20 11:38:28,405 - DeepBluePoolApp - INFO - Set default ZIP code to 34773
+2025-07-20 11:38:29,186 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '481}'
+2025-07-20 11:38:31,604 - DeepBluePoolApp - ERROR - Error parsing Arduino data: 'temperature'
+2025-07-20 11:38:31,636 - DeepBluePoolApp - ERROR - Error parsing Arduino data: 'temperature'
+2025-07-20 11:38:31,987 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '477}'
+2025-07-20 11:38:34,778 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '477}'
+2025-07-20 11:38:37,462 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '481}'
+2025-07-20 11:38:40,213 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '483}'
+2025-07-20 11:38:42,963 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '483}'
+2025-07-20 11:38:45,712 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '481}'
+2025-07-20 11:38:48,459 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '477}'
+2025-07-20 11:38:51,223 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '479}'
+2025-07-20 11:38:53,506 - DeepBluePoolApp - INFO - Saved readings data to data\readings.json
+2025-07-20 11:38:53,969 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '483}'
+2025-07-20 11:38:56,722 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '485}'
+2025-07-20 11:38:59,471 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '483}'
+2025-07-20 11:39:02,232 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '481}'
+2025-07-20 11:39:05,021 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '479}'
+2025-07-20 11:39:07,769 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '479}'
+2025-07-20 11:39:10,498 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '489}'
+2025-07-20 11:39:13,270 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '487}'
+2025-07-20 11:39:16,055 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '483}'
+2025-07-20 11:39:18,749 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '481}'
+2025-07-20 11:39:21,554 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '479}'
+2025-07-20 11:39:24,254 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '477}'
+2025-07-20 11:39:27,010 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '479}'
+2025-07-20 11:39:29,759 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '483}'
+2025-07-20 11:39:32,558 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '485}'
+2025-07-20 11:39:35,295 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '485}'
+2025-07-20 11:39:38,022 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '481}'
+2025-07-20 11:39:40,776 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '477}'
+2025-07-20 11:39:43,548 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '477}'
+2025-07-20 11:39:46,343 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '479}'
+2025-07-20 11:39:49,030 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '481}'
+2025-07-20 11:39:51,855 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '481}'
+2025-07-20 11:39:54,569 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '481}'
+2025-07-20 11:39:57,293 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '479}'
+2025-07-20 11:40:00,065 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '475}'
+2025-07-20 11:40:02,854 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '475}'
+2025-07-20 11:40:05,553 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '483}'
+2025-07-20 11:40:08,326 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '487}'
+2025-07-20 11:40:11,054 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '487}'
+2025-07-20 11:40:13,821 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '485}'
+2025-07-20 11:40:16,575 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '483}'
+2025-07-20 11:40:19,379 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '479}'
+2025-07-20 11:40:22,081 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '477}'
+2025-07-20 11:40:24,863 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '477}'
+2025-07-20 11:40:27,579 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '481}'
+2025-07-20 11:40:30,402 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '481}'
+2025-07-20 11:40:33,129 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '485}'
+2025-07-20 11:40:35,863 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '483}'
+2025-07-20 11:40:38,638 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '481}'
+2025-07-20 11:40:41,368 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '481}'
+2025-07-20 11:40:44,091 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '481}'
+2025-07-20 11:40:46,880 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '483}'
+2025-07-20 11:40:49,646 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '485}'
+2025-07-20 11:40:52,403 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '485}'
+2025-07-20 11:40:55,118 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '483}'
+2025-07-20 11:40:57,863 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '481}'
+2025-07-20 11:41:00,640 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '481}'
+2025-07-20 11:59:10,731 - DeepBluePoolApp - INFO - Initializing Deep Blue Pool Chemistry Application
+2025-07-20 11:59:10,749 - DeepBluePoolApp - INFO - Initializing Database Service with path: data/pool_data.db
+2025-07-20 11:59:10,749 - DeepBluePoolApp - INFO - Available ports: ['COM3']
+2025-07-20 11:59:10,851 - DeepBluePoolApp - INFO - Available ports: ['COM3']
+2025-07-20 11:59:10,859 - DeepBluePoolApp - INFO - Set default ZIP code to 10001
+2025-07-20 11:59:10,859 - DeepBluePoolApp - INFO - Deep Blue Pool Chemistry Application initialized successfully
+2025-07-20 12:00:10,582 - DeepBluePoolApp - INFO - Set default ZIP code to 34773
+2025-07-20 12:00:33,733 - DeepBluePoolApp - INFO - Saved readings data to data\readings.json
+2025-07-20 12:00:53,380 - DeepBluePoolApp - INFO - Connected to Arduino on port COM3
+2025-07-20 12:00:53,395 - DeepBluePoolApp - INFO - Started monitoring Arduino
+2025-07-20 12:00:54,238 - DeepBluePoolApp - ERROR - Error parsing Arduino data: 'temperature'
+2025-07-20 12:00:54,286 - DeepBluePoolApp - ERROR - Error parsing Arduino data: 'temperature'
+2025-07-20 12:00:57,860 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '667}'
+2025-07-20 12:01:00,583 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '526}'
+2025-07-20 12:01:02,573 - DeepBluePoolApp - INFO - Saved readings data to data\readings.json
+2025-07-20 12:01:03,385 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '502}'
+2025-07-20 12:01:06,119 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '500}'
+2025-07-20 12:01:08,909 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '500}'
+2025-07-20 12:01:11,599 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '502}'
+2025-07-20 12:01:14,348 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '502}'
+2025-07-20 12:01:17,176 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '498}'
+2025-07-20 12:01:19,884 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '494}'
+2025-07-20 12:01:22,608 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '496}'
+2025-07-20 12:01:25,401 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '500}'
+2025-07-20 12:01:28,113 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '498}'
+2025-07-20 12:01:30,906 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '494}'
+2025-07-20 12:01:33,623 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '494}'
+2025-07-20 12:01:36,413 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '498}'
+2025-07-20 12:01:39,117 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '500}'
+2025-07-20 12:01:41,921 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '496}'
+2025-07-20 12:01:44,617 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '491}'
+2025-07-20 12:01:47,429 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '496}'
+2025-07-20 12:01:50,148 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '500}'
+2025-07-20 12:01:52,887 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '498}'
+2025-07-20 12:01:55,680 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '494}'
+2025-07-20 12:01:58,400 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '498}'
+2025-07-20 12:02:01,144 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '502}'
+2025-07-20 12:02:03,894 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '500}'
+2025-07-20 12:02:06,706 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '494}'
+2025-07-20 12:02:09,394 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '496}'
+2025-07-20 12:02:12,190 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '500}'
+2025-07-20 12:02:14,921 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '498}'
+2025-07-20 12:02:17,698 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '491}'
+2025-07-20 12:02:20,454 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '496}'
+2025-07-20 12:02:23,212 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '500}'
+2025-07-20 12:02:25,921 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '500}'
+2025-07-20 12:02:28,663 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '496}'
+2025-07-20 12:02:31,418 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '494}'
+2025-07-20 12:02:34,198 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '496}'
+2025-07-20 12:02:36,930 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '498}'
+2025-07-20 12:02:39,680 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '496}'
+2025-07-20 12:02:42,434 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '491}'
+2025-07-20 12:02:45,196 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '494}'
+2025-07-20 12:02:47,986 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '500}'
+2025-07-20 12:02:50,747 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '502}'
+2025-07-20 12:02:53,466 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '500}'
+2025-07-20 12:02:56,183 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '494}'
+2025-07-20 12:02:58,995 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '494}'
+2025-07-20 12:03:01,704 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '498}'
+2025-07-20 12:03:04,476 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '500}'
+2025-07-20 12:03:07,213 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '498}'
+2025-07-20 12:03:09,974 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '494}'
+2025-07-20 12:03:12,774 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '494}'
+2025-07-20 12:03:15,465 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '498}'
+2025-07-20 12:03:18,214 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '500}'
+2025-07-20 12:03:20,991 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '496}'
+2025-07-20 12:03:23,722 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '491}'
+2025-07-20 12:03:26,474 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '494}'
+2025-07-20 12:03:29,288 - DeepBluePoolApp - ERROR - Error parsing Arduino data: could not convert string to float: '498}'
