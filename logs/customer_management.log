@@ -1,7 +1,0 @@
-2025-07-18 14:58:04,969 - TabUICustomerIntegration - INFO - Created empty customers file at data/customers/customers.json
-2025-07-18 14:58:04,980 - TabUICustomerIntegration - ERROR - Error patching TabBasedUI: No module named 'tab_based_ui'
-2025-07-18 14:58:04,983 - TabUICustomerIntegration - ERROR - Traceback (most recent call last):
-  File "C:\Scripts\deepbluepool3\tab_ui_customer_integration.py", line 36, in patch_tab_based_ui
-    from tab_based_ui import TabBasedUI
-ModuleNotFoundError: No module named 'tab_based_ui'
-
