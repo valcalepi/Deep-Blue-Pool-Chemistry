@@ -1,0 +1,17 @@
+{
+    "timestamp": "2025-07-05T20:37:37.023501",
+    "readings": [
+        {
+            "ph": 2.0,
+            "free_chlorine": 2.0,
+            "total_chlorine": 2.0,
+            "alkalinity": 2.0,
+            "calcium_hardness": 2.0,
+            "cyanuric_acid": 2.0,
+            "salt": 2700.0,
+            "bromine": 2.0,
+            "temperature": 73.0,
+            "timestamp": "2025-07-05T20:37:37.023501"
+        }
+    ]
+}
