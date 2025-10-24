@@ -1,20 +1,60 @@
 import tkinter as tk
-from tkinter import filedialog, messagebox
+from tkinter import ttk, filedialog, messagebox
+import webbrowser
 from core.analyzer import TestStripAnalyzer
 from core.sensor import SensorManager
 from core.dosing_calculator import calculate_volume, recommend_dose
 from data.excel_sync import append_to_excel as log_chemistry_data
-from data.dashboard import launch_dashboard
 
 class PoolApp:
     def __init__(self, root):
         self.root = root
         self.root.title("Deep Blue Pool Chemistry Manager")
 
-        tk.Button(root, text="Analyze Test Strip", command=self.load_image).pack(pady=10)
-        tk.Button(root, text="Read Sensor", command=self.read_sensor).pack(pady=10)
-        tk.Button(root, text="Launch Dashboard", command=launch_dashboard).pack(pady=10)
-        tk.Button(root, text="Dosing Calculator", command=self.open_dosing_calculator).pack(pady=10)
+        tabs = ttk.Notebook(root)
+        tabs.pack(expand=1, fill="both")
+
+        self.strip_tab = ttk.Frame(tabs)
+        self.sensor_tab = ttk.Frame(tabs)
+        self.dose_tab = ttk.Frame(tabs)
+        self.dashboard_tab = ttk.Frame(tabs)
+
+        tabs.add(self.strip_tab, text="Test Strip")
+        tabs.add(self.sensor_tab, text="Sensor")
+        tabs.add(self.dose_tab, text="Dosing Calculator")
+        tabs.add(self.dashboard_tab, text="Dashboard")
+
+        self.setup_strip_tab()
+        self.setup_sensor_tab()
+        self.setup_dose_tab()
+        self.setup_dashboard_tab()
+
+    def setup_strip_tab(self):
+        tk.Button(self.strip_tab, text="Analyze Test Strip", command=self.load_image).pack(pady=20)
+
+    def setup_sensor_tab(self):
+        tk.Button(self.sensor_tab, text="Read Sensor", command=self.read_sensor).pack(pady=20)
+
+    def setup_dose_tab(self):
+        entries = {}
+        for i, label in enumerate(["Length (ft)", "Width (ft)", "Avg Depth (ft)", "Chemical"]):
+            tk.Label(self.dose_tab, text=label).grid(row=i, column=0)
+            entries[label] = tk.Entry(self.dose_tab)
+            entries[label].grid(row=i, column=1)
+
+        def calculate():
+            try:
+                vol = calculate_volume(float(entries["Length (ft)"].get()), float(entries["Width (ft)"].get()), float(entries["Avg Depth (ft)"].get()))
+                dose = recommend_dose(vol, entries["Chemical"].get().lower())
+                messagebox.showinfo("Dose Recommendation", f"Pool Volume: {vol:.0f} gal\nRecommended {entries['Chemical'].get().title()} Dose: {dose} gal")
+            except ValueError:
+                messagebox.showerror("Input Error", "Please enter valid numbers.")
+
+        tk.Button(self.dose_tab, text="Calculate", command=calculate).grid(row=4, column=0, columnspan=2)
+
+    def setup_dashboard_tab(self):
+        tk.Label(self.dashboard_tab, text="Click below to launch dashboard in browser").pack(pady=10)
+        tk.Button(self.dashboard_tab, text="Launch Dashboard", command=lambda: webbrowser.open("http://localhost:8501")).pack()
 
     def load_image(self):
         path = filedialog.askopenfilename(filetypes=[("Image files", "*.jpg *.png")])
@@ -36,35 +76,6 @@ class PoolApp:
             messagebox.showinfo("Sensor Readings", "\n".join(f"{k}: {v}" for k, v in data.items()))
         except Exception as e:
             messagebox.showerror("Sensor Error", str(e))
-
-    def open_dosing_calculator(self):
-        top = tk.Toplevel()
-        top.title("Dosing Calculator")
-
-        tk.Label(top, text="Length (ft)").grid(row=0, column=0)
-        tk.Label(top, text="Width (ft)").grid(row=1, column=0)
-        tk.Label(top, text="Avg Depth (ft)").grid(row=2, column=0)
-        tk.Label(top, text="Chemical").grid(row=3, column=0)
-
-        length = tk.Entry(top)
-        width = tk.Entry(top)
-        depth = tk.Entry(top)
-        chemical = tk.Entry(top)
-
-        length.grid(row=0, column=1)
-        width.grid(row=1, column=1)
-        depth.grid(row=2, column=1)
-        chemical.grid(row=3, column=1)
-
-        def calculate():
-            try:
-                vol = calculate_volume(float(length.get()), float(width.get()), float(depth.get()))
-                dose = recommend_dose(vol, chemical.get().lower())
-                messagebox.showinfo("Dose Recommendation", f"Pool Volume: {vol:.0f} gal\nRecommended {chemical.get().title()} Dose: {dose} gal")
-            except ValueError:
-                messagebox.showerror("Input Error", "Please enter valid numbers.")
-
-        tk.Button(top, text="Calculate", command=calculate).grid(row=4, column=0, columnspan=2)
 
 if __name__ == "__main__":
     root = tk.Tk()

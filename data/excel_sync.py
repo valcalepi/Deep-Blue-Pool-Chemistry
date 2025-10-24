@@ -3,6 +3,12 @@ from openpyxl import load_workbook
 from openpyxl.styles import PatternFill
 from datetime import datetime
 import requests
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+API_KEY = os.getenv("WEATHER_API_KEY")
+LOCATION = "St. Cloud"
 
 EXCEL_FILE = 'pool_log.xlsx'
 SHEET_NAME = 'PoolData'
@@ -13,22 +19,20 @@ THRESHOLDS = {
 }
 
 def get_weather_adjustments():
-    # Replace with your actual API key and location
-    API_KEY = 'your_openweather_api_key'
-    LOCATION = 'St. Cloud, FL'
-    url = f'https://api.openweathermap.org/data/2.5/forecast?q={LOCATION}&appid={API_KEY}&units=imperial'
-
     try:
+        url = f"http://api.weatherapi.com/v1/forecast.json?key={API_KEY}&q={LOCATION}&days=3"
         response = requests.get(url)
         data = response.json()
-        rain_forecast = any('rain' in entry['weather'][0]['main'].lower() for entry in data['list'][:5])
-        uv_index = 8  # Placeholder; OpenWeather UV API is separate
+        forecast = data['forecast']['forecastday']
+
+        rain_expected = any(day['day']['daily_chance_of_rain'] > 50 for day in forecast)
+        uv_index = forecast[0]['day']['uv']
 
         adjustments = []
-        if rain_forecast:
+        if rain_expected:
             adjustments.append("Rain expected: increase stabilizer or shock dose.")
         if uv_index > 7:
-            adjustments.append("High UV: consider adding stabilizer or reducing chlorine loss.")
+            adjustments.append("High UV: consider adding stabilizer to reduce chlorine loss.")
         return " | ".join(adjustments) if adjustments else "No weather-based adjustments needed."
     except Exception:
         return "Weather data unavailable."
@@ -57,3 +61,4 @@ def append_to_excel(data):
                 sheet.cell(row=next_row, column=col_index).fill = PatternFill(start_color="FFC7CE", end_color="FFC7CE", fill_type="solid")
 
     book.save(EXCEL_FILE)
+
