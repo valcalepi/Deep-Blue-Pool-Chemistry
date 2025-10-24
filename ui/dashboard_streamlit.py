@@ -56,10 +56,7 @@ authenticator = stauth.Authenticate(
 )
 
 # ✅ Correct login method for latest version
-authenticator.login(location="main")
-auth_status = authenticator.authentication_status
-name = authenticator.name
-username = authenticator.username
+name, auth_status, username = authenticator.login(location="main")
 
 # Page config
 st.set_page_config(page_title="Pool Chemistry Dashboard", layout="wide")
@@ -107,6 +104,7 @@ if auth_status:
     st.sidebar.markdown("---")
     st.sidebar.caption("Weather-based dosing recommendations are shown in the Notes column.")
 
+# Unauthenticated view
 elif auth_status is False:
     st.error("Invalid username or password.")
 elif auth_status is None:
