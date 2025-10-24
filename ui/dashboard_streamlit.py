@@ -56,7 +56,7 @@ authenticator = stauth.Authenticate(
 )
 
 # Login interface
-name, auth_status, username = authenticator.login("Login", "main")
+name, auth_status, username = authenticator.login("Login", location="main")
 
 # Page config
 st.set_page_config(page_title="Pool Chemistry Dashboard", layout="wide")
