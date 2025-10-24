@@ -9,36 +9,42 @@ from dotenv import load_dotenv
 load_dotenv()
 EXCEL_FILE = 'pool_log.xlsx'
 
-# 🔐 Load credentials from .env or Streamlit secrets
+# 🔐 Load credentials from environment or Streamlit secrets
 admin_username = os.getenv("ADMIN_USERNAME", "admin")
 admin_name = os.getenv("ADMIN_NAME", "Michael")
-admin_password = os.getenv("ADMIN_PASSWORD")
+admin_password_hash = os.getenv("ADMIN_PASSWORD_HASH")
 
 viewer_username = os.getenv("VIEWER_USERNAME", "viewer")
 viewer_name = os.getenv("VIEWER_NAME", "Guest")
-viewer_password = os.getenv("VIEWER_PASSWORD")
+viewer_password_hash = os.getenv("VIEWER_PASSWORD_HASH")
 
 cookie_name = os.getenv("COOKIE_NAME", "pool_dashboard")
 cookie_key = os.getenv("COOKIE_KEY", "abcdef")
 
-# ✅ Validate passwords before hashing
+# ✅ Validate presence of hashed passwords
 missing = []
-if not admin_password:
-    missing.append("ADMIN_PASSWORD")
-if not viewer_password:
-    missing.append("VIEWER_PASSWORD")
+if not admin_password_hash:
+    missing.append("ADMIN_PASSWORD_HASH")
+if not viewer_password_hash:
+    missing.append("VIEWER_PASSWORD_HASH")
 
 if missing:
-    st.error(f"Missing environment variables: {', '.join(missing)}. Check your .env file or Streamlit secrets.")
+    st.error(f"Missing hashed password variables: {', '.join(missing)}")
     st.stop()
 
-hashed_passwords = stauth.Hasher().generate([admin_password, viewer_password])
-
-# Authenticator setup
+# ✅ Use pre-hashed passwords directly
 authenticator = stauth.Authenticate(
     credentials={
-        admin_username: {"name": admin_name, "password": hashed_passwords[0], "role": "admin"},
-        viewer_username: {"name": viewer_name, "password": hashed_passwords[1], "role": "viewer"},
+        admin_username: {
+            "name": admin_name,
+            "password": admin_password_hash,
+            "role": "admin"
+        },
+        viewer_username: {
+            "name": viewer_name,
+            "password": viewer_password_hash,
+            "role": "viewer"
+        },
     },
     cookie_name=cookie_name,
     key=cookie_key,
