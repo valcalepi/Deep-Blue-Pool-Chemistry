@@ -9,20 +9,30 @@ from dotenv import load_dotenv
 load_dotenv()
 EXCEL_FILE = 'pool_log.xlsx'
 
-# 🔐 Load credentials from .env
-admin_username = os.getenv("ADMIN_USERNAME")
-admin_name = os.getenv("ADMIN_NAME")
+# 🔐 Load credentials from .env or Streamlit secrets
+admin_username = os.getenv("ADMIN_USERNAME", "admin")
+admin_name = os.getenv("ADMIN_NAME", "Michael")
 admin_password = os.getenv("ADMIN_PASSWORD")
 
-viewer_username = os.getenv("VIEWER_USERNAME")
-viewer_name = os.getenv("VIEWER_NAME")
+viewer_username = os.getenv("VIEWER_USERNAME", "viewer")
+viewer_name = os.getenv("VIEWER_NAME", "Guest")
 viewer_password = os.getenv("VIEWER_PASSWORD")
 
-cookie_name = os.getenv("COOKIE_NAME")
-cookie_key = os.getenv("COOKIE_KEY")
+cookie_name = os.getenv("COOKIE_NAME", "pool_dashboard")
+cookie_key = os.getenv("COOKIE_KEY", "abcdef")
 
-# Hash passwords
-hashed_passwords = stauth.Hasher([admin_password, viewer_password]).generate()
+# ✅ Validate passwords before hashing
+missing = []
+if not admin_password:
+    missing.append("ADMIN_PASSWORD")
+if not viewer_password:
+    missing.append("VIEWER_PASSWORD")
+
+if missing:
+    st.error(f"Missing environment variables: {', '.join(missing)}. Check your .env file or Streamlit secrets.")
+    st.stop()
+
+hashed_passwords = stauth.Hasher().generate([admin_password, viewer_password])
 
 # Authenticator setup
 authenticator = stauth.Authenticate(
