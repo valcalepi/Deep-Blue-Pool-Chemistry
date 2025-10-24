@@ -55,8 +55,11 @@ authenticator = stauth.Authenticate(
     cookie_expiry_days=1
 )
 
-# ✅ Correct login method
-name, auth_status, username = authenticator.login(location="main")
+# ✅ Correct login method for latest version
+authenticator.login(location="main")
+auth_status = authenticator.authentication_status
+name = authenticator.name
+username = authenticator.username
 
 # Page config
 st.set_page_config(page_title="Pool Chemistry Dashboard", layout="wide")
@@ -66,21 +69,18 @@ if auth_status:
     st.sidebar.success(f"Welcome {name} ({username})")
     authenticator.logout("Logout", "sidebar")
 
-    # Optional: Password reset
     try:
         if authenticator.reset_password(username, 'Reset password'):
             st.success('Password modified successfully')
     except Exception as e:
         st.error(e)
 
-    # Optional: Registration flow
     try:
         if authenticator.register_user('Register user', preauthorization=False):
             st.success('User registered successfully')
     except Exception as e:
         st.error(e)
 
-    # Load data
     try:
         df = pd.read_excel(EXCEL_FILE)
         df['Timestamp'] = pd.to_datetime(df['Timestamp'])
@@ -88,7 +88,6 @@ if auth_status:
         st.error("Failed to load data.")
         st.stop()
 
-    # Sidebar filters
     st.sidebar.header("Filters")
     start_date = st.sidebar.date_input("Start Date", df['Timestamp'].min().date())
     end_date = st.sidebar.date_input("End Date", df['Timestamp'].max().date())
@@ -98,9 +97,7 @@ if auth_status:
     if weather_filter:
         filtered_df = filtered_df[filtered_df['Notes'].str.contains("Rain|UV", na=False)]
 
-    # Dashboard content
     st.title("💧 Deep Blue Pool Chemistry Dashboard")
-
     st.subheader("Recent Entries")
     st.dataframe(filtered_df.tail(10))
 
@@ -110,7 +107,6 @@ if auth_status:
     st.sidebar.markdown("---")
     st.sidebar.caption("Weather-based dosing recommendations are shown in the Notes column.")
 
-# Unauthenticated view
 elif auth_status is False:
     st.error("Invalid username or password.")
 elif auth_status is None:
