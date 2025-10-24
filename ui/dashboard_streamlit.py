@@ -32,9 +32,9 @@ if missing:
     st.error(f"Missing hashed password variables: {', '.join(missing)}")
     st.stop()
 
-# ✅ Use pre-hashed passwords directly
-authenticator = stauth.Authenticate(
-    credentials={
+# ✅ Use pre-hashed passwords with correct structure
+credentials = {
+    "usernames": {
         admin_username: {
             "name": admin_name,
             "password": admin_password_hash,
@@ -45,7 +45,11 @@ authenticator = stauth.Authenticate(
             "password": viewer_password_hash,
             "role": "viewer"
         },
-    },
+    }
+}
+
+authenticator = stauth.Authenticate(
+    credentials=credentials,
     cookie_name=cookie_name,
     key=cookie_key,
     cookie_expiry_days=1
