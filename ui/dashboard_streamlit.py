@@ -9,7 +9,7 @@ from dotenv import load_dotenv
 load_dotenv()
 EXCEL_FILE = 'pool_log.xlsx'
 
-# 🔐 Load credentials from environment or Streamlit secrets
+# Load credentials
 admin_username = os.getenv("ADMIN_USERNAME", "admin")
 admin_name = os.getenv("ADMIN_NAME", "Michael")
 admin_password_hash = os.getenv("ADMIN_PASSWORD_HASH")
@@ -21,18 +21,17 @@ viewer_password_hash = os.getenv("VIEWER_PASSWORD_HASH")
 cookie_name = os.getenv("COOKIE_NAME", "pool_dashboard")
 cookie_key = os.getenv("COOKIE_KEY", "abcdef")
 
-# ✅ Validate presence of hashed passwords
+# Validate presence
 missing = []
 if not admin_password_hash:
     missing.append("ADMIN_PASSWORD_HASH")
 if not viewer_password_hash:
     missing.append("VIEWER_PASSWORD_HASH")
-
 if missing:
     st.error(f"Missing hashed password variables: {', '.join(missing)}")
     st.stop()
 
-# ✅ Use pre-hashed passwords with correct structure
+# Credentials structure
 credentials = {
     "usernames": {
         admin_username: {
@@ -44,10 +43,11 @@ credentials = {
             "name": viewer_name,
             "password": viewer_password_hash,
             "role": "viewer"
-        },
+        }
     }
 }
 
+# Authenticator setup
 authenticator = stauth.Authenticate(
     credentials=credentials,
     cookie_name=cookie_name,
@@ -55,14 +55,14 @@ authenticator = stauth.Authenticate(
     cookie_expiry_days=1
 )
 
-# ✅ Correct login method for latest version
-name, auth_status, username = authenticator.login(location="main")
+# Login
+name, authentication_status, username = authenticator.login(location="main")
 
 # Page config
 st.set_page_config(page_title="Pool Chemistry Dashboard", layout="wide")
 
-# Authenticated view
-if auth_status:
+# ✅ Login state handling
+if authentication_status:
     st.sidebar.success(f"Welcome {name} ({username})")
     authenticator.logout("Logout", "sidebar")
 
@@ -104,8 +104,7 @@ if auth_status:
     st.sidebar.markdown("---")
     st.sidebar.caption("Weather-based dosing recommendations are shown in the Notes column.")
 
-# Unauthenticated view
-elif auth_status is False:
+elif authentication_status is False:
     st.error("Invalid username or password.")
-elif auth_status is None:
+elif authentication_status is None:
     st.warning("Please enter your credentials.")
