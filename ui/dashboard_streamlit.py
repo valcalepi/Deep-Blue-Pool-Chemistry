@@ -55,11 +55,8 @@ authenticator = stauth.Authenticate(
     cookie_expiry_days=1
 )
 
-# ✅ Updated login method
-authenticator.login(location="main")
-auth_status = authenticator.authentication_status
-name = authenticator.name
-username = authenticator.username
+# ✅ Correct login method
+name, auth_status, username = authenticator.login(location="main")
 
 # Page config
 st.set_page_config(page_title="Pool Chemistry Dashboard", layout="wide")
