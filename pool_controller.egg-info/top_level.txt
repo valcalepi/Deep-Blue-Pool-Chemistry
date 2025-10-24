@@ -1,7 +1,0 @@
-controllers
-database
-models
-src
-tests
-utils
-views
