@@ -1,70 +1,160 @@
 # services/weather_service.py
-import threading
+import requests
+import json
 import time
-from queue import Queue
 import logging
-from config import Config
+import os
+from pathlib import Path
+from datetime import datetime, timedelta
+
+logger = logging.getLogger(__name__)
 
 class WeatherService:
     """Service for fetching and processing weather data."""
     
-    def __init__(self):
-        self.api_key = Config.WEATHER_API_KEY
-        self.request_queue = Queue()
-        self.results = {}
-        self.worker_thread = None
-        self.last_request_time = 0
-        self.rate_limit_delay = 60 / Config.MAX_REQUESTS_PER_MINUTE  # seconds
+    def __init__(self, api_key=None):
+        self.api_key = api_key or os.environ.get("WEATHER_API_KEY")
+        if not self.api_key:
+            logger.warning("No Weather API key provided")
         
-    def start_worker(self):
-        """Start the worker thread to process weather requests."""
-        if self.worker_thread is None or not self.worker_thread.is_alive():
-            self.worker_thread = threading.Thread(
-                target=self._process_requests, 
-                daemon=True
-            )
-            self.worker_thread.start()
-            
-    def request_forecast(self, zip_code, callback=None):
+        self.cache_dir = Path("cache")
+        self.cache_dir.mkdir(exist_ok=True)
+        self.cache_duration = 3600  # 1 hour in seconds
+        
+    def get_weather_data(self, location, use_cache=True):
         """
-        Queue a request for weather forecast by zip code.
+        Get weather data for a location (ZIP code, city name, etc.)
         
         Args:
-            zip_code (str): The ZIP code to get forecast for
-            callback (callable, optional): Function to call with results
+            location (str): Location identifier (ZIP code, city name)
+            use_cache (bool): Whether to use cached data if available
+            
+        Returns:
+            dict: Weather data or error information
         """
-        request_id = f"{zip_code}_{time.time()}"
-        self.request_queue.put((request_id, zip_code, callback))
-        self.start_worker()
-        return request_id
+        cache_file = self.cache_dir / f"weather_{location}.json"
         
-    def _process_requests(self):
-        """Worker thread to process queued weather requests."""
-        while True:
+        # Try to use cached data if allowed and available
+        if use_cache and self._is_valid_cache(cache_file):
             try:
-                request_id, zip_code, callback = self.request_queue.get(timeout=1)
-                
-                # Apply rate limiting
-                time_since_last = time.time() - self.last_request_time
-                if time_since_last < self.rate_limit_delay:
-                    time.sleep(self.rate_limit_delay - time_since_last)
-                
-                result = self._fetch_forecast(zip_code)
-                self.results[request_id] = result
-                
-                if callback:
-                    callback(result)
-                    
-                self.last_request_time = time.time()
-                self.request_queue.task_done()
-                
-            except queue.Empty:
-                # No more requests in queue
-                pass
-                
+                with open(cache_file, 'r') as f:
+                    cached_data = json.load(f)
+                    logger.info(f"Using cached weather data for {location}")
+                    return cached_data
             except Exception as e:
-                logging.error(f"Error processing weather request: {e}", exc_info=True)
+                logger.warning(f"Failed to load cached weather data: {e}")
+        
+        # Make API request
+        base_url = "https://api.weatherapi.com/v1/current.json"
+        params = {
+            "key": self.api_key,
+            "q": location,
+            "aqi": "no"
+        }
+        
+        try:
+            response = requests.get(base_url, params=params, timeout=10)
+            
+            if response.status_code == 200:
+                data = response.json()
+                # Cache the successful response
+                self._cache_response(cache_file, data)
+                return data
+            else:
+                # Try to use expired cache as fallback
+                fallback_data = self._get_fallback_cache(cache_file)
+                if fallback_data:
+                    return fallback_data
+                    
+                try:
+                    error_details = response.json()
+                    return {"error": f"API Error: {response.status_code} - {error_details.get('error', {}).get('message', 'Unknown error')}"}
+                except json.JSONDecodeError:
+                    return {"error": f"Invalid response format. Status code: {response.status_code}"}
+                    
+        except requests.RequestException as e:
+            # Try to use cached data as fallback
+            fallback_data = self._get_fallback_cache(cache_file)
+            if fallback_data:
+                return fallback_data
+                    
+            return {"error": f"Network error: {str(e)}"}
+    
+    def _is_valid_cache(self, cache_file):
+        """Check if cache file exists and is not expired"""
+        if not cache_file.exists():
+            return False
+            
+        file_age = time.time() - cache_file.stat().st_mtime
+        return file_age < self.cache_duration
+    
+    def _cache_response(self, cache_file, data):
+        """Cache the API response to a file"""
+        try:
+            with open(cache_file, 'w') as f:
+                json.dump(data, f)
+        except Exception as e:
+            logger.warning(f"Failed to cache weather data: {e}")
+    
+    def _get_fallback_cache(self, cache_file):
+        """Try to get cached data as fallback even if expired"""
+        if cache_file.exists():
+            try:
+                with open(cache_file, 'r') as f:
+                    cached_data = json.load(f)
+                    logger.warning(f"Using expired cached weather data")
+                    cached_data["cached"] = True
+                    cached_data["cache_warning"] = "Using outdated weather data"
+                    return cached_data
+            except Exception:
+                pass
+        return None
+        
+    def calculate_pool_impact(self, weather_data):
+        """Calculate the impact of weather on pool chemistry"""
+        try:
+            current = weather_data.get('current', {})
+            temp = current.get('temp_f', 75)
+            humidity = current.get('humidity', 50)
+            conditions = current.get('condition', {}).get('text', '').lower()
+            
+            impact = "Low"
+            
+            # Higher temperatures increase chlorine demand
+            if temp > 85:
+                impact = "High"
+            elif temp > 75:
+                impact = "Medium"
                 
-    def _fetch_forecast(self, zip_code):
-        """Fetch forecast data from the weather API."""
-        # Implementation with proper error handling and timeouts
+            # Rain can affect pH and dilute chemicals
+            if any(term in conditions for term in ['rain', 'shower', 'drizzle', 'precipitation']):
+                impact = "High"
+                
+            # High humidity can reduce water evaporation
+            if humidity > 80 and impact != "High":
+                impact = "Medium"
+                
+            return {
+                "impact": impact,
+                "reasons": self._generate_impact_reasons(impact, temp, humidity, conditions)
+            }
+        except Exception as e:
+            logger.error(f"Error calculating weather impact: {e}")
+            return {"impact": "Unknown", "reasons": ["Error calculating impact"]}
+    
+    def _generate_impact_reasons(self, impact, temp, humidity, conditions):
+        """Generate human-readable reasons for the calculated impact"""
+        reasons = []
+        
+        if temp > 85:
+            reasons.append("High temperature increases chlorine demand")
+        elif temp > 75:
+            reasons.append("Moderate temperature may affect chemical balance")
+            
+        if any(term in conditions for term in ['rain', 'shower', 'drizzle', 'precipitation']):
+            reasons.append("Precipitation can affect pH and dilute chemicals")
+            
+        if humidity > 80:
+            reasons.append("High humidity reduces water evaporation")
+            
+        return reasons

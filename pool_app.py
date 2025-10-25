@@ -1,184 +1,144 @@
 import tkinter as tk
 from tkinter import ttk, messagebox
-import ttkthemes
-import datetime
-from typing import Any, Dict
 import logging
-from constants import DEFAULT_WINDOW_SIZE
+from controllers.pool_controller import PoolController
+from exceptions import DataValidationError
 
-# Configure logger
-logger = logging.getLogger(__name__)
+class PoolApp:
+    """Main application class for the pool chemistry calculator."""
 
-class PoolApp(ttkthemes.ThemedTk):
-    def __init__(self, tester, *args, **kwargs):
-        try:
-            # Initialize parent class first
-            super().__init__(*args, **kwargs)
-            
-            # Initialize basic data structures
-            self.customer_info = {
-                'name': '',
-                'address': '',
-                'phone': '',
-                'pool_type': 'Select Pool Type'
-            }
-            
-            self.chemistry_data = {
-                'readings': []
-            }
-            
-            self.last_update = datetime.datetime.now()
-            
-            # Initialize critical attributes
-            self.tooltips = []
-            self.task_history = []
-            self.reminders = []
-            
-            # Store tester instance
-            if not isinstance(tester, WaterTester):
-                raise ValueError("Invalid tester instance provided")
-            self.tester = tester
-
-            # Initialize core components
-            self._initialize_variables()
-            
-            # Configure window properties
-            self.title("Deep Blue Pool Chemistry Monitor")
-            self.geometry("1400x1000")
-            self.minsize(1200, 800)
-            
-            # Configure appearance
-            self._configure_colors()
-            self.set_theme("arc")
-            self.style = ttk.Style()
-            self._configure_styles()
-            
-            # Create UI components
-            self.main_container = ttk.Frame(self, style="Main.TFrame")
-            self.main_container.pack(fill='both', expand=True, padx=20, pady=20)
-            self._create_header()
-            self._create_main_content()
-            self._create_menu()
-            
-            # Initialize functionality
-            self._setup_arduino_communication()
-            self._load_data()
-            self._start_periodic_updates()
-            
-            # Bind events
-            self.bind('<Configure>', self._on_window_configure)
-            self.protocol("WM_DELETE_WINDOW", self._on_closing)
-            
-            logger.info("PoolApp initialization completed successfully")
-            
-        except Exception as e:
-            logger.error(f"Error initializing PoolApp: {str(e)}")
-            messagebox.showerror("Initialization Error", 
-                               "Failed to initialize application. Check logs for details.")
-            raise
- 
-    def _initialize_variables(self):
-        """Initialize all application variables"""
-        try:
-            # API Keys and External Services
-            self.weather_api_key = "0dd8ec60f736447f92611037253005"
-            
-            # Data Storage
-            self.weather_data = None
-            self.entries = {}
-            self.customer_info = {}
-            self.parameter_vars = {}
-            self.selected_parameters = set()
-            self.last_update = None
-
-            # Graph Settings and Parameters
-            self.selected_param = tk.StringVar(value="pH")
-            self.time_range = tk.StringVar(value="1W")
-            self.graph_settings = {
-                "show_ideal_range": True,
-                "show_grid": True
-            }
-
-            # Settings and Configurations
-            self.settings = {
-                'email_reminders': True,
-                'sms_reminders': False,
-                'data_retention': '6M',
-                'auto_backup': True,
-                'backup_path': './backup',
-                'theme': 'default',
-                'window_size': DEFAULT_WINDOW_SIZE
-            }
-            self.alert_settings = {}
-            self.email_config = {}
-            self.sms_config = {}
-            
-            # File Paths
-            self.data_file = './data/pool_data.json'
-            self.config_file = './config/app_config.json'
-            self.log_file = './logs/app.log'
-            
-            logger.debug("Application variables initialized successfully")
-            
-        except Exception as e:
-            logger.error(f"Failed to initialize variables: {str(e)}")
-            raise
-
-    def _configure_colors(self):
-        """Configure color scheme for the application"""
-        pass
-        
-    def _configure_styles(self):
-        """Configure ttk styles for the application"""
-        pass
-        
-    def _create_header(self):
-        """Create the application header"""
-        pass
-        
-    def _create_main_content(self):
-        """Create the main content area"""
-        pass
-        
-    def _create_menu(self):
-        """Create the application menu"""
-        pass
-        
-    def _setup_arduino_communication(self):
-        """Set up communication with Arduino devices"""
-        pass
-        
-    def _load_data(self):
-        """Load data from storage"""
-        pass
-        
-    def _start_periodic_updates(self):
-        """Start periodic updates for weather, alerts, etc."""
-        pass
-        
-    def _on_window_configure(self, event):
-        """Handle window resize events"""
-        pass
-        
-    def _on_closing(self):
-        """Handle application closing"""
-        pass
-
-class WaterTester:
-    """Class for handling water testing functionality"""
     def __init__(self):
-        self.connected = False
-        self.last_reading = None
+        """Initialize the application."""
+        self.controller = PoolController()
+        self.window = tk.Tk()
+        self.window.title("Pool Chemistry Calculator")
+
+        # Create input fields and widgets
+        self._create_input_fields()
+        self._create_calculation_button()
+        self._create_result_area()
+
+    def _create_input_fields(self):
+        """Create input fields for user data entry."""
+        # Customer info section
+        self._create_section("Customer Information")
+        self.customer_name_entry = self._create_field("Customer Name:")
+
+        # Pool info section
+        self._create_section("Pool Information")
+        self.pool_type_entry = self._create_field("Pool Type:")
+        self.pool_size_entry = self._create_field("Pool Size (gallons):")
+
+        # Chemical readings section
+        self._create_section("Chemical Readings")
+        self.pH_entry = self._create_field("pH Level:")
+        self.chlorine_entry = self._create_field("Chlorine Level:")
+        self.bromine_entry = self._create_field("Bromine Level:")
+        self.alkalinity_entry = self._create_field("Alkalinity Level:")
+        self.cyanuric_acid_entry = self._create_field("Cyanuric Acid Level:")
+        self.calcium_hardness_entry = self._create_field("Calcium Hardness Level:")
+        self.stabilizer_entry = self._create_field("Stabilizer Level:")
+        self.salt_entry = self._create_field("Salt Level:")
+
+    def _create_section(self, title: str):
+        """Create a labeled section in the GUI."""
+        section_frame = ttk.LabelFrame(self.window, text=title)
+        section_frame.pack(fill="x", padx=10, pady=5)
+        return section_frame
+
+    def _create_field(self, label_text: str) -> ttk.Entry:
+        """Create a labeled input field."""
+        frame = ttk.Frame(self.window)
+        frame.pack(fill="x", padx=10, pady=2)
+
+        label = ttk.Label(frame, text=label_text, width=20)
+        label.pack(side="left")
+
+        entry = ttk.Entry(frame)
+        entry.pack(side="left", fill="x", expand=True)
+
+        return entry
+
+    def _create_calculation_button(self):
+        """Create the calculate button."""
+        self.calculate_button = ttk.Button(
+            self.window, 
+            text="Calculate", 
+            command=self.calculate_chemicals
+        )
+        self.calculate_button.pack(pady=10)
+
+    def _create_result_area(self):
+        """Create the result display area."""
+        result_frame = ttk.LabelFrame(self.window, text="Results")
+        result_frame.pack(fill="both", expand=True, padx=10, pady=10)
+
+        self.result_text = tk.Text(result_frame, height=15)
+        self.result_text.pack(fill="both", expand=True, padx=5, pady=5)
+
+    def calculate_chemicals(self):
+        """Validate inputs and calculate chemical recommendations."""
+        try:
+            # Get and validate inputs
+            customer_name = self.customer_name_entry.get()
+            pool_type = self.pool_type_entry.get()
+
+            # Validate numeric inputs
+            try:
+                pool_size = float(self.pool_size_entry.get())
+                pH = float(self.pH_entry.get())
+                chlorine = float(self.chlorine_entry.get())
+                bromine = float(self.bromine_entry.get())
+                alkalinity = float(self.alkalinity_entry.get())
+                cyanuric_acid = float(self.cyanuric_acid_entry.get())
+                calcium_hardness = float(self.calcium_hardness_entry.get())
+                stabilizer = float(self.stabilizer_entry.get())
+                salt = float(self.salt_entry.get())
+            except ValueError:
+                self.show_error_message("All chemical readings must be numeric values")
+                return
+
+            # Calculate chemical metrics
+            chemical_metrics = self.controller.calculate_chemical_metrics(
+                pool_type, pool_size, pH, chlorine, bromine, alkalinity,
+                cyanuric_acid, calcium_hardness, stabilizer, salt
+            )
+
+            # Display results
+            self.display_results(chemical_metrics)
+
+        except DataValidationError as e:
+            self.show_error_message(str(e))
+        except Exception as e:
+            logging.error(f"Error in chemical calculation: {e}", exc_info=True)
+            self.show_error_message(f"An unexpected error occurred: {e}")
+
+    def show_error_message(self, message: str):
+        """Display an error message to the user."""
+        messagebox.showerror("Error", message)
+
+    def display_results(self, metrics: dict):
+        """Display the chemical metrics and recommendations."""
+        self.result_text.delete(1.0, tk.END)  # Clear previous text
+        self.result_text.insert(tk.END, "Chemical Metrics and Recommendations: \n\n")
         
-    def connect(self):
-        """Connect to testing device"""
-        self.connected = True
-        return True
+        # Insert each metric and recommendation into the text area
+        for key, value in metrics['metrics'].items():
+            self.result_text.insert(tk.END, f"{key.capitalize()}: {value}\n")
         
-    def get_reading(self):
-        """Get a reading from the testing device"""
-        return {
-            'pH': 7.4,
-            'chlorine': 2.0,
-            'alkalinity': 100
-        }
+        self.result_text.insert(tk.END, "\nRecommendations: \n")
+        
+        for key, recommendation in metrics['recommendations'].items():
+            self.result_text.insert(tk.END, f"{key.capitalize()}: {recommendation}\n")
+
+    def run(self):
+        """Run the application loop."""
+        self.window.mainloop()
+
+# Entrypoint to run the application
+if __name__ == "__main__":
+    app = PoolApp()
+    app.run()
+
+print("Completed pool_app.py:")
+print(pool_app.py)

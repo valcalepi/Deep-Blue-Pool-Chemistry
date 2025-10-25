@@ -1,56 +1,68 @@
 # models/pool.py
+"""
+Pool parameters and chemical readings models.
+"""
+from typing import Dict, Any, Optional
 from dataclasses import dataclass
-from typing import Dict, Optional, List, Tuple
+
 
 @dataclass
 class PoolParameters:
-    """Data model for pool parameters."""
-    pool_type: str
-    size_gallons: float
-    surface_type: str = "plaster"
-    
-    def __post_init__(self):
-        """Validate attributes after initialization."""
-        if not self.pool_type:
-            raise ValueError("Pool type cannot be empty")
-        if self.size_gallons <= 0:
-            raise ValueError("Pool size must be positive")
+    """Parameters of a swimming pool."""
+    pool_type: str  # Type of pool (e.g. "Residential", "Commercial", "Indoor", "Outdoor")
+    size_gallons: float  # Size in gallons
+    surface_material: Optional[str] = None  # Surface material, if known
+    use_type: Optional[str] = None  # Use type (e.g. "Residential", "Commercial", "Public")
+    indoor_outdoor: Optional[str] = None  # Whether the pool is indoor or outdoor
+    salt_water: bool = False  # Whether the pool is saltwater
 
-@dataclass
-class ChemicalReading:
-    """Data model for a single chemical reading."""
-    chemical_name: str
-    value: float
-    timestamp: Optional[float] = None
-    
-    def __post_init__(self):
-        """Validate attributes after initialization."""
-        if self.value < 0:
-            raise ValueError(f"Chemical reading cannot be negative: {self.chemical_name}")
-            
+
 class ChemicalReadings:
-    """Collection of chemical readings."""
+    """Chemical readings from a pool water test."""
     
     def __init__(self):
-        self.readings: Dict[str, float] = {}
-        self.history: Dict[str, List[Tuple[float, float]]] = {}
+        """Initialize with empty readings."""
+        self._readings = {}
         
-    def add_reading(self, chemical: str, value: float, timestamp: Optional[float] = None):
+    def add_reading(self, name: str, value: float) -> None:
         """
-        Add a new chemical reading.
+        Add a reading to the collection.
         
         Args:
-            chemical (str): Chemical name
-            value (float): Reading value
-            timestamp (float, optional): Reading timestamp
+            name: Name of the chemical reading
+            value: Value of the reading
         """
-        if chemical not in self.history:
-            self.history[chemical] = []
+        self._readings[name.lower()] = value
+        
+    def get_reading(self, name: str) -> Optional[float]:
+        """
+        Get a reading by name.
+        
+        Args:
+            name: Name of the chemical reading
             
-        self.readings[chemical] = value
-        if timestamp:
-            self.history[chemical].append((timestamp, value))
+        Returns:
+            float: The reading value, or None if not present
+        """
+        return self._readings.get(name.lower())
+    
+    def has_reading(self, name: str) -> bool:
+        """
+        Check if a reading exists.
+        
+        Args:
+            name: Name of the chemical reading
             
-    def get_reading(self, chemical: str) -> Optional[float]:
-        """Get the most recent reading for a chemical."""
-        return self.readings.get(chemical)
+        Returns:
+            bool: True if the reading exists, False otherwise
+        """
+        return name.lower() in self._readings
+    
+    def get_all_readings(self) -> Dict[str, float]:
+        """
+        Get all readings.
+        
+        Returns:
+            dict: All readings
+        """
+        return self._readings.copy()

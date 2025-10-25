@@ -1,66 +1,49 @@
-# controllers/pool_controller.py
-from typing import Dict, Any
-import logging
+# pool_controller.py - Last updated: June 25, 2025
+import mysql.connector
 from models.chemical_calculator import ChemicalCalculator
-from models.pool import PoolParameters, ChemicalReadings
-from utils.validators import validate_numeric_input
-from exceptions import DataValidationError
-from config import Config
+from database.database_connection import DatabaseConnection
+from datetime import datetime
 
 class PoolController:
-    """Controller for pool chemistry operations."""
-    
-    def __init__(self):
-        """Initialize the controller."""
+    def __init__(self, db_connection=None):
+        if db_connection is None:
+            self.db_connection = DatabaseConnection().get_connection()
+        else:
+            self.db_connection = db_connection
+        self.current_pool_type = None
         self.calculator = ChemicalCalculator()
-        
-    def calculate_chemical_metrics(self, pool_type: str, pool_size: float,
-                                 pH: float, chlorine: float, bromine: float,
-                                 alkalinity: float, cyanuric_acid: float,
-                                 calcium_hardness: float, stabilizer: float,
-                                 salt: float) -> Dict[str, Any]:
-        """
-        Calculate chemical metrics based on pool parameters.
-        
-        Args:
-            pool_type (str): Type of pool
-            pool_size (float): Size of pool in gallons
-            pH (float): pH level
-            chlorine (float): Chlorine level in ppm
-            bromine (float): Bromine level in ppm
-            alkalinity (float): Alkalinity level in ppm
-            cyanuric_acid (float): Cyanuric acid level in ppm
-            calcium_hardness (float): Calcium hardness level in ppm
-            stabilizer (float): Stabilizer level in ppm
-            salt (float): Salt level in ppm
-            
-        Returns:
-            dict: Chemical metrics and recommendations
-            
-        Raises:
-            DataValidationError: If any input validation fails
-        """
+
+    def set_pool_type(self, pool_type):
+        # Validate pool type
+        valid_pool_types = ["Concrete", "Vinyl", "Fiberglass"]
+        if pool_type not in valid_pool_types:
+            raise ValueError(f"Invalid pool type provided: {pool_type}")
+        self.current_pool_type = pool_type
+        self.calculator.set_pool_type(pool_type)
+
+    def get_ideal_range(self, parameter, pool_type=None):
+        if pool_type:
+            return self.calculator.get_ideal_range(parameter, pool_type)
+        elif self.current_pool_type:
+            return self.calculator.get_ideal_range(parameter, self.current_pool_type)
+        else:
+            raise ValueError("Pool type is not set.")
+
+    def calculate_adjustments(self, pool_type, pH, chlorine, alkalinity, hardness):
+        return self.calculator.calculate_adjustments(pool_type, pH, chlorine, alkalinity, hardness)
+
+    def update_pool_info(self, pool_id, pool_info):
+        cursor = self.db_connection.cursor()
         try:
-            # Create data models
-            pool_params = PoolParameters(pool_type=pool_type, size_gallons=pool_size)
-            
-            # Create chemical readings
-            readings = ChemicalReadings()
-            readings.add_reading("pH", pH)
-            readings.add_reading("chlorine", chlorine)
-            readings.add_reading("bromine", bromine)
-            readings.add_reading("alkalinity", alkalinity)
-            readings.add_reading("cyanuric_acid", cyanuric_acid)
-            readings.add_reading("calcium_hardness", calcium_hardness)
-            readings.add_reading("stabilizer", stabilizer)
-            readings.add_reading("salt", salt)
-            
-            # Calculate metrics
-            return self.calculator.calculate_metrics(pool_params, readings)
-            
-        except ValueError as e:
-            # Convert generic ValueError to DataValidationError
-            raise DataValidationError(str(e))
-        except Exception as e:
-            logging.error(f"Error in chemical metrics calculation: {e}", exc_info=True)
-            raise
+            # Update the pool information with timestamp
+            pool_info["last_updated"] = datetime.now().isoformat()
+            query = "UPDATE pools SET info = %s WHERE id = %s"
+            cursor.execute(query, (pool_info, pool_id))
+            self.db_connection.commit()
+            return True
+        except mysql.connector.Error as error:
+            self.db_connection.rollback()
+            print(f"Error updating pool info: {error}")
+            return False
+        finally:
+            cursor.close()
