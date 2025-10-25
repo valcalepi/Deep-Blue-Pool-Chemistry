@@ -1,20 +1,30 @@
 import os
+import logging
 from datetime import datetime
-from typing import Optional, Tuple
+from typing import Optional
 
 import pandas as pd
 import streamlit as st
 import streamlit_authenticator as stauth
 from dotenv import load_dotenv
 
-# Page config early to avoid Streamlit warnings
+# --- Setup logging to file for full tracebacks
+LOG_FILE = "dashboard_streamlit.log"
+logging.basicConfig(
+    filename=LOG_FILE,
+    level=logging.DEBUG,
+    format="%(asctime)s %(levelname)s %(message)s"
+)
+
+# --- Streamlit page config
 st.set_page_config(page_title="Pool Chemistry Dashboard", layout="wide")
 
-# Load environment variables
+# --- Load .env
 load_dotenv()
-EXCEL_FILE = "pool_log.xlsx"
 
-# Load credentials from environment or Streamlit secrets
+# --- Config
+EXCEL_FILE = os.getenv("EXCEL_FILE", "pool_log.xlsx")
+
 admin_username = os.getenv("ADMIN_USERNAME", "admin")
 admin_name = os.getenv("ADMIN_NAME", "Michael")
 admin_password_hash = os.getenv("ADMIN_PASSWORD_HASH")
@@ -26,174 +36,166 @@ viewer_password_hash = os.getenv("VIEWER_PASSWORD_HASH")
 cookie_name = os.getenv("COOKIE_NAME", "pool_dashboard")
 cookie_key = os.getenv("COOKIE_KEY", "abcdef")
 
-# Validate presence of hashed passwords
+# --- Quick debug output (temporary; remove once stable)
+st.sidebar.markdown("### Debug")
+st.sidebar.text("Inspect runtime values below")
+st.sidebar.write("EXCEL_FILE:", EXCEL_FILE)
+st.sidebar.write("ADMIN_USERNAME:", admin_username)
+st.sidebar.write("ADMIN_HASH loaded:", bool(admin_password_hash))
+st.sidebar.write("VIEWER_HASH loaded:", bool(viewer_password_hash))
+st.sidebar.write("Log file:", LOG_FILE)
+
+# --- Validate hashed passwords
 missing = []
 if not admin_password_hash:
     missing.append("ADMIN_PASSWORD_HASH")
 if not viewer_password_hash:
     missing.append("VIEWER_PASSWORD_HASH")
 if missing:
-    st.error(f"Missing hashed password variables: {', '.join(missing)}")
+    msg = f"Missing hashed password variables: {', '.join(missing)}"
+    st.error(msg)
+    logging.error(msg)
     st.stop()
 
-# Credentials structure required by streamlit-authenticator
+# --- Credentials for authenticator
 credentials = {
     "usernames": {
-        admin_username: {
-            "name": admin_name,
-            "password": admin_password_hash,
-            "role": "admin",
-        },
-        viewer_username: {
-            "name": viewer_name,
-            "password": viewer_password_hash,
-            "role": "viewer",
-        },
+        admin_username: {"name": admin_name, "password": admin_password_hash, "role": "admin"},
+        viewer_username: {"name": viewer_name, "password": viewer_password_hash, "role": "viewer"},
     }
 }
 
-# Create authenticator
-authenticator = stauth.Authenticate(
-    credentials=credentials,
-    cookie_name=cookie_name,
-    key=cookie_key,
-    cookie_expiry_days=1,
-)
+# --- Instantiate authenticator (guard exceptions)
+try:
+    authenticator = stauth.Authenticate(
+        credentials=credentials,
+        cookie_name=cookie_name,
+        key=cookie_key,
+        cookie_expiry_days=1
+    )
+except Exception as e:
+    st.error("Failed to initialize authenticator. See logs.")
+    logging.exception("Authenticator initialization failed")
+    st.stop()
 
-def perform_login(auth: stauth.Authenticate) -> Tuple[Optional[str], Optional[bool], Optional[str]]:
-    """
-    Attempt to call auth.login(...) and return (name, authentication_status, username).
-    Handles versions that return a tuple and versions that set attributes or session_state.
-    """
-    # Try calling .login and capture return value
-    try:
-        result = auth.login(location="main")
-    except TypeError:
-        # Some versions may require no args
-        try:
-            result = auth.login()
-        except Exception:
-            result = None
-    except Exception:
-        result = None
+# --- Login
+try:
+    name, authentication_status, username = authenticator.login(location="main")
+except Exception as e:
+    # Some versions may behave differently; fall back to attributes
+    logging.exception("authenticator.login raised")
+    st.error("Login raised an exception. Falling back to session state inspection.")
+    name = getattr(authenticator, "name", None) or st.session_state.get("name")
+    authentication_status = getattr(authenticator, "authentication_status", None) or st.session_state.get("authentication_status")
+    username = getattr(authenticator, "username", None) or st.session_state.get("username")
 
-    # If .login returned the expected tuple
-    if isinstance(result, tuple) and len(result) == 3:
-        return result[0], result[1], result[2]
-
-    # Fallback to reading attributes on the authenticator instance
-    name = getattr(auth, "name", None)
-    auth_status = getattr(auth, "authentication_status", None)
-    username = getattr(auth, "username", None)
-
-    # Some versions expose alternative attribute names; check common alternatives
-    if auth_status is None:
-        auth_status = getattr(auth, "auth_status", None)
-    if name is None:
-        name = getattr(auth, "user_name", None)
-    if username is None:
-        username = getattr(auth, "user", None)
-
-    # Final fallback: check Streamlit session_state (some integrations populate these)
-    if auth_status is None:
-        auth_status = st.session_state.get("authentication_status")
-    if name is None:
-        name = st.session_state.get("name")
-    if username is None:
-        username = st.session_state.get("username")
-
-    return name, auth_status, username
-
-# Perform login in a robust way
-name, authentication_status, username = perform_login(authenticator)
-
-# Login state handling
+# --- Post-login flow
 if authentication_status:
     st.sidebar.success(f"Welcome {name} ({username})")
     try:
-        authenticator.logout("Logout", "sidebar")
+        # Logout button (safe)
+        if hasattr(authenticator, "logout"):
+            authenticator.logout("Logout", "sidebar")
     except Exception:
-        # If logout method signature changed, ignore gracefully
-        pass
+        logging.exception("Logout failed (ignored)")
 
-    # Optional: account actions only if methods exist
+    # Safe optional account actions (only call if present; wrap exceptions)
     try:
-        if getattr(authenticator, "reset_password", None):
-            if authenticator.reset_password(username, "Reset password"):
-                st.success("Password modified successfully")
-    except Exception as e:
-        st.error(f"Password reset error: {e}")
+        if hasattr(authenticator, "reset_password"):
+            with st.expander("Account actions"):
+                try:
+                    if authenticator.reset_password(username, "Reset password"):
+                        st.success("Password modified successfully")
+                except Exception as inner:
+                    st.warning("Password reset raised an error; check logs.")
+                    logging.exception("reset_password raised")
+                try:
+                    if hasattr(authenticator, "register_user"):
+                        if authenticator.register_user("Register user", preauthorization=False):
+                            st.success("User registered successfully")
+                except Exception:
+                    st.warning("User registration raised an error; check logs.")
+                    logging.exception("register_user raised")
+    except Exception:
+        logging.exception("Account actions wrapper failed")
 
+    # Load Excel data with detailed error reporting
+    df = None
     try:
-        if getattr(authenticator, "register_user", None):
-            if authenticator.register_user("Register user", preauthorization=False):
-                st.success("User registered successfully")
-    except Exception as e:
-        st.error(f"Registration error: {e}")
+        if not os.path.exists(EXCEL_FILE):
+            raise FileNotFoundError(f"Excel file not found at path: {EXCEL_FILE}")
 
-    # Load data
-    try:
         df = pd.read_excel(EXCEL_FILE)
-    except FileNotFoundError:
-        st.error(f"Excel file not found: {EXCEL_FILE}")
-        st.stop()
+        if df.empty:
+            st.info("Excel file loaded but contains no rows.")
+        # Validate Timestamp column
+        if "Timestamp" not in df.columns:
+            raise KeyError("Missing required column: 'Timestamp' in Excel file.")
+        # Convert Timestamp
+        df["Timestamp"] = pd.to_datetime(df["Timestamp"], errors="raise")
     except Exception as e:
-        st.error(f"Failed to read Excel file: {e}")
+        st.error("Failed to load or parse Excel data. Full error shown below.")
+        st.exception(e)  # Show stack/exception in Streamlit UI for debugging
+        logging.exception("Failed to load/parse Excel file")
         st.stop()
 
-    # Validate expected columns
-    if "Timestamp" not in df.columns:
-        st.error("EXCEL file missing required column: 'Timestamp'.")
-        st.stop()
-
-    # Convert Timestamp column
+    # Filters
     try:
-        df["Timestamp"] = pd.to_datetime(df["Timestamp"])
+        min_date = df["Timestamp"].min().date() if not df.empty else datetime.today().date()
+        max_date = df["Timestamp"].max().date() if not df.empty else datetime.today().date()
     except Exception as e:
-        st.error(f"Failed to parse 'Timestamp' column: {e}")
-        st.stop()
+        logging.exception("Failed to compute min/max dates")
+        min_date = datetime.today().date()
+        max_date = datetime.today().date()
 
-    # Sidebar filters
     st.sidebar.header("Filters")
-    try:
-        start_date = st.sidebar.date_input("Start Date", df["Timestamp"].min().date())
-        end_date = st.sidebar.date_input("End Date", df["Timestamp"].max().date())
-    except Exception:
-        # If Timestamp min/max fail for empty df
-        start_date = st.sidebar.date_input("Start Date", datetime.today().date())
-        end_date = st.sidebar.date_input("End Date", datetime.today().date())
-
+    start_date = st.sidebar.date_input("Start Date", min_date)
+    end_date = st.sidebar.date_input("End Date", max_date)
     weather_filter = st.sidebar.checkbox("Show weather-based notes only")
 
-    # Filter dataframe by date range
-    filtered_df = df[
-        (df["Timestamp"].dt.date >= start_date) & (df["Timestamp"].dt.date <= end_date)
-    ]
+    # Apply date filtering safely
+    try:
+        filtered_df = df[(df["Timestamp"].dt.date >= start_date) & (df["Timestamp"].dt.date <= end_date)]
+    except Exception as e:
+        st.warning("Date filtering failed; showing all rows.")
+        logging.exception("Date filtering failed")
+        filtered_df = df.copy()
 
+    # Weather filter
     if weather_filter:
         if "Notes" in filtered_df.columns:
-            filtered_df = filtered_df[filtered_df["Notes"].str.contains("Rain|UV", na=False)]
-        else:
-            st.warning("Notes column not present to filter by weather.")
+            try:
+                filtered_df = filtered_df[filtered_df["Notes"].str.contains("Rain|UV", na=False)]
+            except Exception:
+                st.warning("Notes filter failed; ignoring weather filter.")
+                logging.exception("Notes filter failed")
 
-    # Dashboard content
+    # Main dashboard content
     st.title("💧 Deep Blue Pool Chemistry Dashboard")
     st.subheader("Recent Entries")
-    st.dataframe(filtered_df.tail(10))
+    st.dataframe(filtered_df.tail(20))
 
+    # Plot metrics if present
     metric_cols = [c for c in ["pH", "Chlorine"] if c in filtered_df.columns]
-    if metric_cols:
-        st.subheader("pH and Chlorine Trends")
-        st.line_chart(filtered_df.set_index("Timestamp")[metric_cols])
+    if metric_cols and not filtered_df.empty:
+        try:
+            st.subheader("pH and Chlorine Trends")
+            st.line_chart(filtered_df.set_index("Timestamp")[metric_cols])
+        except Exception:
+            st.warning("Failed to plot trends; see logs.")
+            logging.exception("Plotting failed")
     else:
-        st.info("pH and Chlorine columns not present to plot trends.")
+        st.info("pH and Chlorine columns not available to plot.")
 
     st.sidebar.markdown("---")
     st.sidebar.caption("Weather-based dosing recommendations are shown in the Notes column.")
 
 elif authentication_status is False:
     st.error("Invalid username or password.")
+    logging.warning("Login attempt failed for a user.")
 elif authentication_status is None:
     st.warning("Please enter your credentials.")
+    logging.info("Login form presented; no credentials submitted yet.")
 else:
-    st.warning("Authentication state unknown. Check logs and credentials.")
+    st.warning("Authentication state unknown. Check the log file for details.")
+    logging.warning(f"Unexpected authentication_status value: {authentication_status}")
