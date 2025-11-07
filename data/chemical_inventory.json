@@ -1,0 +1,122 @@
+[
+  {
+    "id": "INV001",
+    "chemical": "Liquid Chlorine",
+    "current_qty": 12.0,
+    "min_qty": 4.0,
+    "max_qty": 20.0,
+    "unit": "gallons",
+    "cost_per_unit": 3.99,
+    "last_updated": "2025-01-25",
+    "notes": "Weekly usage ~4 gallons",
+    "pool_id": "POOL001"
+  },
+  {
+    "id": "INV002",
+    "chemical": "pH Increaser",
+    "current_qty": 2.0,
+    "min_qty": 5.0,
+    "max_qty": 15.0,
+    "unit": "lbs",
+    "cost_per_unit": 2.6,
+    "last_updated": "2025-01-20",
+    "notes": "LOW STOCK - Reorder soon",
+    "pool_id": "POOL001"
+  },
+  {
+    "id": "INV003",
+    "chemical": "pH Decreaser",
+    "current_qty": 8.0,
+    "min_qty": 5.0,
+    "max_qty": 15.0,
+    "unit": "lbs",
+    "cost_per_unit": 2.5,
+    "last_updated": "2025-01-22",
+    "notes": "Good stock level",
+    "pool_id": "POOL001"
+  },
+  {
+    "id": "INV004",
+    "chemical": "Shock Treatment",
+    "current_qty": 0.0,
+    "min_qty": 6.0,
+    "max_qty": 24.0,
+    "unit": "lbs",
+    "cost_per_unit": 4.17,
+    "last_updated": "2025-01-15",
+    "notes": "OUT OF STOCK - Order immediately",
+    "pool_id": "POOL001"
+  },
+  {
+    "id": "INV005",
+    "chemical": "Alkalinity Increaser",
+    "current_qty": 15.0,
+    "min_qty": 10.0,
+    "max_qty": 30.0,
+    "unit": "lbs",
+    "cost_per_unit": 1.85,
+    "last_updated": "2025-01-23",
+    "notes": "Good stock level",
+    "pool_id": "POOL001"
+  },
+  {
+    "id": "INV006",
+    "chemical": "Calcium Hardness Increaser",
+    "current_qty": 12.0,
+    "min_qty": 8.0,
+    "max_qty": 25.0,
+    "unit": "lbs",
+    "cost_per_unit": 2.87,
+    "last_updated": "2025-01-18",
+    "notes": "Good stock level",
+    "pool_id": "POOL001"
+  },
+  {
+    "id": "INV007",
+    "chemical": "Cyanuric Acid",
+    "current_qty": 6.0,
+    "min_qty": 4.0,
+    "max_qty": 12.0,
+    "unit": "lbs",
+    "cost_per_unit": 4.25,
+    "last_updated": "2025-01-20",
+    "notes": "Good stock level",
+    "pool_id": "POOL001"
+  },
+  {
+    "id": "INV008",
+    "chemical": "Algaecide",
+    "current_qty": 1.5,
+    "min_qty": 2.0,
+    "max_qty": 6.0,
+    "unit": "quarts",
+    "cost_per_unit": 15.0,
+    "last_updated": "2025-01-10",
+    "notes": "LOW STOCK - Reorder soon",
+    "pool_id": "POOL001"
+  },
+  {
+    "id": "INV009",
+    "chemical": "Clarifier",
+    "current_qty": 3.0,
+    "min_qty": 1.0,
+    "max_qty": 4.0,
+    "unit": "quarts",
+    "cost_per_unit": 12.99,
+    "last_updated": "2025-01-24",
+    "notes": "Good stock level",
+    "pool_id": "POOL001"
+  },
+  {
+    "id": "INV010",
+    "chemical": "Test Strips",
+    "current_qty": 2.0,
+    "min_qty": 1.0,
+    "max_qty": 3.0,
+    "unit": "bottles",
+    "cost_per_unit": 19.99,
+    "last_updated": "2025-01-12",
+    "notes": "Good stock level",
+    "pool_id": "POOL001"
+  }
+]

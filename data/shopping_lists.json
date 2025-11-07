@@ -1,0 +1,72 @@
+[
+  {
+    "id": "SHOP001",
+    "item": "Shock Treatment",
+    "quantity": 12.0,
+    "unit": "lbs",
+    "estimated_cost": 50.0,
+    "priority": "HIGH",
+    "source": "inventory",
+    "reason": "Out of stock - needed for weekly maintenance",
+    "store": "Leslie's Pool Supplies",
+    "purchased": false,
+    "date_added": "2025-01-25",
+    "pool_id": "POOL001"
+  },
+  {
+    "id": "SHOP002",
+    "item": "pH Increaser",
+    "quantity": 10.0,
+    "unit": "lbs",
+    "estimated_cost": 26.0,
+    "priority": "HIGH",
+    "source": "inventory",
+    "reason": "Low stock - below minimum (2.0/5.0 lbs)",
+    "store": "Home Depot",
+    "purchased": false,
+    "date_added": "2025-01-25",
+    "pool_id": "POOL001"
+  },
+  {
+    "id": "SHOP003",
+    "item": "Algaecide",
+    "quantity": 2.0,
+    "unit": "quarts",
+    "estimated_cost": 30.0,
+    "priority": "MEDIUM",
+    "source": "inventory",
+    "reason": "Low stock - below minimum (1.5/2.0 quarts)",
+    "store": "Leslie's Pool Supplies",
+    "purchased": false,
+    "date_added": "2025-01-25",
+    "pool_id": "POOL001"
+  },
+  {
+    "id": "SHOP004",
+    "item": "Liquid Chlorine",
+    "quantity": 8.0,
+    "unit": "gallons",
+    "estimated_cost": 32.0,
+    "priority": "MEDIUM",
+    "source": "adjustment",
+    "reason": "Recommended: Add 2.5 gallons to raise free chlorine from 0.8 to 2.0 ppm",
+    "store": "Leslie's Pool Supplies",
+    "purchased": false,
+    "date_added": "2025-01-25",
+    "pool_id": "POOL001"
+  },
+  {
+    "id": "SHOP005",
+    "item": "Test Strips",
+    "quantity": 2.0,
+    "unit": "bottles",
+    "estimated_cost": 40.0,
+    "priority": "LOW",
+    "source": "manual",
+    "reason": "Stock up for next month",
+    "store": "Amazon",
+    "purchased": false,
+    "date_added": "2025-01-24",
+    "pool_id": "POOL001"
+  }
+]

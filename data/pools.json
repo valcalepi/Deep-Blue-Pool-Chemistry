@@ -1,0 +1,35 @@
+[
+  {
+    "id": "POOL001",
+    "name": "Main Pool",
+    "type": "chlorine",
+    "volume": 20000,
+    "unit": "gallons",
+    "location": "Backyard",
+    "created_date": "2025-01-01",
+    "is_active": false,
+    "notes": "Primary family pool"
+  },
+  {
+    "id": "POOL002",
+    "name": "Salt Water Pool",
+    "type": "saltwater",
+    "volume": 11419.0,
+    "unit": "gallons",
+    "location": "Side Yard",
+    "created_date": "2025-01-01",
+    "is_active": true,
+    "notes": "Salt water system installed 2024"
+  },
+  {
+    "id": "POOL003",
+    "name": "Hot Tub",
+    "type": "hottub",
+    "volume": 400,
+    "unit": "gallons",
+    "location": "Deck",
+    "created_date": "2025-01-01",
+    "is_active": false,
+    "notes": "6-person spa"
+  }
+]

@@ -1,0 +1,48 @@
+{
+  "global_defaults": {
+    "ph_min": 7.2,
+    "ph_max": 7.8,
+    "chlorine_min": 1.0,
+    "chlorine_max": 3.0,
+    "alkalinity_min": 80,
+    "alkalinity_max": 120,
+    "calcium_min": 200,
+    "calcium_max": 400,
+    "cya_min": 30,
+    "cya_max": 50,
+    "salt_min": 2700,
+    "salt_max": 3400,
+    "temperature_min": 78,
+    "temperature_max": 104
+  },
+  "pool_specific": {},
+  "severity_thresholds": {
+    "info": {
+      "ph_deviation": 0.1,
+      "chlorine_deviation": 0.3,
+      "alkalinity_deviation": 10,
+      "calcium_deviation": 25,
+      "cya_deviation": 5,
+      "salt_deviation": 100,
+      "temperature_deviation": 2
+    },
+    "warning": {
+      "ph_deviation": 0.3,
+      "chlorine_deviation": 0.5,
+      "alkalinity_deviation": 20,
+      "calcium_deviation": 50,
+      "cya_deviation": 10,
+      "salt_deviation": 200,
+      "temperature_deviation": 5
+    },
+    "critical": {
+      "ph_deviation": 0.5,
+      "chlorine_deviation": 1.0,
+      "alkalinity_deviation": 40,
+      "calcium_deviation": 100,
+      "cya_deviation": 20,
+      "salt_deviation": 400,
+      "temperature_deviation": 10
+    }
+  }
+}
