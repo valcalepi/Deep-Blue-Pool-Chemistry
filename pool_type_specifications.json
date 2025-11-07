@@ -1,0 +1,206 @@
+{
+  "pool_types": {
+    "chlorine": {
+      "name": "Chlorine Pool",
+      "description": "Traditional chlorine-based pool",
+      "typical_volume": 20000,
+      "chemical_ranges": {
+        "ph": {
+          "min": 7.2,
+          "ideal_min": 7.4,
+          "ideal_max": 7.6,
+          "max": 7.8,
+          "unit": "pH"
+        },
+        "free_chlorine": {
+          "min": 1.0,
+          "ideal_min": 2.0,
+          "ideal_max": 3.0,
+          "max": 5.0,
+          "unit": "ppm"
+        },
+        "total_chlorine": {
+          "min": 1.0,
+          "ideal_min": 2.0,
+          "ideal_max": 3.0,
+          "max": 5.0,
+          "unit": "ppm"
+        },
+        "alkalinity": {
+          "min": 80,
+          "ideal_min": 100,
+          "ideal_max": 120,
+          "max": 150,
+          "unit": "ppm"
+        },
+        "calcium_hardness": {
+          "min": 200,
+          "ideal_min": 250,
+          "ideal_max": 350,
+          "max": 400,
+          "unit": "ppm"
+        },
+        "cyanuric_acid": {
+          "min": 30,
+          "ideal_min": 40,
+          "ideal_max": 50,
+          "max": 100,
+          "unit": "ppm"
+        },
+        "temperature": {
+          "min": 70,
+          "ideal_min": 78,
+          "ideal_max": 82,
+          "max": 90,
+          "unit": "°F"
+        }
+      },
+      "chemicals_used": [
+        "Liquid Chlorine",
+        "Chlorine Tablets",
+        "Shock Treatment",
+        "pH Increaser",
+        "pH Decreaser",
+        "Alkalinity Increaser",
+        "Calcium Hardness Increaser",
+        "Cyanuric Acid",
+        "Algaecide",
+        "Clarifier"
+      ]
+    },
+    "saltwater": {
+      "name": "Salt Water Pool",
+      "description": "Salt water chlorine generator pool",
+      "typical_volume": 20000,
+      "chemical_ranges": {
+        "ph": {
+          "min": 7.2,
+          "ideal_min": 7.4,
+          "ideal_max": 7.6,
+          "max": 7.8,
+          "unit": "pH"
+        },
+        "free_chlorine": {
+          "min": 1.0,
+          "ideal_min": 2.0,
+          "ideal_max": 3.0,
+          "max": 5.0,
+          "unit": "ppm"
+        },
+        "total_chlorine": {
+          "min": 1.0,
+          "ideal_min": 2.0,
+          "ideal_max": 3.0,
+          "max": 5.0,
+          "unit": "ppm"
+        },
+        "alkalinity": {
+          "min": 80,
+          "ideal_min": 100,
+          "ideal_max": 120,
+          "max": 150,
+          "unit": "ppm"
+        },
+        "calcium_hardness": {
+          "min": 200,
+          "ideal_min": 250,
+          "ideal_max": 350,
+          "max": 400,
+          "unit": "ppm"
+        },
+        "cyanuric_acid": {
+          "min": 60,
+          "ideal_min": 70,
+          "ideal_max": 80,
+          "max": 90,
+          "unit": "ppm"
+        },
+        "salt": {
+          "min": 2700,
+          "ideal_min": 3000,
+          "ideal_max": 3400,
+          "max": 3600,
+          "unit": "ppm"
+        },
+        "temperature": {
+          "min": 70,
+          "ideal_min": 78,
+          "ideal_max": 82,
+          "max": 90,
+          "unit": "°F"
+        }
+      },
+      "chemicals_used": [
+        "Pool Salt",
+        "Shock Treatment",
+        "pH Increaser",
+        "pH Decreaser",
+        "Alkalinity Increaser",
+        "Calcium Hardness Increaser",
+        "Cyanuric Acid",
+        "Algaecide",
+        "Clarifier"
+      ]
+    },
+    "hottub": {
+      "name": "Hot Tub / Spa",
+      "description": "Hot tub or spa with higher temperature",
+      "typical_volume": 400,
+      "chemical_ranges": {
+        "ph": {
+          "min": 7.2,
+          "ideal_min": 7.4,
+          "ideal_max": 7.6,
+          "max": 7.8,
+          "unit": "pH"
+        },
+        "free_chlorine": {
+          "min": 2.0,
+          "ideal_min": 3.0,
+          "ideal_max": 5.0,
+          "max": 10.0,
+          "unit": "ppm"
+        },
+        "bromine": {
+          "min": 2.0,
+          "ideal_min": 3.0,
+          "ideal_max": 5.0,
+          "max": 8.0,
+          "unit": "ppm"
+        },
+        "alkalinity": {
+          "min": 80,
+          "ideal_min": 100,
+          "ideal_max": 150,
+          "max": 180,
+          "unit": "ppm"
+        },
+        "calcium_hardness": {
+          "min": 150,
+          "ideal_min": 175,
+          "ideal_max": 250,
+          "max": 300,
+          "unit": "ppm"
+        },
+        "temperature": {
+          "min": 95,
+          "ideal_min": 100,
+          "ideal_max": 104,
+          "max": 106,
+          "unit": "°F"
+        }
+      },
+      "chemicals_used": [
+        "Chlorine Tablets",
+        "Bromine Tablets",
+        "Shock Treatment",
+        "pH Increaser",
+        "pH Decreaser",
+        "Alkalinity Increaser",
+        "Calcium Hardness Increaser",
+        "Spa Clarifier",
+        "Foam Down"
+      ]
+    }
+  }
+}

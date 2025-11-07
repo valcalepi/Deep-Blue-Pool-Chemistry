@@ -1,0 +1,50 @@
+================================================================================
+POOL CHEMICAL SHOPPING LIST
+Generated: 2025-11-07 14:29
+================================================================================
+
+Total Items: 5
+High Priority: 2
+Estimated Total Cost: $178.00
+
+================================================================================
+
+
+HIGH PRIORITY ITEMS:
+--------------------------------------------------------------------------------
+
+[ ] Shock Treatment
+    Quantity: 12.0 lbs
+    Estimated Cost: $50.00
+    Store: Leslie's Pool Supplies
+    Reason: Out of stock - needed for weekly maintenance
+
+[ ] pH Increaser
+    Quantity: 10.0 lbs
+    Estimated Cost: $26.00
+    Store: Home Depot
+    Reason: Low stock - below minimum (2.0/5.0 lbs)
+
+MEDIUM PRIORITY ITEMS:
+--------------------------------------------------------------------------------
+
+[ ] Algaecide
+    Quantity: 2.0 quarts
+    Estimated Cost: $30.00
+    Store: Leslie's Pool Supplies
+    Reason: Low stock - below minimum (1.5/2.0 quarts)
+
+[ ] Liquid Chlorine
+    Quantity: 8.0 gallons
+    Estimated Cost: $32.00
+    Store: Leslie's Pool Supplies
+    Reason: Recommended: Add 2.5 gallons to raise free chlorine from 0.8 to 2.0 ppm
+
+LOW PRIORITY ITEMS:
+--------------------------------------------------------------------------------
+
+[ ] Test Strips
+    Quantity: 2.0 bottles
+    Estimated Cost: $40.00
+    Store: Amazon
+    Reason: Stock up for next month

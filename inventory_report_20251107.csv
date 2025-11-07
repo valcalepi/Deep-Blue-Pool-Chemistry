@@ -1,0 +1,11 @@
+Chemical,Current Qty,Min Qty,Max Qty,Unit,Cost Per Unit,Total Value,Status,Last Updated,Notes
+Liquid Chlorine,12.0,4.0,20.0,gallons,3.99,47.88,GOOD,2025-01-25,Weekly usage ~4 gallons
+pH Increaser,2.0,5.0,15.0,lbs,2.6,5.2,LOW STOCK,2025-01-20,LOW STOCK - Reorder soon
+pH Decreaser,8.0,5.0,15.0,lbs,2.5,20.0,GOOD,2025-01-22,Good stock level
+Shock Treatment,0.0,6.0,24.0,lbs,4.17,0.0,OUT OF STOCK,2025-01-15,OUT OF STOCK - Order immediately
+Alkalinity Increaser,15.0,10.0,30.0,lbs,1.85,27.75,GOOD,2025-01-23,Good stock level
+Calcium Hardness Increaser,12.0,8.0,25.0,lbs,2.87,34.44,GOOD,2025-01-18,Good stock level
+Cyanuric Acid,6.0,4.0,12.0,lbs,4.25,25.5,GOOD,2025-01-20,Good stock level
+Algaecide,1.5,2.0,6.0,quarts,15.0,22.5,LOW STOCK,2025-01-10,LOW STOCK - Reorder soon
+Clarifier,3.0,1.0,4.0,quarts,12.99,38.97,GOOD,2025-01-24,Good stock level
+Test Strips,2.0,1.0,3.0,bottles,19.99,39.98,GOOD,2025-01-12,Good stock level

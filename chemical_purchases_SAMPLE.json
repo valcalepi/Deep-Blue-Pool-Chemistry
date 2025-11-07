@@ -1,0 +1,167 @@
+[
+  {
+    "id": "CP001",
+    "date": "2024-11-15",
+    "chemical": "Liquid Chlorine",
+    "brand": "HTH",
+    "quantity": 4,
+    "unit": "gallons",
+    "cost": 15.96,
+    "store": "Leslie's Pool Supplies",
+    "notes": "Weekly chlorine purchase"
+  },
+  {
+    "id": "CP002",
+    "date": "2024-11-20",
+    "chemical": "pH Increaser",
+    "brand": "Clorox",
+    "quantity": 5,
+    "unit": "lbs",
+    "cost": 12.99,
+    "store": "Home Depot",
+    "notes": "pH was running low"
+  },
+  {
+    "id": "CP003",
+    "date": "2024-11-25",
+    "chemical": "Shock Treatment",
+    "brand": "In The Swim",
+    "quantity": 6,
+    "unit": "lbs",
+    "cost": 24.99,
+    "store": "Amazon",
+    "notes": "Monthly shock treatment"
+  },
+  {
+    "id": "CP004",
+    "date": "2024-12-01",
+    "chemical": "Alkalinity Increaser",
+    "brand": "Arm & Hammer",
+    "quantity": 10,
+    "unit": "lbs",
+    "cost": 18.50,
+    "store": "Walmart",
+    "notes": "Bulk purchase"
+  },
+  {
+    "id": "CP005",
+    "date": "2024-12-05",
+    "chemical": "Calcium Hardness Increaser",
+    "brand": "BioGuard",
+    "quantity": 8,
+    "unit": "lbs",
+    "cost": 22.99,
+    "store": "Leslie's Pool Supplies",
+    "notes": "Winter prep"
+  },
+  {
+    "id": "CP006",
+    "date": "2024-12-10",
+    "chemical": "Cyanuric Acid",
+    "brand": "HTH",
+    "quantity": 4,
+    "unit": "lbs",
+    "cost": 16.99,
+    "store": "Home Depot",
+    "notes": "Stabilizer for outdoor pool"
+  },
+  {
+    "id": "CP007",
+    "date": "2024-12-15",
+    "chemical": "Liquid Chlorine",
+    "brand": "HTH",
+    "quantity": 4,
+    "unit": "gallons",
+    "cost": 15.96,
+    "store": "Leslie's Pool Supplies",
+    "notes": "Weekly chlorine purchase"
+  },
+  {
+    "id": "CP008",
+    "date": "2024-12-20",
+    "chemical": "pH Decreaser",
+    "brand": "Clorox",
+    "quantity": 6,
+    "unit": "lbs",
+    "cost": 14.99,
+    "store": "Amazon",
+    "notes": "pH running high after rain"
+  },
+  {
+    "id": "CP009",
+    "date": "2024-12-28",
+    "chemical": "Algaecide",
+    "brand": "Pool Perfect",
+    "quantity": 2,
+    "unit": "quarts",
+    "cost": 29.99,
+    "store": "Leslie's Pool Supplies",
+    "notes": "Preventative treatment"
+  },
+  {
+    "id": "CP010",
+    "date": "2025-01-03",
+    "chemical": "Shock Treatment",
+    "brand": "In The Swim",
+    "quantity": 6,
+    "unit": "lbs",
+    "cost": 24.99,
+    "store": "Amazon",
+    "notes": "New year shock"
+  },
+  {
+    "id": "CP011",
+    "date": "2025-01-08",
+    "chemical": "Liquid Chlorine",
+    "brand": "HTH",
+    "quantity": 4,
+    "unit": "gallons",
+    "cost": 15.96,
+    "store": "Leslie's Pool Supplies",
+    "notes": "Weekly chlorine purchase"
+  },
+  {
+    "id": "CP012",
+    "date": "2025-01-12",
+    "chemical": "Test Strips",
+    "brand": "AquaChek",
+    "quantity": 1,
+    "unit": "bottle",
+    "cost": 19.99,
+    "store": "Home Depot",
+    "notes": "50-count test strips"
+  },
+  {
+    "id": "CP013",
+    "date": "2025-01-15",
+    "chemical": "Clarifier",
+    "brand": "HTH",
+    "quantity": 1,
+    "unit": "quart",
+    "cost": 12.99,
+    "store": "Walmart",
+    "notes": "Water was cloudy"
+  },
+  {
+    "id": "CP014",
+    "date": "2025-01-20",
+    "chemical": "Alkalinity Increaser",
+    "brand": "Arm & Hammer",
+    "quantity": 10,
+    "unit": "lbs",
+    "cost": 18.50,
+    "store": "Leslie's Pool Supplies",
+    "notes": "Restocking"
+  },
+  {
+    "id": "CP015",
+    "date": "2025-01-25",
+    "chemical": "Liquid Chlorine",
+    "brand": "HTH",
+    "quantity": 4,
+    "unit": "gallons",
+    "cost": 15.96,
+    "store": "Leslie's Pool Supplies",
+    "notes": "Weekly chlorine purchase"
+  }
+]

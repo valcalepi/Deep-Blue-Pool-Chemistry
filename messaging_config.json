@@ -1,0 +1,27 @@
+{
+    "email": {
+        "enabled": true,
+        "smtp_server": "smtp.gmail.com",
+        "smtp_port": 587,
+        "username": "michaelchayes1972@gmail.com",
+        "password": "skgylmzrhavkqtfo",
+        "from_address": "michaelchayes1972@gmail.com",
+        "recipients": [
+            "michaelchayes1972@gmail.com"
+        ]
+    },
+    "sms": {
+        "enabled": false,
+        "account_sid": "",
+        "auth_token": "",
+        "from_number": "",
+        "recipients": []
+    },
+    "notifications": {
+        "critical_alerts": true,
+        "warning_alerts": true,
+        "readings_saved": true,
+        "chemical_adjustments": true
+    },
+    "pool_name": "My Pool"
+}
